@@ -1,0 +1,554 @@
+.breadcrumbs{
+    margin-top: 5px;
+    
+    height: 17px;
+    width: 100%;
+    margin-left: 3%;
+    ul{
+        display: flex;
+        padding-left: 1px;
+        li{
+            margin-left: 1%;
+            list-style-type: none;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: large;
+        }
+        li:hover{
+            color: red;
+            cursor: pointer;
+        }
+    }
+    
+}
+.comment {
+    max-width: 1220px;
+    padding: 0px 10px;
+  
+    .title {
+      font-weight: bold;
+      font-size: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid black;
+    }
+  
+    .title1 {
+      font-weight: bold;
+    }
+  
+    .box {
+      height: auto;
+      width: 100%;
+      border-radius: 5px;
+      border: 1px solid #dbdbdb;
+      margin-top: 10px;
+      position: relative;
+      padding: 10px;
+  
+      .point {
+        font-size: 30px;
+        font-weight: bold;
+        color: #ffb400;
+      }
+  
+      .count a {
+        text-decoration: none;
+  
+        &:hover {
+          color: #00a2ff;
+        }
+      }
+  
+      .ratio {
+        height: 26px;
+  
+        .level {
+          float: left;
+          font-size: 16px;
+          color: black;
+          margin-right: 10px;
+        }
+  
+        .progressBar {
+          float: left;
+          background-color: #dbdbdb;
+          height: 15px;
+          width: 55%;
+          border-radius: 5px;
+          margin-top: 3px;
+  
+          .percentage {
+            background-color: #ffb400;
+            width: 100%;
+            height: 100%;
+            border-radius: 5px;
+          }
+        }
+  
+        .status {
+          float: left;
+          font-size: 16px;
+          color: #00a2ff;
+          margin-left: 10px;
+        }
+  
+        .sp-status {
+          font-size: 16px;
+          color: #00a2ff;
+          font-weight: bold;
+        }
+      }
+  
+      @media screen and (max-width: 820px) {
+        #ri {
+          display: none;
+        }
+  
+        #bo {
+          display: block;
+        }
+  
+        .box2 .content #name {
+          width: 100%;
+          margin-bottom: 10px;
+        }
+  
+        .box2 .content #mail {
+          width: 100%;
+          margin-bottom: 10px;
+        }
+  
+        .box2 .content #send {
+          width: 100%;
+        }
+      }
+  
+      .btn-right {
+        padding: 12px 25px;
+        font-size: 15px;
+        font-weight: bold;
+        color: white;
+        background-color: #CE0707;
+        border: none;
+        cursor: pointer;
+        position: absolute;
+        top: 40%;
+        left: 78%;
+  
+        &:hover {
+          background-color: red;
+        }
+      }
+  
+      .btn-bottom {
+        padding: 12px 25px;
+        font-size: 15px;
+        font-weight: bold;
+        color: white;
+        background-color: #CE0707;
+        border: none;
+        cursor: pointer;
+        margin-left: 25%;
+        margin-top: 8px;
+        margin-bottom: 8px;
+        display: none;
+  
+        &:hover {
+          background-color: red;
+        }
+      }
+  
+      .cmt {
+        margin-top: 20px;
+  
+        .nameUser {
+          font-size: 14px;
+          font-weight: bold;
+        }
+  
+        .content-cmt {
+          font-size: 15px;
+  
+          span {
+            color: #ffb400;
+            font-size: 10px;
+            margin-right: 10px;
+          }
+        }
+  
+        .time a {
+          text-decoration: none;
+          font-size: 14px;
+  
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+  
+        .time span {
+          color: #b4b3b3;
+          font-size: 14px;
+        }
+  
+        hr {
+          background-color: #dbdbdb;
+          border: 1px solid #dbdbdb;
+          margin-top: 22px;
+        }
+      }
+    }
+  
+    .box2 {
+      margin-top: 25px;
+  
+      textarea {
+        max-width: 100%;
+        min-height: 50px;
+        min-width: 30%;
+        border: 1px solid #dbdbdb;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-size: 16px;
+        padding: 5px 8px;
+      }
+  
+      .content {
+        border: 1px solid #dbdbdb;
+        margin-top: -5px;
+        height: auto;
+        padding: 10px;
+  
+        .txtbox {
+          padding: 12px 7px;
+          font-size: 15px;
+          border: 1px solid #dbdbdb;
+          width: 43.9%;
+        }
+  
+        .btn-send {
+          padding: 12px 7px;
+          font-size: 15px;
+          cursor: pointer;
+          background-color: #00a2ff;
+          border: none;
+          color: white;
+          width: 11%;
+  
+          &:hover {
+            background-color: #0b7dda;
+          }
+        }
+      }
+  
+      .content-cmt1 {
+        margin-top: 20px;
+        font-size: 16px;
+      }
+    }
+  }
+  
+  .advisory {
+    padding: 0px 10px;
+    width: 100%;
+    .contents{
+      width: 100%;
+      margin-top: 10px;
+      height: auto;
+      min-height: 100px;
+     
+      .user{
+        
+        float: left;
+        width: 5%;
+        min-height: 45px;
+        height: auto;
+        
+        .avatar {
+          background-color: #b4b3b3;
+         
+          width: 100%;
+          height: 55px;
+          left: 0px;
+         
+          text-align: center;
+          font-size: 40px;
+          color: white;
+        }
+        
+      }
+      .comment{
+        width: 92%;
+        min-height: 100px;
+        border: 1px solid gainsboro;
+        margin-left: 20px;
+        float: left;
+        padding-left: 20px;
+        .title-comment{
+          width: 100%;
+          padding-top: 5px;
+          border-bottom: 1px solid tan;
+        }
+        .content-comment{
+          overflow: hidden;
+      display: block;
+      padding: 10px 0 5px;
+      word-wrap: break-word;
+        }
+      }
+    }
+  
+  
+  
+  
+    .title {
+      font-weight: bold;
+      font-size: 25px;
+      padding-left: 45%;
+      padding-bottom: 10px;
+      border-bottom: 2px solid black;
+    }
+  
+    .count {
+      font-weight: bold;
+      font-size: 14px;
+      margin-top: 25px;
+      border-bottom: 1px solid #dbdbdb;
+      padding-bottom: 30px;
+  
+      .sp-sort {
+        float: right;
+        font-weight: normal;
+        font-size: 14px;
+      }
+  
+      #sort {
+        padding: 3px 2px;
+        font-weight: bold;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      }
+    }
+  
+    .add-comment {
+      height: 120px;
+      width: 100%;
+      margin-top: 20px;
+      position: relative;
+  
+      .avatar {
+        background-color: #b4b3b3;
+        height: 60px;
+        width: 60px;
+        position: absolute;
+        left: 0px;
+        float: left;
+        text-align: center;
+        font-size: 40px;
+        color: white;
+      }
+  
+      .content {
+        background-color: #f5f6f7;
+        height: auto;
+        max-width: 1150px;
+        padding: 0px;
+        position: absolute;
+        left: 80px;
+        top: -10px;
+        border: 1px solid #dbdbdb;
+  
+        textarea {
+          width: 100%;
+          resize: none;
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+          font-size: 16px;
+          padding: 5px 8px;
+          border: none;
+          border-bottom: 1px solid #dbdbdb;
+        }
+  
+        .content-bot {
+          font-size: 12px;
+          font-weight: bold;
+          padding: 10px 0px 14px 10px;
+  
+          #uptofb {
+            cursor: pointer;
+          }
+  
+          .btn-up {
+            position: absolute;
+            right: 10px;
+            bottom: 9px;
+            border: none;
+            padding: 5px 10px;
+            background-color: #00a2ff;
+            color: white;
+            cursor: pointer;
+            border-radius: 3px;
+            font-weight: bold;
+            font-size: 14px;
+  
+            &:hover {
+              background-color: #0b7dda;
+            }
+          }
+        }
+      }
+    }
+  
+    hr {
+      background-color: #dbdbdb;
+      border: 1px solid #dbdbdb;
+      margin-top: 22px;
+    }
+  
+    .public-fb {
+      font-size: 12px;
+      margin-top: 7px;
+      color: rgb(21, 21, 194);
+  
+      a {
+        color: rgb(21, 21, 194);
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+.productDetail{
+    width: 100%;
+    margin-left: 3%;
+    padding-left: 1px;
+    height: auto;
+    min-height: 650px;
+    margin-bottom: 10px;
+    .img{
+        width: 35%;
+        height: 50%;
+        float: left;
+        margin-top: -5px;
+       
+        padding-left: 5%;
+        padding-top: 3%;
+    }
+    .content{
+        width: 56%;
+        height: 100%;
+        
+        float: left;
+        padding-left: 2%;
+        padding-top: 1.5%;
+        .title{
+            font-size: 20px;
+        }
+        .info{
+    
+            margin-top: 2%;
+            .info-left{
+                float: left;
+                width: 50%;
+            }
+            .info-right{
+                float: left;
+                margin-top: 20px;
+               
+                
+                width: 50%;
+            }
+        }
+        .id{
+            font-family: 'Open Sans', sans-serif!important;
+             font-size:small;
+             color:dimgray;
+             margin-top: 13px;
+        }
+        .price{
+            font-size: 25px;
+            font-weight: 400;
+            margin-top: 2%;
+            color: #01a14b;
+        }
+        .lable{
+            font-weight: 600;
+            margin-top: 3%;
+            font-size: 16px;
+        }
+        .info-content{
+            .ct{
+                
+                font-size:19px;
+                font-family:'Times New Roman', Times, serif;
+                line-height: 21px;
+                color:rgb(86, 84, 84);
+            }
+        } 
+        .btn{
+    
+            margin-top: 2px;
+            height: 50px;
+            padding: 0 30px;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 0px;
+            margin-right: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            background: #01a14b;
+            border-radius: 4px;
+            border-color: #01a14b;
+            color: #fff;
+        }
+    }
+    
+    
+}
+.products {
+    width: 100%;
+    height: auto;
+    display: flex;
+    margin-top: 10px;
+    padding-right: 20px;
+    margin-left: 2%;
+    display: grid;
+    column-gap: 15px;
+    row-gap: 20px;
+    grid-template-columns: 18.2% 18.2% 18.2% 18.2% 18.2%;
+
+    .product {
+        float: left;
+        height: 100%;
+        margin-left: 20px;
+        // float: left;
+
+        // width: 100%;
+        .content {
+            font-size: 18px;
+            text-align: center;
+            font-family: 'Times New Roman', Times, serif;
+
+        }
+
+        .price {
+            font-size: 18px;
+            text-align: center;
+            font-family: 'Times New Roman', Times, serif;
+            margin-top: -20px;
+            color: #01a14b;
+        }
+    }
+
+    .product:hover {
+        margin-top: 5px;
+
+    }
+}
+
+
+
+
+
+
+
+

@@ -1,0 +1,40 @@
+li {
+    list-style-type: none;
+}
+
+.category {
+    width: 100%;
+    margin-top: 0px;
+    
+    button:hover {
+        background-color: #ddd;
+    }
+
+    ul {
+
+        height: 4.0em;
+        line-height: 4.0em;
+        width: 100%;
+       
+        background-color: darkolivegreen;
+
+        li {
+            margin-left: 1.6%;
+            float: left;
+            a {
+                padding-left: 0.8em;
+                padding-right: 0.8em;
+                color: #fff;
+                display: block;
+                text-decoration: none;
+                text-transform: uppercase;
+                text-align: center;
+                font-size: 0.85em;
+            }
+
+            a:hover {
+                background-color: olivedrab;
+            }
+        }
+    }
+}

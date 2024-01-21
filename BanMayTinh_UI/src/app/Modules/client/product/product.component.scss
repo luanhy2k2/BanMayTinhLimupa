@@ -1,0 +1,117 @@
+.bodii {
+    width: 100%;
+    height:auto;
+
+    padding-left: 5%;
+    padding-top: 2%;
+    display: block;
+    ul {
+        width: 100%;
+        height: 100%;
+        li {
+            margin-top: 10px;
+            font-size: 15px;
+            margin-left: 5px;
+            color: #555555;
+            border-bottom: 1px solid #e0e0e0;
+            font-family: 'Open Sans', sans-serif !important;
+            list-style-type: none;
+            width: 100%;
+            padding-bottom: 5px;
+
+        }
+        li:hover{
+            color: red;
+            cursor: pointer;
+        }
+    }
+    
+    .productCategory {
+        width: 100%;
+        float: right;
+        height: auto;
+        padding-left: 40px;
+        margin-bottom: 10px;
+        margin-top: 12px;
+        display: grid;
+        column-gap: 18px;
+        row-gap: 20px;
+        grid-template-columns: 23% 23% 23% 23% ;
+        .product {
+            float: left;
+            width: 100%;
+
+            .content {
+                font-size: 16px;
+                text-align: center;
+                font-weight: 300;
+                color: #212121;
+
+            }
+
+            .price {
+                font-size: 18px;
+                text-align: center;
+                font-family: 'Times New Roman', Times, serif;
+                color: #01a14b;
+            }
+        }
+    }
+}
+.breadcrumbs{
+    margin-top: 5px;
+    
+    height: 17px;
+    width: 100%;
+    margin-left: 3%;
+    ul{
+        display: flex;
+        padding-left: 1px;
+        li{
+            margin-left: 1%;
+            list-style-type: none;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: large;
+        }
+        li:hover{
+            color: red;
+            cursor: pointer;
+        }
+    }
+    
+}
+.padding-box {
+
+  
+    .box-sum {
+   
+        .box-right {
+            margin-left: 58%;
+            button:hover {
+                background-color:bisque;
+            }
+            button {
+                padding: 5px;
+                color: white;
+                background-color: darkgreen;
+                width: 25px;
+                height: 25px;
+                border-radius: 3px;
+                font-size: 14px;
+                border: none;
+                margin-left: 7px;
+               
+            }
+        }
+        width: 100%;
+        
+        height: 65px;
+        
+       
+        padding: 10px;
+      
+    }
+   
+  
+   
+}

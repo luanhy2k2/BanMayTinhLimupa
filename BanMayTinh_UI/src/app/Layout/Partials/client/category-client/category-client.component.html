@@ -1,0 +1,25 @@
+<div class="nav">
+    <ul>
+        <li>
+            TRANG CHỦ
+        </li>
+        <li>
+            DANH MỤC
+            <ul class="submenu">
+                <li [routerLink]="['/client/productCategory', item.loaiId]" *ngFor="let item of loaisp">{{item.loaiName}} </li>
+                <!-- Assuming 'data' is an array of objects with 'loai_id' and 'loai_name' properties -->
+                
+                <!-- Add more list items as needed for submenu -->
+            </ul>
+        </li>
+        <li>
+            <a style="color: black;" [routerLink]="['/client/Product']" >SẢN PHẨM</a>
+        </li>
+        <li>
+            <a>ĐƠN HÀNG</a>
+        </li>
+        <li>
+            LIÊN HỆ
+        </li>
+    </ul>
+</div>

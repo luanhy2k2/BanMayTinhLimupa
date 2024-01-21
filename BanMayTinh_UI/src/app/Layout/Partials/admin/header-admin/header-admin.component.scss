@@ -1,0 +1,35 @@
+#box-t:hover #box-b {
+    display: block;
+}
+.header {
+    background:  darkgreen;
+    height: 3.5em;
+    width: 100%;
+    .icon {
+        color: white;
+        text-align: center;
+        display: none;
+        font-size: 2.5em;
+        margin: 0.8em 1.6em;
+    }
+    .icon:hover {
+        color: cyan;
+    }
+    .box-login {
+        color: white;
+        font-size: 1.2em;
+        border-left: 0.1em solid;
+        padding: 1.0em;
+       
+        float: right;
+        cursor: pointer;
+        .box-login-bottom {
+            height: auto;
+            width: auto;
+            display: none;
+            position: fixed;
+            top: 2.0em;
+            right: 0em;
+        }
+    }
+}

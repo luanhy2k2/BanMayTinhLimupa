@@ -1,0 +1,17 @@
+D:\DELL E7450\QuanLyMayTinh\Service\bin\Debug\net6.0\Service.deps.json
+D:\DELL E7450\QuanLyMayTinh\Service\bin\Debug\net6.0\Service.dll
+D:\DELL E7450\QuanLyMayTinh\Service\bin\Debug\net6.0\Service.pdb
+D:\DELL E7450\QuanLyMayTinh\Service\bin\Debug\net6.0\Model.dll
+D:\DELL E7450\QuanLyMayTinh\Service\bin\Debug\net6.0\Repository.dll
+D:\DELL E7450\QuanLyMayTinh\Service\bin\Debug\net6.0\Model.pdb
+D:\DELL E7450\QuanLyMayTinh\Service\bin\Debug\net6.0\Repository.pdb
+D:\DELL E7450\QuanLyMayTinh\Service\obj\Debug\net6.0\Service.csproj.AssemblyReference.cache
+D:\DELL E7450\QuanLyMayTinh\Service\obj\Debug\net6.0\Service.GeneratedMSBuildEditorConfig.editorconfig
+D:\DELL E7450\QuanLyMayTinh\Service\obj\Debug\net6.0\Service.AssemblyInfoInputs.cache
+D:\DELL E7450\QuanLyMayTinh\Service\obj\Debug\net6.0\Service.AssemblyInfo.cs
+D:\DELL E7450\QuanLyMayTinh\Service\obj\Debug\net6.0\Service.csproj.CoreCompileInputs.cache
+D:\DELL E7450\QuanLyMayTinh\Service\obj\Debug\net6.0\Service.csproj.CopyComplete
+D:\DELL E7450\QuanLyMayTinh\Service\obj\Debug\net6.0\Service.dll
+D:\DELL E7450\QuanLyMayTinh\Service\obj\Debug\net6.0\refint\Service.dll
+D:\DELL E7450\QuanLyMayTinh\Service\obj\Debug\net6.0\Service.pdb
+D:\DELL E7450\QuanLyMayTinh\Service\obj\Debug\net6.0\ref\Service.dll

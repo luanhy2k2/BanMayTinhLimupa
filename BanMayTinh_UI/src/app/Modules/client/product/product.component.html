@@ -1,0 +1,48 @@
+<div class="breadcrumbs">
+    <ul>
+        <li>Trang chủ /</li>
+        <li>Manga-comic /</li>
+        <li>Cô gái nơi xứ lạ -8 /</li>
+    </ul>
+</div>
+<div style="display: grid; grid-template-columns: 25% 73%; margin-top: 2%; padding-left: 2%;" class="bodii">
+    <div style="height: 100%; width: 100%;">
+        <p style="font-size: 1.5em; margin-left: 1em;">DANH MỤC</p>
+        <hr style="width: 90%;margin-left: 20px; height: 0.2em; background-color: darkgray;"/>
+        <ul>
+            <!-- Assuming categories is an array of objects with properties loai_id and loai_name -->
+            <li [routerLink]="['/productCategory', item.loaiId]" *ngFor="let item of loaisp" style="list-style-type: none;">
+                {{item.loaiName}}
+            </li>
+      
+        </ul>
+    </div>
+    <div style="margin-left: 30px;">
+        <h1 style="font-size: 1.5em; width:100%; height:1em; padding-left: 35px;">SẢN PHẨM CẦN TÌM</h1>
+        <div class="productCategory">
+
+            <div *ngFor="let item of products" class="product">
+                <img [routerLink]="['/client/detail', item.sanpId]" style=" width: 100%; height: 80%" src="./assets/img/book/{{item.image}}" />
+                <p class="content">{{item.sanpName}}</p>
+                <p class="price">{{item.gia}}đ</p>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<div class="padding-box">
+    <div class="box-sum">
+        <div class="box-right">
+            <button (click)="previousPage()">
+                <i class="fa fa-chevron-left" style="margin-top: -8px;"></i>
+            </button>
+            <button *ngFor="let page of totalPagesArray" (click)="setCurrentPage(page)">
+                {{ page }}
+            </button>
+            <button (click)="nextPage()">
+                <i class="fa fa-chevron-right" style="margin-top: -8px;"></i>
+            </button>
+        </div>
+    </div>
+</div>
