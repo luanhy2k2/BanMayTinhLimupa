@@ -345,12 +345,12 @@
                     </div>
                     <div class="row">
                         <div class="padding-box">
-
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th>Mã Sản phẩm</th>
                                         <th>Tên sản phẩm</th>
+                                        <th>Hình ảnh</th>
                                         <th>Số lượng</th>
                                         <th>Giá</th>
                                     </tr>
@@ -359,6 +359,7 @@
                                  <tr *ngFor="let x of orderDetail">
                                     <td>{{x.sanpId}}</td>
                                     <td>{{x.sanpName}}</td>
+                                    <td> <img src="https://luan2k2hy.blob.core.windows.net/fileupload/{{x.image}}" alt="Li's Product Image"></td>
                                     <td>{{x.soLuong}}</td>
                                     <td>{{x.giaMua}}</td>
                                  </tr>

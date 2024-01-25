@@ -19,7 +19,7 @@ export class ProductDetailComponent {
   ) {}
 
   routeParams = this.route.snapshot.paramMap;
-  productDetail!: productDetail;
+  productDetail!: any;
   comment: commentProduct[] = [];
 
   addCommentEntity = {

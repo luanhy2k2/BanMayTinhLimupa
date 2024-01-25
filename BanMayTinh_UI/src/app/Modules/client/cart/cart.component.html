@@ -28,36 +28,22 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr *ngFor="let x of products">
                                     <td class="li-product-remove"><a ><i class="fa fa-times"></i></a></td>
-                                    <td class="li-product-thumbnail"><a ><img src="./assets/images_client/product/small-size/5.jpg" alt="Li's Product Image"></a></td>
-                                    <td class="li-product-name"><a >Accusantium dolorem1</a></td>
-                                    <td class="li-product-price"><span class="amount">$46.80</span></td>
+                                    <td style="width: 20%;" class="li-product-remove"><a ><img style="width: 70%;" src="https://luan2k2hy.blob.core.windows.net/fileupload/{{x.image}}" alt="Li's Product Image"></a></td>
+                                    <td class="li-product-name"><a >{{x.sanpName}}</a></td>
+                                    <td class="li-product-price"><span class="amount">{{x.giaMua | currency:"VND"}}</span></td>
                                     <td class="quantity">
                                         <label>Quantity</label>
                                         <div class="cart-plus-minus">
-                                            <input class="cart-plus-minus-box" value="1" type="text">
+                                            <input class="cart-plus-minus-box" value="{{x.soLuong}}" type="text">
                                             <div class="dec qtybutton"><i class="fa fa-angle-down"></i></div>
                                             <div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>
                                         </div>
                                     </td>
-                                    <td class="product-subtotal"><span class="amount">$70.00</span></td>
+                                    <td class="product-subtotal"><span class="amount">{{(x.soLuong * x.giaMua) | currency:"VND"}}</span></td>
                                 </tr>
-                                <tr>
-                                    <td class="li-product-remove"><a ><i class="fa fa-times"></i></a></td>
-                                    <td class="li-product-thumbnail"><a ><img src="./assets/images_client/product/small-size/6.jpg" alt="Li's Product Image"></a></td>
-                                    <td class="li-product-name"><a >Mug Today is a good day</a></td>
-                                    <td class="li-product-price"><span class="amount">$71.80</span></td>
-                                    <td class="quantity">
-                                        <label>Quantity</label>
-                                        <div class="cart-plus-minus">
-                                            <input class="cart-plus-minus-box" value="1" type="text">
-                                            <div class="dec qtybutton"><i class="fa fa-angle-down"></i></div>
-                                            <div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>
-                                        </div>
-                                    </td>
-                                    <td class="product-subtotal"><span class="amount">$60.50</span></td>
-                                </tr>
+                                
                             </tbody>
                         </table>
                     </div>
@@ -67,10 +53,10 @@
                             <div class="cart-page-total">
                                 <h2>Cart totals</h2>
                                 <ul>
-                                    <li>Subtotal <span>$130.00</span></li>
-                                    <li>Total <span>$130.00</span></li>
+                                   
+                                    <li>Total <span>{{total | currency:"VND"}}</span></li>
                                 </ul>
-                                <a [routerLink]="['/client/pay']" >Proceed to checkout</a>
+                                <a [routerLink]="['/client/Pay']" >Thanh toán</a>
                             </div>
                         </div>
                     </div>

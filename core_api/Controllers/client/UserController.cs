@@ -70,8 +70,8 @@ namespace core_api.Controllers.client
                         {
                             MaNguoiDung = n.MaNguoiDung,
                             HoTen = n.HoTen,
-                            GioiTinh = n.GioiTinh,
-
+                           
+                            Sdt = n.Sdt,
                             TaiKhoan = t.TaiKhoan1,
                             LoaiQuyen = t.LoaiQuyen,
                             MatKhau = t.MatKhau
@@ -98,7 +98,7 @@ namespace core_api.Controllers.client
             var tmp = tokenHandler.CreateToken(tokenDescriptor);
             var token = tokenHandler.WriteToken(tmp);
 
-            return Ok(new { MaNguoiDung = user.MaNguoiDung, loaiQuyen = user.LoaiQuyen, HoTen = user.HoTen, Token = token });
+            return Ok(new { MaNguoiDung = user.MaNguoiDung, Sdt = user.Sdt, loaiQuyen = user.LoaiQuyen, HoTen = user.HoTen, Token = token });
         }
 
 

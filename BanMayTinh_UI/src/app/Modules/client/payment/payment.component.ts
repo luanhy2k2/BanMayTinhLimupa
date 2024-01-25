@@ -11,17 +11,17 @@ export class PaymentComponent {
   constructor(private cartService: CartService, private PayService: PaymentService) { }
   total: number = 0
   payForm = {
-    khach: {
+    customer: {
       tenKhachHang: "",
       diaChi: "",
       email: "",
       sdt: ""
     },
-    ct: [
+    orderDetails: [
       {
         sanpId: "",
-        quantity: "",
-        gia: ""
+        soLuong: "",
+        giaMua: ""
       }
     ],
     total: 0
@@ -41,13 +41,13 @@ export class PaymentComponent {
     const cartData = this.cartService.getCart()
     if (cartData !== null) {
       const cart = JSON.parse(cartData);
-      if (this.payForm.khach.diaChi == "" || this.payForm.khach.email == "" || this.payForm.khach.sdt == null || this.payForm.khach.tenKhachHang == null) {
+      if (this.payForm.customer.diaChi == "" || this.payForm.customer.email == "" || this.payForm.customer.sdt == null || this.payForm.customer.tenKhachHang == null) {
         alert("Bạn cần nhập đủ các thông tin!");
       }
       else {
-        this.payForm.ct = cart;
+        this.payForm.orderDetails = cart;
         var totalPrice: number = cart.reduce((acc: number, product: any) => {
-          return acc + product.gia * product.quantity;
+          return acc + product.giaMua * product.soLuong;
         }, 0);
         this.payForm.total = totalPrice;
         this.PayService.payMent(this.payForm).subscribe(response => {

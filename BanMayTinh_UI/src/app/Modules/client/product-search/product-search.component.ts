@@ -42,7 +42,7 @@ export class ProductSearchComponent {
             this.total = Math.ceil(productCount / 15)
             this.totalPagesArray = Array.from({ length: this.total }, (_, index) => index + 1);
             this.products = res.results;
-            console.log(this.products)
+            console.log(res)
           })
       });
   }

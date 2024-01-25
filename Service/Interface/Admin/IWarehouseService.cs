@@ -1,0 +1,14 @@
+﻿using Model.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Service.Interface.Admin
+{
+    public interface IWarehouseService:IGenericService<ChiTietKho>
+    {
+        Task<Object> GetWarehouse(int pageIndex, int pageSize);
+    }
+}

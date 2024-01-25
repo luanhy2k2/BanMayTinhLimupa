@@ -12,7 +12,7 @@ export class CartService {
         let list!: any[]
 
         // Set the quantity of the item to 1 by default.
-        item.quantity = 1;
+        item.soLuong = 1;
 
         // Get the cart from local storage.
         const cart = localStorage.getItem('cart');
@@ -28,7 +28,7 @@ export class CartService {
             let ok = true;
             for (const x of list) {
                 if (x.sanpId === item.sanpId) {
-                    x.quantity += 1;
+                    x.soLuong += 1;
                     ok = false;
                     break;
                 }
@@ -50,7 +50,7 @@ export class CartService {
         const cartData = this.getCart()
         var cart = JSON.parse(cartData);
         const totalPrice = cart.reduce((acc: any, product: any) => {
-            return acc + product.gia * product.quantity;
+            return acc + product.giaMua * product.soLuong;
         }, 0);
         return totalPrice;
     }

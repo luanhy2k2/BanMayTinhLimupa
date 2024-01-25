@@ -1,0 +1,406 @@
+.hiXKxx {
+    margin: 12px 0;
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,.05);
+    border-radius: 0.125rem;
+}
+div {
+    display: block;
+}
+.x0QT2k {
+    padding: 12px 24px;
+    background: #fff;
+}
+h3.a11y-hidden {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+.KrPQEI {
+    padding: 0 0 12px;
+    justify-content: space-between;
+}
+.qCUYY8 {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+.EQko8g {
+    padding: 0 0 0 10px;
+    display: flex;
+    align-items: center;
+}
+.qP6Mvo {
+    display: flex;
+    align-items: center;
+    margin: 0 10px 0 0;
+    padding: 0 5px 0 0;
+    text-align: right;
+    border-right: 1px solid rgba(0,0,0,.12);
+}
+.KmBIg2 {
+    margin: 0;
+    display: inline-flex;
+    align-items: center;
+}
+.nkmfr2 {
+    text-decoration: none;
+    color: rgba(0,0,0,.87);
+    color: #26aa99;
+    vertical-align: middle;
+}
+.qP6Mvo .icon-free-shipping-line {
+    margin: 0 4px 1px 0;
+    vertical-align: middle;
+    font-size: 1rem;
+    color: #00bfa5;
+    stroke: #26aa99;
+}
+.qP6Mvo .shopee-drawer {
+    margin: 0 0 0 6px;
+    display: inline-flex;
+    vertical-align: middle;
+}
+.shopee-drawer .icon-help {
+    stroke: currentColor;
+}
+._0RxYUS, .KrPQEI {
+    display: flex;
+    align-items: center;
+}
+._9Ro5mP {
+    max-width: 200px;
+    margin-left: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+svg:not(:root) {
+    overflow: hidden;
+}
+.B8\+ewx, .FycaKn {
+    border-bottom: 1px solid rgba(0,0,0,.09);
+}
+h2.a11y-hidden, h3.a11y-hidden {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+.aybVBK, .x7nENX {
+    display: flex;
+    word-wrap: break-word;
+}
+.aybVBK {
+    padding: 0 12px 0 0;
+    flex: 1;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+}
+.rGP9Yd {
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+    border: 1px solid #e1e1e1;
+    background: #e1e1e1;
+}
+._7uZf6Q {
+    min-width: 0;
+    padding: 0 0 0 12px;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: flex-start;
+    word-wrap: break-word;
+}
+button{
+    background-color: darkgreen;
+}
+@media only screen and (min-width: 600px) {
+    /* For tablets: */
+    .col-s-1 {
+        width: 8.33%;
+    }
+    .col-s-2 {
+        width: 16.66%;
+    }
+    .col-s-3 {
+        width: 25%;
+    }
+    .col-s-4 {
+        width: 33.33%;
+    }
+    .col-s-5 {
+        width: 41.66%;
+    }
+    .col-s-6 {
+        width: 50%;
+    }
+    .col-s-7 {
+        width: 58.33%;
+    }
+    .col-s-8 {
+        width: 66.66%;
+    }
+    .col-s-9 {
+        width: 75%;
+    }
+    .col-s-10 {
+        width: 83.33%;
+    }
+    .col-s-11 {
+        width: 91.66%;
+    }
+    .col-s-12 {
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    /* For desktop: */
+    .col-1 {
+        width: 8.33%;
+    }
+    .col-2 {
+        width: 16.66%;
+    }
+    .col-3 {
+        width: 25%;
+    }
+    .col-4 {
+        width: 33.33%;
+    }
+    .col-5 {
+        width: 41.66%;
+    }
+    .col-6 {
+        width: 50%;
+    }
+    .col-7 {
+        width: 58.33%;
+    }
+    .col-8 {
+        width: 66.66%;
+    }
+    .col-9 {
+        width: 75%;
+    }
+    .col-10 {
+        width: 83.33%;
+    }
+    .col-11 {
+        width: 91.66%;
+    }
+    .col-12 {
+        width: 100%;
+    }
+}
+@media screen and (max-width: 1023px) {
+    .main{
+        .category {
+            display: none;
+        }
+    } 
+    .header{
+        a{
+            .icon {
+                float: left;
+                display: block;
+            }
+        }
+    } 
+}
+a{
+    list-style-type: none;
+}
+.main{
+    .row{
+        a{
+            text-decoration: none;
+        }
+        .contents{
+           
+            width: 98%;
+           
+            padding-top: 10px;
+            padding-left: 20px;
+            margin-bottom: 20px;
+            .content{
+                
+                .tabcontent{
+                    .btn-form:hover {
+                        opacity: 1;
+                    }
+                    
+                    .btn-form {
+                        border: none;
+                        background-color: darkgreen;
+                        border-radius: 5px;
+                        padding: 10px 15px;
+                        margin-left: 4%;
+                        color: white;
+                        font-size: 14px;
+                        cursor: pointer;
+                        opacity: 0.7;
+                        margin-top: 5px;
+                    }
+                    .title{
+                        font-weight: bold;
+                        color: darkgreen;
+                        margin: 0px 0px 10px 0px;
+                        button {
+                            border: none;
+                            color: white;
+                            background-color: darkgreen;
+                            padding: 8px 5px;
+                            float: right;
+                            border-radius: 4px;
+                            cursor: pointer;
+                        }
+                        button:hover {
+                            background-color: green;
+                        }
+                        hr {
+                            border: 1px solid darkgreen;
+                            background-color: darkgreen;
+                            width: 250px;
+                            margin-left: 0px;
+                            margin-top: 5px;
+                        }
+                    }
+                    hr {
+                        border: 1px solid #ccc;
+                        background-color: #ccc;
+                        margin: 20px 0px 15px 0px;
+                    }
+                    .row{
+                        .box {
+                            .box-right {
+                                font-size: 16px;
+                                font-weight: 500;
+                                padding: 16px 0px;
+                                float: left;
+                            }
+                            .box-left {
+                                font-size: 22px;
+                                float: left;
+                                padding: 20px;
+                            }
+                            border-radius: 5px;
+                            width: 100%;
+                            min-height: 75px;
+                            color: white;
+                        }
+                        .table_chitiet {
+                            width: 100%;
+                            margin-bottom: 10px;
+                            border-collapse: collapse;
+                        }
+                        .margin-bot {
+                            margin-bottom: 10px;
+                        }
+                        .padding-box {
+                            .box-sum {
+                                .box-right {
+                                    margin-left: 46%;
+                                    button:hover {
+                                        background-color: darkgreen;
+                                    }
+                                    button {
+                                        padding: 5px;
+                                        background-color: darkgreen;
+                                        width: 25px;
+                                        height: 25px;
+                                        border-radius: 3px;
+                                        
+                                        font-size: 14px;
+                                        border: none;
+                                    }
+                                }
+                                width: 100%;
+                                height: 65px;
+                                background-color: #d9edf7;
+                                border: 1px solid #bce8f1;
+                                padding: 10px;
+                            }
+                            table {
+                                width: 100%;
+                                img {
+                                    width: 70px;
+                                    height: 70px;
+                                }
+                                th {
+                                    border: none;
+                                    padding: 5px 10px;
+                                   
+                                    border-collapse: collapse;
+                                    font-size: 14px;
+                                }
+                                td {
+                                    border: none;
+                                    
+                                    padding: 5px 10px;
+                                    border-collapse: collapse;
+                                    font-size: 14px;
+                                }
+                            }
+                            button:hover {
+                                background-color: forestgreen;
+                            }
+                            button {
+                                padding: 10px;
+                                font-size: 14px;
+                                border: 1px solid #ccc;
+                                width: 100%;
+                                border-radius: 3px;
+                                cursor: pointer;
+                                background-color: darkgreen;
+                                color: white;
+                            }
+                            input{
+                                padding: 10px;
+                                font-size: 14px;
+                                border: 1px solid #ccc;
+                                width: 100%;
+                                border-radius: 3px;
+                            }
+                            select {
+                                padding: 10px;
+                                font-size: 14px;
+                                border: 1px solid #ccc;
+                                width: 100%;
+                                border-radius: 3px;
+                            }
+                            padding: 10px 8px 0px 8px;
+                            label[for=name] {
+                                font-weight: bold;
+                                font-size: 14px;
+                            }
+                            span {
+                                font-size: 14px;
+                            }
+                            label[for=txtright] {
+                                font-size: 14px;
+                            }
+                            .btn-changepass {
+                                border: none;
+                                width: 200px;
+                                color: white;
+                                border: 3px;
+                                cursor: pointer;
+                                padding: 10px;
+                            }
+                            .btn-changepass:hover {
+                                background-color: chocolate;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+    }
+}

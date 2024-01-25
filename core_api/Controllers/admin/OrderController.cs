@@ -19,7 +19,7 @@ namespace core_api.Controllers.client
         {
             try
             {
-                var data = await _orderService.getAll(pageIndex, pageSize);
+                var data = await _orderService.GetAllOrder(pageIndex, pageSize);
                 return Ok(data);
             }
             catch(Exception ex)
@@ -27,15 +27,42 @@ namespace core_api.Controllers.client
                 return BadRequest(ex.Message);
             }
         }
-
-        [Route("getOrder/{id}/{pageIndex}/{pageSize}")]
-        [HttpGet]
-        public async Task<ActionResult> getOrder(int id, int pageIndex, int pageSize)
+        [Route("updateDelivery/{id}/{delivery}")]
+        [HttpPost]
+        public async Task<ActionResult> UpdateDelivery(int id, string delivery)
         {
             try
             {
-                var data = await _orderService.GetOrder(id,pageIndex, pageSize);
-                return Ok(data);
+                var result = await _orderService.UpdateDelivery(id, delivery);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [Route("updatePaymentStatus/{id}/{status}")]
+        [HttpPost]
+        public async Task<ActionResult> UpdatePaymentStatus(int id, string status)
+        {
+            try
+            {
+                var result = await _orderService.UpdatePaymentStatus(id, status);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [Route("confirmOrder/{id}")]
+        [HttpPost]
+        public async Task<ActionResult> ConfirmOrder(int id)
+        {
+            try
+            {
+                var result = await _orderService.ConfirmOrder(id);
+                return Ok();
             }
             catch (Exception ex)
             {
@@ -43,35 +70,49 @@ namespace core_api.Controllers.client
             }
         }
 
-        [Route("getOrderById/{id}")]
+        [Route("getOrder/{phone}/{pageIndex}/{pageSize}")]
         [HttpGet]
-        public async Task<DonHang> getOrderById(int id)
+        public async Task<ActionResult> getOrder(string phone, int pageIndex, int pageSize)
         {
             try
             {
-                var data = await _orderService.getById(id);
-                return data;
+                var data = await _orderService.GetOrder(phone, pageIndex, pageSize);
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
+
+        [Route("getOrderById/{id}")]
+        [HttpGet]
+        public async Task<ActionResult> getOrderById(int id)
+        {
+            try
+            {
+                var data = await _orderService.GetOrderById(id);
+                return Ok(data);
             }
             catch(Exception ex)
             {
                 throw new Exception($"{ex.Message}", ex);
             }
         }
-        //[Route("getOrderDetailById/{id}")]
-        //[HttpGet]
-        //public IActionResult getOrderDetailById(int id)
-        //{
-        //    var data = from o in db.ChiTietDonHangs
-        //               join s in db.Sanphams on o.SanpId equals s.SanpId
-        //               select new
-        //               {
-        //                   o.SanpId,
-        //                   s.SanpName,
-        //                   o.SoLuong,
-        //                   o.GiaMua,
-        //                   o.MaDonHang
-        //               };
-        //    return Ok(data.Where(x => x.MaDonHang == id).OrderByDescending(x => x.MaDonHang).ToList());
-        //}
+        [Route("getOrderDetailById/{id}")]
+        [HttpGet]
+        public async Task<ActionResult> getOrderDetailById(int id)
+        {
+            try
+            {
+                var data = await _orderService.GetOrderDetailById(id);
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"{ex.Message}", ex);
+            }
+        }
     }
 }

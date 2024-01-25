@@ -1785,7 +1785,7 @@ textarea:focus {
 	transition: all 0.3s ease-in-out;
 	color: #242424;
 }
-.hb-menu nav > ul > li:nth-child(n+5) > a::after {
+.hb-menu nav > ul > li:nth-child(n+2) > a::after {
 	content: none;
 }
 .hb-menu nav > ul > li:hover  a::after {
@@ -3352,9 +3352,11 @@ li.right-menu .cat-mega-menu-2 > li {
 .header-bottom-other-page {
 	margin-bottom: 0;
 }
+
 /*Li's Breadcrumb*/
 .breadcrumb-area {
-	padding: 21px 0 22px;
+	padding: 8px 0 9px;
+	margin-top: 0px;
 	background: #f9f9f9;
 }
 .breadcrumb-content li {

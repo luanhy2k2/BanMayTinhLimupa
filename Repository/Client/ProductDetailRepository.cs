@@ -56,7 +56,7 @@ namespace Repository.Client
                             select new
                             {
                                 sp.SanpId, sp.SanpName, sp.Cpu, sp.Battery, sp.Card, sp.Ram, sp.Rom, sp.Display,
-                                nsx.NsxName, gia.Gia, loaisp.LoaiName, sp.Image, sp.Tomtat, sp.Namsx
+                                nsx.NsxName,  giaMua = gia.Gia, loaisp.LoaiName, sp.Image, sp.Tomtat, sp.Namsx
                             };
                 var result = await query.FirstOrDefaultAsync(x => x.SanpId == id);
                 return result;

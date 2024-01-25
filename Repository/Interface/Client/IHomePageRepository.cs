@@ -13,5 +13,6 @@ namespace Repository.Interface.Client
         Task<Object> NewProduct(int index, int quantity);
         Task<Object> GetProductByCategory(int categoryId, int pageIndex, int pageSize);
         Task<Object> GetProductByCompany(int companyId, int pageIndex, int pageSize);
+        Task<List<Sanpham>> GetFilteredProducts(string[] ram, string[] rom);
     }
 }

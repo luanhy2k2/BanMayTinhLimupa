@@ -11,6 +11,7 @@ import { ProductCategoryComponent } from './product-category/product-category.co
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { ProductSearchComponent } from './product-search/product-search.component';
 import { LoginComponent } from './login/login.component';
+import { MyOrderComponent } from './my-order/my-order.component';
 
 @NgModule({
     declarations:[
@@ -21,7 +22,8 @@ import { LoginComponent } from './login/login.component';
     ProductCategoryComponent,
     ProductDetailComponent,
     ProductSearchComponent,
-    LoginComponent
+    LoginComponent,
+    MyOrderComponent
   ],
     imports:[
       ClientRoutingModule,

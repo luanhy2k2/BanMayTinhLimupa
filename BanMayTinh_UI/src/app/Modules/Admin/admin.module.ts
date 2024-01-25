@@ -7,7 +7,10 @@ import { ProductComponent } from './product/product.component';
 import { OrderComponent } from './order/order.component';
 import { OrderDetailComponent } from './order/order-detail/order-detail.component';
 import { HttpClientModule } from "@angular/common/http";
-import { EditBranchComponent } from './branch/edit-branch/edit-branch.component';
+import { WarehouseComponent } from './warehouse/warehouse.component';
+import { ImportInvoiceComponent } from './import-invoice/import-invoice.component';
+import { ImportInvoiceDetailComponent } from './import-invoice/import-invoice-detail/import-invoice-detail.component';
+
 
 
 @NgModule({
@@ -17,7 +20,11 @@ import { EditBranchComponent } from './branch/edit-branch/edit-branch.component'
    
     OrderComponent,
     OrderDetailComponent,
-    EditBranchComponent
+    WarehouseComponent,
+    ImportInvoiceComponent,
+    ImportInvoiceDetailComponent,
+   
+   
   ],
     imports:[
         FormsModule,

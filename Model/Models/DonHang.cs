@@ -10,6 +10,8 @@ public partial class DonHang
     public DateTime? NgayDat { get; set; }
 
     public string? TrangThai { get; set; }
+    public string? TrangThaiThanhToan { get; set; }
+    public string? TrangThaiGiaoHang { get; set; }
 
     public int? ToTal { get; set; }
 

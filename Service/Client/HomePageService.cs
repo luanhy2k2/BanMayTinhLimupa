@@ -1,7 +1,9 @@
-﻿using Repository.Interface.Client;
+﻿using Model.Models;
+using Repository.Interface.Client;
 using Service.Interface.Client;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -89,6 +91,27 @@ namespace Service.Client
             try
             {
                 var result = await _res.GetProductByCompany(companyId, pageIndex, pageSize);
+                if (result == null)
+                {
+                    throw new InvalidOperationException("operation did not return a valid result");
+                }
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error occured while get product entities", ex);
+            }
+        }
+
+        public async Task<List<Sanpham>> GetFilteredProducts(string[] ram, string[] rom)
+        {
+            if (ram == null || rom == null)
+            {
+                throw new ArgumentOutOfRangeException("input canot be null");
+            }
+            try
+            {
+                var result = await _res.GetFilteredProducts(ram,rom);
                 if (result == null)
                 {
                     throw new InvalidOperationException("operation did not return a valid result");

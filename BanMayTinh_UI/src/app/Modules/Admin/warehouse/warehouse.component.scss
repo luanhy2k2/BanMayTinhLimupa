@@ -1,0 +1,19 @@
+#content {
+    .container-fluid {
+      .card {
+        .card-body {
+          .padding-box {
+            display: flex; justify-content: center; 
+            .box-sum {
+              .box-right {
+                button {
+                  margin-left: 1px;
+                  border-radius: 5px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }

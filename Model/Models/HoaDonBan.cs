@@ -9,7 +9,7 @@ public partial class HoaDonBan
 
     public DateTime? NgayBan { get; set; }
 
-    public int? MaNguoiDung { get; set; }
+    public int? MaKhachHang { get; set; }
 
     public int? ToTal { get; set; }
 

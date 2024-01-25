@@ -41,8 +41,20 @@ builder.Services.AddScoped<IProductDetailService, ProductDetailService>();
 builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
 builder.Services.AddScoped<IPaymentService, PaymentService>();
 
+builder.Services.AddScoped<IWareHouseRepository, WarehouseRepository>();
+builder.Services.AddScoped<IWarehouseService, WarehouseService>();
+
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IOrderService, OrderService>();
+
+builder.Services.AddScoped<IExportInvoiceDetailRepository, ExportInvoiceDetailRepository>();
+builder.Services.AddScoped<IExportInvoiceDetailService, ExportInvoiceDetailService>();
+
+builder.Services.AddScoped<IExportInvoiceRepository, ExportInvoiceRepository>();
+builder.Services.AddScoped<IExportInvoiceService, ExportInvoiceService>();
+
+builder.Services.AddScoped<IImportInvoiceRepository, ImportInvoiceRepository>();
+builder.Services.AddScoped<IImportInvoiceService, ImportInvoiceService>();
 builder.Services.AddControllers();
     
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

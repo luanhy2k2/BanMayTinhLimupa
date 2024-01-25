@@ -1,0 +1,45 @@
+
+    <div style="padding-left: 2%;" class='row'>
+        <div style="margin-top: 20px;" *ngFor="let x of order; let i = index" class='contents card shadow'>
+        
+            <div style='margin-left: 30px' class='content'>
+                <div class='tabcontent'>
+                    <div class='title'>
+                        <i class='fas fas fa-boxes'></i> Đơn hàng - {{x.trangThai}}
+                     
+                        
+                    </div>
+                    <div class='row'>
+                        <div style="padding-bottom: 10px;" class='padding-box'>
+                            <table class="table">
+                                <tbody>
+                                   <tr  *ngFor="let detail of order[i].chiTietDonHangs">
+                                    <td style="width: 18%;"> <img style="width: 70%; height: 100px;" src="https://luan2k2hy.blob.core.windows.net/fileupload/{{detail.sanp.image}}"> </td>
+                                    <td style="width: 50%; "> <span style="font-size: larger; font-weight: bolder;"> Laptop - {{detail.sanp.sanpName}} </span>
+                                        <br>
+                                        Số lượng: {{detail.soLuong}}
+                                    </td>
+                                    <td> <span style="font-size: larger; font-weight:100;">| Giá: {{detail.giaMua}}</span> </td>
+                                   </tr>
+                                </tbody>
+                               
+                            </table>
+                            <ng-container *ngIf="x.trangThaiThanhToan === 'Chưa thanh toán'; else daThanhToanBlock">
+                                <!-- Hiển thị nút Xác nhận thanh toán nếu chưa thanh toán -->
+                                <button *ngIf="x.trangThaiGiaoHang == 'Giao hàng thành công'; else chuaGiaoHang " (click)="completeOrder(x.maDonHang)" style="margin-left: 67%; width: 13%;">Xác nhận thanh toán</button>
+                              </ng-container>
+                              <!-- Hiển thị thông báo "Đã thanh toán" nếu đã thanh toán -->
+                              <ng-template #daThanhToanBlock>
+                                <p>Đã thanh toán</p>
+                              </ng-template>
+                              <ng-template #chuaGiaoHang>
+                                <p>{{x.trangThaiGiaoHang}}</p>
+                              </ng-template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+

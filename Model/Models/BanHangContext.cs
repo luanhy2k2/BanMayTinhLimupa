@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json;
 using Microsoft.EntityFrameworkCore;
 
 namespace Model.Models;
@@ -53,6 +54,11 @@ public partial class QuanlybanhangContext : DbContext
 
     public virtual DbSet<TaiKhoan> TaiKhoan { get; set; }
 
+    public Task SaveChangesAsync(JsonSerializerOptions jsonSerializerOptions)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 
         => optionsBuilder.UseSqlServer("Server=ADMIN;Database=QuanLyMayTinh;Trusted_Connection=True;TrustServerCertificate=True;");
@@ -83,7 +89,7 @@ public partial class QuanlybanhangContext : DbContext
 
             entity.HasOne(d => d.MaDonHangNavigation).WithMany(p => p.ChiTietDonHangs)
                 .HasForeignKey(d => d.MaDonHang)
-                .HasConstraintName("FK__ChiTietDo__MaDon__6FE99F9F");
+                .HasConstraintName("FK__ChiTietDo__MaDon__4F47C5E3");
 
             entity.HasOne(d => d.Sanp).WithMany(p => p.ChiTietDonHangs)
                 .HasForeignKey(d => d.SanpId)
@@ -150,8 +156,9 @@ public partial class QuanlybanhangContext : DbContext
             entity.ToTable("DonHang");
 
             entity.Property(e => e.NgayDat).HasColumnType("date");
-            entity.Property(e => e.TrangThai).HasMaxLength(50);
-
+            entity.Property(e => e.TrangThai).HasColumnName("TrangThai"); ;
+            entity.Property(e => e.TrangThaiThanhToan).HasColumnName("TrangThaiThanhToan");
+            entity.Property(e => e.TrangThaiGiaoHang).HasColumnName("TrangThaiGiaoHang");
             entity.HasOne(d => d.MaKhachHangNavigation).WithMany(p => p.DonHangs)
                 .HasForeignKey(d => d.MaKhachHang)
                 .HasConstraintName("FK__DonHang__MaKhach__778AC167");
@@ -181,8 +188,8 @@ public partial class QuanlybanhangContext : DbContext
             entity.Property(e => e.NgayBan).HasColumnType("date");
 
             entity.HasOne(d => d.MaNguoiDungNavigation).WithMany(p => p.HoaDonBans)
-                .HasForeignKey(d => d.MaNguoiDung)
-                .HasConstraintName("FK__HoaDonBan__MaNgu__797309D9");
+                .HasForeignKey(d => d.MaKhachHang)
+                .HasConstraintName("FK__HoaDonBan__MaKha__151B244E");
         });
 
         modelBuilder.Entity<HoaDonNhap>(entity =>

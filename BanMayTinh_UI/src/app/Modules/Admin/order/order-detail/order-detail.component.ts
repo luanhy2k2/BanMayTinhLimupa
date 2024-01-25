@@ -20,7 +20,6 @@ export class OrderDetailComponent {
     });
    }
   getOrderDetail(id:number){
-
     this.orderService.getOrderDetailById(id).subscribe((data) => {
       this.orderDetail = data;
     });

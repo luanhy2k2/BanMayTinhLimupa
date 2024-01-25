@@ -135,5 +135,22 @@ namespace Repository.Client
                 throw new Exception("Error", ex);
             }
         }
+        public async Task<List<Sanpham>> GetFilteredProducts(string[] ram, string[] rom)
+        {
+            var query = _dbContext.Sanpham.AsQueryable();
+
+            if (ram != null && ram.Any())
+            {
+                query = query.Where(p => ram.Contains(p.Ram));
+            }
+
+            if (rom != null && rom.Any())
+            {
+                query = query.Where(p => rom.Contains(p.Rom));
+            }
+
+            var result = await query.ToListAsync();
+            return result;
+        }
     }
 }

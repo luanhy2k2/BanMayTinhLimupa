@@ -19,7 +19,8 @@ export class ProductCategoryComponent {
   ngOnInit() {
     this.loadData();
     this.HomeService.getCategories().subscribe(res=>{
-      this.loaisp = res;
+      this.loaisp = res.data;
+      console.log(res)
     })
   }
   previousPage() {

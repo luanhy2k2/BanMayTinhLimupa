@@ -3,6 +3,8 @@ using Model.Models;
 using Model.Models.entity;
 using Service.Client;
 using Service.Interface.Client;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 
 namespace core_api.Controllers.client
 {
@@ -20,14 +22,22 @@ namespace core_api.Controllers.client
         {
             try
             {
+                var options = new JsonSerializerOptions
+                {
+                    ReferenceHandler = ReferenceHandler.Preserve,
+                    // Các tùy chọn khác nếu cần
+                };
+
                 var result = await _paymentService.AddOrder(donhang.customer, donhang.orderDetails, donhang.total);
-                return Ok(donhang);
+                var jsonResult = JsonSerializer.Serialize(donhang, options);
+                return Ok(jsonResult);
             }
             catch (Exception ex)
             {
                 return StatusCode(500, $"An error occurred: {ex.Message}");
             }
         }
+
         [Route("getOrderByCustomerPhone/{phone}/{index}/{quantity}")]
         [HttpPost]
         public async Task<ActionResult> GetOrderByCustomerPhone(string phone, int index, int quantity)

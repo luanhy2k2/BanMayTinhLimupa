@@ -72,6 +72,12 @@ namespace core_api.Controllers.client
                 throw new Exception(e.Message);
             }
         }
+        [HttpGet("filter")]
+        public async Task<ActionResult> GetFilteredProducts([FromQuery] string[] ram, [FromQuery] string[] rom)
+        {
+            var filteredProducts = await _homePageService.GetFilteredProducts(ram, rom);
+            return Ok(filteredProducts);
+        }
 
     }
 }

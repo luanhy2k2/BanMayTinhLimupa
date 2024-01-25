@@ -5,6 +5,9 @@ import { ProductComponent } from "./product/product.component";
 
 import { OrderDetailComponent } from "./order/order-detail/order-detail.component";
 import { OrderComponent } from "./order/order.component";
+import { WarehouseComponent } from "./warehouse/warehouse.component";
+import { ImportInvoiceComponent } from "./import-invoice/import-invoice.component";
+import { ImportInvoiceDetailComponent } from "./import-invoice/import-invoice-detail/import-invoice-detail.component";
 
 
 const routes: Routes = [
@@ -26,9 +29,19 @@ const routes: Routes = [
     {
         path: 'orderDetail/:id',
         component:OrderDetailComponent
-        
-    }
-    ,
+    },
+    {
+        path: 'wareHouse',
+        component:WarehouseComponent
+    },
+    {
+        path: 'importInvoice',
+        component:ImportInvoiceComponent
+    },
+    {
+        path: 'importInvoiceDetail/:id',
+        component:ImportInvoiceDetailComponent
+    },
    
 ]
 @NgModule({

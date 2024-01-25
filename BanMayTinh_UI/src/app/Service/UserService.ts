@@ -19,6 +19,10 @@ export class UserService{
     
         return this.httpClient.post<any>("https://localhost:7261/api/User/uploadfile", formData);
       }
+      getUser() {
+        var userString = localStorage.getItem('user');
+        return userString ? JSON.parse(userString) : null;
+    }
     
     
     

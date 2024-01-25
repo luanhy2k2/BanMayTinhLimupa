@@ -67,7 +67,7 @@
                                             <div class="single-product-wrap">
                                                 <div class="product-image">
                                                     <a>
-                                                        <img [routerLink]="['/client/detail', 3]" src="./assets/images_client/product/large-size/3.jpg" alt="Li's Product Image">
+                                                        <img [routerLink]="['/client/detail', x.sanpId]" src="https://luan2k2hy.blob.core.windows.net/fileupload/{{x.image}}" alt="Li's Product Image">
                                                     </a>
                                                  
                                                 </div>
@@ -133,13 +133,12 @@
                     <!-- btn-clear-all end -->
                     <!-- filter-sub-area start -->
                     <div class="filter-sub-area">
-                        <h5 class="filter-sub-titel">Brand</h5>
+                        <h5 class="filter-sub-titel">Laptop</h5>
                         <div class="categori-checkbox">
                             <form action="#">
                                 <ul>
-                                    <li><input type="checkbox" name="product-categori"><a href="#">Prime Video (13)</a></li>
-                                    <li><input type="checkbox" name="product-categori"><a href="#">Computers (12)</a></li>
-                                    <li><input type="checkbox" name="product-categori"><a href="#">Electronics (11)</a></li>
+                                    <li *ngFor="let x of loaisp" ><input type="checkbox" name="product-categori"><a href="#">{{x.loaiName}}</a></li>
+                               
                                 </ul>
                             </form>
                         </div>
@@ -147,12 +146,14 @@
                     <!-- filter-sub-area end -->
                     <!-- filter-sub-area start -->
                     <div class="filter-sub-area pt-sm-10 pt-xs-10">
-                        <h5 class="filter-sub-titel">Categories</h5>
+                        <h5 class="filter-sub-titel">Ram</h5>
                         <div class="categori-checkbox">
                             <form action="#">
                                 <ul>
-                                    <li><input type="checkbox" name="product-categori"><a href="#">Graphic Corner (10)</a></li>
-                                    <li><input type="checkbox" name="product-categori"><a href="#"> Studio Design (6)</a></li>
+                                    <li><input type="checkbox" name="product-categori"><a href="#">4 Gb</a></li>
+                                    <li><input type="checkbox" name="product-categori"><a href="#">8 Gb</a></li>
+                                    <li><input type="checkbox" name="product-categori"><a href="#">16 Gb</a></li>
+                                    <li><input type="checkbox" name="product-categori"><a href="#">24 Gb</a></li>
                                 </ul>
                             </form>
                         </div>
@@ -160,14 +161,14 @@
                     <!-- filter-sub-area end -->
                     <!-- filter-sub-area start -->
                     <div class="filter-sub-area pt-sm-10 pt-xs-10">
-                        <h5 class="filter-sub-titel">Size</h5>
+                        <h5 class="filter-sub-titel">Ổ cứng</h5>
                         <div class="size-checkbox">
                             <form action="#">
                                 <ul>
-                                    <li><input type="checkbox" name="product-size"><a href="#">S (3)</a></li>
-                                    <li><input type="checkbox" name="product-size"><a href="#">M (3)</a></li>
-                                    <li><input type="checkbox" name="product-size"><a href="#">L (3)</a></li>
-                                    <li><input type="checkbox" name="product-size"><a href="#">XL (3)</a></li>
+                                    <li><input type="checkbox" name="product-size"><a href="#">256Gb SSD</a></li>
+                                    <li><input type="checkbox" name="product-size"><a href="#">512Gb SSD</a></li>
+                                    <li><input type="checkbox" name="product-size"><a href="#">1TB SSD</a></li>
+                                    <li><input type="checkbox" name="product-size"><a href="#">2TB SSD</a></li>
                                 </ul>
                             </form>
                         </div>
@@ -175,32 +176,23 @@
                     <!-- filter-sub-area end -->
                     <!-- filter-sub-area start -->
                     <div class="filter-sub-area pt-sm-10 pt-xs-10">
-                        <h5 class="filter-sub-titel">Color</h5>
+                        <h5 class="filter-sub-titel">CPU</h5>
                         <div class="color-categoriy">
                             <form action="#">
                                 <ul>
-                                    <li><span class="white"></span><a href="#">White (1)</a></li>
-                                    <li><span class="black"></span><a href="#">Black (1)</a></li>
-                                    <li><span class="Orange"></span><a href="#">Orange (3) </a></li>
-                                    <li><span class="Blue"></span><a href="#">Blue  (2) </a></li>
+                                    <li><span ></span><a href="#">Intel Core I3</a></li>
+                                    <li><span ></span><a href="#">Intel Core I5</a></li>
+                                    <li><span ></span><a href="#">Intel Core I7 </a></li>
+                                    <li><span ></span><a href="#">AMD Ryzen 3 </a></li>
+                                    <li><span ></span><a href="#">AMD Ryzen 5 </a></li>
+                                    <li><span ></span><a href="#">AMD Ryzen 7 </a></li>
                                 </ul>
                             </form>
                         </div>
                     </div>
                     <!-- filter-sub-area end -->
                     <!-- filter-sub-area start -->
-                    <div class="filter-sub-area pt-sm-10 pb-sm-15 pb-xs-15">
-                        <h5 class="filter-sub-titel">Dimension</h5>
-                        <div class="categori-checkbox">
-                            <form action="#">
-                                <ul>
-                                    <li><input type="checkbox" name="product-categori"><a href="#">40x60cm (6)</a></li>
-                                    <li><input type="checkbox" name="product-categori"><a href="#">60x90cm (6)</a></li>
-                                    <li><input type="checkbox" name="product-categori"><a href="#">80x120cm (6)</a></li>
-                                </ul>
-                            </form>
-                        </div>
-                     </div>
+                    
                     <!-- filter-sub-area end -->
                 </div>
                 

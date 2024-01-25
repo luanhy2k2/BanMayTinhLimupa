@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { HomeGetDataService } from 'src/app/Service/Client/HomePage/Home-getData';
 
 @Component({
@@ -7,7 +8,11 @@ import { HomeGetDataService } from 'src/app/Service/Client/HomePage/Home-getData
   styleUrls: ['./header-client.component.scss']
 })
 export class HeaderClientComponent {
-  constructor(private homeService: HomeGetDataService) {
+  constructor(private homeService: HomeGetDataService, private router:Router) {
+  }
+  name: string = "";
+  search(){
+    this.router.navigate(['/client/search',this.name]);
   }
   branch: any[] = [];
   ngOnInit() {

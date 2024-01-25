@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ClientTemplateComponent } from './client-template/client-template.component';
 import { AdminTemplateComponent } from './admin-template/admin-template.component';
+import { PageCheckService } from 'src/app/Service/page-check.service';
 
 
 const routes: Routes = [
@@ -42,4 +43,6 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class TemplateRoutingModule {}
+export class TemplateRoutingModule {
+
+}

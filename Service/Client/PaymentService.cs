@@ -100,7 +100,9 @@ namespace Service.Client
                     MaKhachHang = customer.MaKhachHang,
                     NgayDat = DateTime.Now,
                     ToTal = price,
-                    TrangThai = "Chưa xác nhận"
+                    TrangThai = "Chưa xác nhận",
+                    TrangThaiGiaoHang = "Chưa giao hàng",
+                    TrangThaiThanhToan = "Chưa thanh toán"
                 };
                 var createOrder = await CreateOrder(order);
                 foreach (var item in orderDetail)
