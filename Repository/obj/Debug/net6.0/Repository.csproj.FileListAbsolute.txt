@@ -13,3 +13,4 @@ D:\DELL E7450\QuanLyMayTinh\Repository\obj\Debug\net6.0\ref\Repository.dll
 D:\DELL E7450\QuanLyMayTinh\Repository\bin\Debug\net6.0\Model.dll
 D:\DELL E7450\QuanLyMayTinh\Repository\bin\Debug\net6.0\Model.pdb
 D:\DELL E7450\QuanLyMayTinh\Repository\obj\Debug\net6.0\Repository.csproj.CopyComplete
+D:\DELL E7450\QuanLyMayTinh\Repository\obj\Debug\net6.0\Repository.sourcelink.json

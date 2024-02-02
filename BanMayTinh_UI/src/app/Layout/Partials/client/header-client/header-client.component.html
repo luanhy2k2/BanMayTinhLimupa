@@ -15,21 +15,39 @@
               <!-- Begin Header Top Right Area -->
               <div class="col-lg-9 col-md-8">
                   <div class="header-top-right">
-                      <ul class="ht-menu">
+                      <ul *ngIf="user; else showLoginSignup" class="ht-menu">
                           <!-- Begin Setting Area -->
                           
                           <!-- Setting Area End Here -->
                           <!-- Begin Currency Area -->
                           <li>
-                              <span [routerLink]="['/client/login']" class="currency-selector-wrapper">Đăng nhập</span>
+                              <span  class="currency-selector-wrapper">{{user.hoTen}}</span>
                           </li>
                           <!-- Currency Area End Here -->
                           <!-- Begin Language Area -->
                           <li>
-                            <span [routerLink]="['/client/login']" class="currency-selector-wrapper">Đăng ký</span>
+                            <a (click)="logOut()" class="currency-selector-wrapper">Đăng xuất</a>
                           </li>
                           <!-- Language Area End Here -->
                       </ul>
+                      <ng-template #showLoginSignup>
+                        <!-- Hiển thị khi user là null -->
+                        <ul class="ht-menu">
+                            <!-- Begin Setting Area -->
+                            
+                            <!-- Setting Area End Here -->
+                            <!-- Begin Currency Area -->
+                            <li>
+                                <span [routerLink]="['/client/login']" class="currency-selector-wrapper">Đăng nhập</span>
+                            </li>
+                            <!-- Currency Area End Here -->
+                            <!-- Begin Language Area -->
+                            <li>
+                              <span [routerLink]="['/client/register']" class="currency-selector-wrapper">Đăng kí</span>
+                            </li>
+                            <!-- Language Area End Here -->
+                        </ul>
+                    </ng-template>
                   </div>
               </div>
               <!-- Header Top Right Area End Here -->
@@ -178,7 +196,7 @@
                                   </ul>
                               </li>
                               
-                              <li><a >Sản phẩm</a></li>
+                              <li><a [routerLink]="['/client/Product']" >Sản phẩm</a></li>
                               <li ><a [routerLink]="['/client/myOrder']">Đơn hàng</a></li>
                               <!-- Begin Header Bottom Menu Information Area -->
                               <li class="hb-info f-right p-0 d-sm-none d-lg-block">

@@ -148,7 +148,7 @@ namespace Repository.Admin
                             on invoiceDetail.SanpId equals product.SanpId
                             select new
                             {
-                                invoiceDetail.DonGia, invoiceDetail.SoHoaDon, invoiceDetail.SoLuong, product.SanpId,
+                                invoiceDetail.DonGia,invoiceDetail.MaChiTietHoaDonNhap, invoiceDetail.SoHoaDon, invoiceDetail.SoLuong, product.SanpId,
                                 product.SanpName, product.Image
                             };
                 var result = await query.Where(x => x.SoHoaDon == id).ToListAsync();

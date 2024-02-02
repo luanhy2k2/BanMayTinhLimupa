@@ -170,7 +170,7 @@
         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
           <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-          <img class="img-profile rounded-circle" src="../../../../assets/img/undraw_profile.svg" />
+          <img class="./assets/img-profile rounded-circle" src="" />
         </a>
         <!-- Dropdown - User Information -->
         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -220,7 +220,7 @@
                 <td>{{x.maDonHang}}</td>
                 <td>{{x.tenKhachHang}}</td>
                 <td>{{x.ngayDat| date:'yyyy-mm-dd'}}</td>
-                <td>{{x.total}}</td>
+                <td>{{x.toTal}}</td>
                 <!-- <td>{{x.trangThai}}</td> -->
                 <td>
                   <select [(ngModel)]="x.trangThai" (change)="onChangeTrangThai(x)">

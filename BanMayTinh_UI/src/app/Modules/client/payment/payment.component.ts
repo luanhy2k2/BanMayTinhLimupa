@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CartService } from 'src/app/Service/Client/form/CartService';
 import { PaymentService } from 'src/app/Service/Client/form/PaymentService';
+import { UserService } from 'src/app/Service/UserService';
 
 @Component({
   selector: 'app-payment',
@@ -8,14 +9,15 @@ import { PaymentService } from 'src/app/Service/Client/form/PaymentService';
   styleUrls: ['./payment.component.scss']
 })
 export class PaymentComponent {
-  constructor(private cartService: CartService, private PayService: PaymentService) { }
-  total: number = 0
+  constructor(private cartService: CartService,private userService:UserService, private PayService: PaymentService) { }
+  total: number = 0;
+  user:any = this.userService.getUser();
   payForm = {
     customer: {
-      tenKhachHang: "",
-      diaChi: "",
-      email: "",
-      sdt: ""
+      tenKhachHang: this.user.hoTen,
+      diaChi: this.user.address,
+      email: this.user.email,
+      sdt: this.user.phone
     },
     orderDetails: [
       {
@@ -50,11 +52,20 @@ export class PaymentComponent {
           return acc + product.giaMua * product.soLuong;
         }, 0);
         this.payForm.total = totalPrice;
-        this.PayService.payMent(this.payForm).subscribe(response => {
-          alert("Đặt hàng thành công");
-          localStorage.removeItem('cart');
-        }
-        )
+        this.PayService.payMent(this.payForm).subscribe(
+          (response) => {
+            alert("Đặt hàng thành công");
+            localStorage.removeItem('cart');
+          },
+          (err) => {
+            if (err.status === 401) {
+              alert("Bạn cần phải đăng nhập");
+            } else {
+              alert("Đã xảy ra lỗi. Vui lòng thử lại sau.");
+            }
+          }
+        );
+        
       }
 
     }

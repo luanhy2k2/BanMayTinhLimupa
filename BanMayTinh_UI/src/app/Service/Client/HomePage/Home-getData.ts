@@ -1,6 +1,7 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, catchError, map } from "rxjs";
+import { observableToBeFn } from "rxjs/internal/testing/TestScheduler";
 import { loaisp } from "src/app/Models/loaisp.entity";
 import { product } from "src/app/Models/product.entity";
 const host = "https://localhost:7261"
@@ -26,10 +27,9 @@ export class HomeGetDataService {
   getProductByLoaiId(id: any, pageIndex:number): Observable<any> {
     return this.httpClient.get<any>(`${host}/api/Home/getProductByCategory/${id}/${pageIndex}/15`)
   }
-  getAllProduct(pageIndex: any): Observable<any[]> {
-
-    return this.httpClient.get<any[]>(`${host}/api/Home/laySanPham/${pageIndex}/2`)
-  }
+  getproduct(pageIndex: any):Observable<any>{
+    return this.httpClient.get<any>(`${host}/api/product/getAll/${pageIndex}/15`);
+}
   getProductData(criteria: string, quantity: number): Observable<any[]> {
     const url = `${host}/api/Home/${criteria}/${quantity}/5`;
 
@@ -52,6 +52,14 @@ export class HomeGetDataService {
           throw error;
         })
       );
+  }
+  getFilteredProducts(ram: string[], rom: string[], pageIndex:number): Observable<any> {
+    
+    const params = { ram, rom };
+    
+    var route = this.httpClient.get<any>(`https://localhost:7261/api/Home/filter/${pageIndex}/15`, { params });
+    console.log(route)
+    return route;
   }
 
 

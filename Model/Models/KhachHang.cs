@@ -15,4 +15,5 @@ public partial class KhachHang
 
     public string? Sdt { get; set; }
     public virtual ICollection<DonHang> DonHangs { get; set; } = new List<DonHang>();
+    public virtual ICollection<HoaDonBan> HoaDonBans { get; } = new List<HoaDonBan>();
 }

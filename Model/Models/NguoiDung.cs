@@ -19,7 +19,7 @@ public partial class NguoiDung
 
     public string? Sdt { get; set; }
 
-    public virtual ICollection<HoaDonBan> HoaDonBans { get; } = new List<HoaDonBan>();
+    //public virtual ICollection<HoaDonBan> HoaDonBans { get; } = new List<HoaDonBan>();
 
     public virtual ICollection<HoaDonNhap> HoaDonNhaps { get; } = new List<HoaDonNhap>();
     public virtual ICollection<ProductComment> ProductComments { get; set; } = new List<ProductComment>();

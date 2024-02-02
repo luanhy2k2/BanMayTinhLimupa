@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.Json;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Model.Models.entity;
 
 namespace Model.Models;
 
-public partial class QuanlybanhangContext : DbContext
+public partial class QuanlybanhangContext : IdentityDbContext<ApplicationUser>
 {
     public QuanlybanhangContext()
     {
-    }
 
+    }
     public QuanlybanhangContext(DbContextOptions<QuanlybanhangContext> options)
         : base(options)
     {
@@ -61,7 +64,7 @@ public partial class QuanlybanhangContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 
-        => optionsBuilder.UseSqlServer("Server=ADMIN;Database=QuanLyMayTinh;Trusted_Connection=True;TrustServerCertificate=True;");
+        => optionsBuilder.UseSqlServer("Server=ADMIN;Database=Limupa;Trusted_Connection=True;TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -187,9 +190,9 @@ public partial class QuanlybanhangContext : DbContext
 
             entity.Property(e => e.NgayBan).HasColumnType("date");
 
-            entity.HasOne(d => d.MaNguoiDungNavigation).WithMany(p => p.HoaDonBans)
+            entity.HasOne(d => d.MaKhachHangNavigation).WithMany(p => p.HoaDonBans)
                 .HasForeignKey(d => d.MaKhachHang)
-                .HasConstraintName("FK__HoaDonBan__MaKha__151B244E");
+                .HasConstraintName("FK__HoaDonBan__MaKha__2739D489");
         });
 
         modelBuilder.Entity<HoaDonNhap>(entity =>
@@ -385,6 +388,13 @@ public partial class QuanlybanhangContext : DbContext
         });
 
         OnModelCreatingPartial(modelBuilder);
+        base.OnModelCreating(modelBuilder);
+
+        // Thêm đoạn code sau để xác định lại khóa chính cho IdentityUserLogin<string>
+        modelBuilder.Entity<IdentityUserLogin<string>>(b =>
+        {
+            b.HasKey(l => new { l.LoginProvider, l.ProviderKey });
+        });
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);

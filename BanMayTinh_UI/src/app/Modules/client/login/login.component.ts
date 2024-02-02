@@ -9,23 +9,24 @@ import { UserService } from 'src/app/Service/UserService';
 })
 export class LoginComponent {
   constructor(private userService: UserService, private router: Router) { }
-  username: any;
+  email: any;
   password: any;
   login() {
-    this.userService.login(this.username, this.password).subscribe(res => {
-      console.log(res.loaiQuyen);
-     if(res.message === "Tài khoản hoặc mật khẩu không đúng"){
-      alert('Thông tin đăng nhập không chính xác');
-     }
-      else {
-        
+    this.userService.login(this.email, this.password).subscribe(res => {
+      console.log(res.role);
+      if (res.message === "Tài khoản hoặc mật khẩu không đúng") {
+        alert('Thông tin đăng nhập không chính xác');
+      } else {
         localStorage.setItem("user", JSON.stringify(res));
-        if (res.loaiQuyen === "admin") {
-          this.router.navigate(['/admin/product']);
-        } else {
+        
+        // Kiểm tra xem "admin" có tồn tại trong mảng role hay không
+        if (res.role.includes("Customer")) {
           this.router.navigate(['/client/Home']);
+        } else {
+          this.router.navigate(['/admin/product']);
         }
       } 
-    })
+    });
   }
+  
 }

@@ -135,22 +135,44 @@ namespace Repository.Client
                 throw new Exception("Error", ex);
             }
         }
-        public async Task<List<Sanpham>> GetFilteredProducts(string[] ram, string[] rom)
+        public async Task<object> GetFilteredProducts(string[] ram, string[] rom, int pageIndex, int pageSize)
         {
-            var query = _dbContext.Sanpham.AsQueryable();
-
-            if (ram != null && ram.Any())
+            try
             {
-                query = query.Where(p => ram.Contains(p.Ram));
-            }
+                var query = _dbContext.Sanpham.AsQueryable();
 
-            if (rom != null && rom.Any())
+                if (ram != null && ram.Any())
+                {
+                    query = query.Where(p => ram.Contains(p.Ram));
+                }
+
+                if (rom != null && rom.Any())
+                {
+                    query = query.Where(p => rom.Contains(p.Rom));
+                }
+
+               
+                int totalCount = await query.CountAsync();
+
+                query = query.Skip((pageIndex - 1) * pageSize).Take(pageSize);
+
+                var result = await query.ToListAsync();
+
+                return new
+                {
+                    results = result,
+                    total = totalCount
+                };
+            }
+            catch (Exception ex)
             {
-                query = query.Where(p => rom.Contains(p.Rom));
+               
+                Console.WriteLine($"An error occurred: {ex.Message}");
+                throw;
             }
-
-            var result = await query.ToListAsync();
-            return result;
         }
+
+
+
     }
 }

@@ -103,7 +103,7 @@ namespace Service.Client
             }
         }
 
-        public async Task<List<Sanpham>> GetFilteredProducts(string[] ram, string[] rom)
+        public async Task<Object> GetFilteredProducts(string[] ram, string[] rom,int pageIndex, int pageSize)
         {
             if (ram == null || rom == null)
             {
@@ -111,7 +111,7 @@ namespace Service.Client
             }
             try
             {
-                var result = await _res.GetFilteredProducts(ram,rom);
+                var result = await _res.GetFilteredProducts(ram,rom,pageIndex,pageSize);
                 if (result == null)
                 {
                     throw new InvalidOperationException("operation did not return a valid result");

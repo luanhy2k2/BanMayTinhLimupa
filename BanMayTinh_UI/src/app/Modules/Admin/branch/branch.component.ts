@@ -11,7 +11,7 @@ import { branchService } from 'src/app/Service/admin/brandService';
 export class BranchComponent {
   constructor(private branchService:branchService, private route :ActivatedRoute){ }
   branch: branch[] = [];
-  pageIndex: number = 0;
+  pageIndex: number = 1;
   totalPageArray: number[] = []
   name: string = "";
   requestData = {
@@ -24,13 +24,13 @@ export class BranchComponent {
     
   }
   getBranch(){
-    this.branchService.countBranch().subscribe(res=>{
-      var total = Number(res);
+    this.branchService.getBranch(this.pageIndex).subscribe(res=>{
+      var total = Number(res.totalCount);
       var toatlPage = Math.ceil(total/5);
       this.totalPageArray = Array.from({ length: toatlPage }, (_, index) => index + 1);
-      this.branchService.getBranch(this.pageIndex).subscribe(res=>{
-        this.branch = res;
-      })
+      
+        this.branch = res.data;
+    
     })
   }
   getBranchByName(){
@@ -47,7 +47,7 @@ export class BranchComponent {
     this.getBranch();
   }
   setPage(pageInDex:any){
-    this.pageIndex = pageInDex-1;
+    this.pageIndex = pageInDex;
     this.getBranch();
   }
   addBranch() {

@@ -77,7 +77,7 @@ export class OrderComponent {
   click(id: number) {
     setTimeout(() => {
       this.completeOrder(id);
-    }, 25920000); // 1 giờ = 60 phút * 60 giây * 1000 milliseconds
+    }, 3000); // 1 giờ = 60 phút * 60 giây * 1000 milliseconds
     this.getOrder();
   }
   completeOrder(id: number) {

@@ -12,3 +12,4 @@ D:\DELL E7450\QuanLyMayTinh\Model\obj\Debug\net6.0\refint\Model.dll
 D:\DELL E7450\QuanLyMayTinh\Model\obj\Debug\net6.0\Model.pdb
 D:\DELL E7450\QuanLyMayTinh\Model\obj\Debug\net6.0\Model.genruntimeconfig.cache
 D:\DELL E7450\QuanLyMayTinh\Model\obj\Debug\net6.0\ref\Model.dll
+D:\DELL E7450\QuanLyMayTinh\Model\obj\Debug\net6.0\Model.sourcelink.json
