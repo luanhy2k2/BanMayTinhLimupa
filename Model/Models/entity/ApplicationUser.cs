@@ -12,6 +12,7 @@ namespace Model.Models.entity
     {
         public string hoTen { get; set; } = null!;
         public string address { get; set; } = null!;
-
+        public virtual ICollection<HoaDonNhap> HoaDonNhaps { get; } = new List<HoaDonNhap>();
+        public virtual ICollection<ProductComment> ProductComments { get; set; }
     }
 }

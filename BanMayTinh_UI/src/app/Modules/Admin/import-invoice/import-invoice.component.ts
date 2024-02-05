@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { UserService } from 'src/app/Service/UserService';
 import { InvoiceService } from 'src/app/Service/admin/invoiceService';
 
 @Component({
@@ -8,10 +9,9 @@ import { InvoiceService } from 'src/app/Service/admin/invoiceService';
   styleUrls: ['./import-invoice.component.scss']
 })
 export class ImportInvoiceComponent {
-  constructor(private http:HttpClient, private InvoiceService: InvoiceService){}
+  constructor(private http:HttpClient, private userService:UserService, private InvoiceService: InvoiceService){}
   requestData = {
-    maNguoiDung:'',
-    nsxId:''
+    maNguoiDung: this.userService.getUser().id,
   };
   total:number = 0;
   totalPageArray: any[] = [];
@@ -47,7 +47,13 @@ export class ImportInvoiceComponent {
   }
   addinvoice(){
     this.InvoiceService.addImportInvoice(this.requestData).subscribe(res=>{
-      alert("Thêm hoá đơn thành công!")
+      alert("Thêm hoá đơn thành công!");
+      this.getInvoice();
+    },
+    err =>{
+      if(err.status == 403){
+        alert("Bạn không có quyền!");
+      }
     })
   }
 }

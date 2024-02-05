@@ -46,7 +46,7 @@
           >
             <div class="bg-white py-2 collapse-inner rounded">
               <a class="collapse-item" [routerLink]="['/admin/branch']"
-                >Loại sản phẩm</a
+                >Hãng sản phẩm</a
               >
               <a class="collapse-item" [routerLink]="['/admin/product']">Sản phẩm</a>
             </div>
@@ -80,17 +80,12 @@
           </div>
         </li>
 
-        <a
-            class="nav-link collapsed"
-            [routerLink]="['/admin/account']"
-            data-toggle="collapse"
-            data-target="#collapseProduct"
-            aria-expanded="true"
-            aria-controls="collapseProduct"
-          >
-            <i class="fas fa-fw fa-duotone fa-images"></i>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/admin/account']" >
+            <i class="fas fa-fw fa-user"></i>
             <span>Nhân viên</span>
           </a>
+        </li>
 
         <!-- Nav Item - Utilities Collapse Menu -->
         <li class="nav-item">

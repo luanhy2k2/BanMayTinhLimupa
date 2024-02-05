@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+
 import { Component } from '@angular/core';
 import { orderService } from 'src/app/Service/admin/orderService';
 
@@ -8,7 +8,7 @@ import { orderService } from 'src/app/Service/admin/orderService';
   styleUrls: ['./order.component.scss']
 })
 export class OrderComponent {
-  constructor(private orderService:orderService, private http:HttpClient){}
+  constructor(private orderService:orderService){}
   order!: any[];
   total:number = 0;
   orderById!: any;

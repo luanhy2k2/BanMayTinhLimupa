@@ -19,7 +19,6 @@ export class ProductComponent {
   name: string = "";
   users:any = "";
   requestData = {
-  
       sanpId: 0,
       sanpName: '',
       loaiId: '',

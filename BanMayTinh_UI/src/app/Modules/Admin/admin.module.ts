@@ -11,6 +11,7 @@ import { WarehouseComponent } from './warehouse/warehouse.component';
 import { ImportInvoiceComponent } from './import-invoice/import-invoice.component';
 import { ImportInvoiceDetailComponent } from './import-invoice/import-invoice-detail/import-invoice-detail.component';
 import { UserComponent } from './user/user.component';
+import { UserDetailComponent } from './user/user-detail/user-detail.component';
 
 
 
@@ -25,6 +26,7 @@ import { UserComponent } from './user/user.component';
     ImportInvoiceComponent,
     ImportInvoiceDetailComponent,
     UserComponent,
+    UserDetailComponent,
    
    
   ],

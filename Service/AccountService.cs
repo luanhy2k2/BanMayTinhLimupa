@@ -19,9 +19,20 @@ namespace Service
             _repository = repository;
         }
 
-        public Task<IdentityResult> AddAccountantRole(string id)
+        public async Task<IdentityResult> AddAccountantRole(string id)
         {
-            throw new NotImplementedException();
+            if (!await _repository.RoleExistsAsync(AppRole.Accountant))
+            {
+                await _repository.CreateRoleAsync(AppRole.Accountant);
+            }
+            var user = await _repository.FindUserByIdAsync(id);
+            if (user == null)
+            {
+                return IdentityResult.Failed(new IdentityError { Description = "User not found" });
+            }
+
+            var result = await _repository.AddToRoleAsync(user, AppRole.Accountant);
+            return result;
         }
 
         public async Task<IdentityResult> AddAdminRole(string id)
@@ -38,15 +49,7 @@ namespace Service
                 return IdentityResult.Failed(new IdentityError { Description = "User not found" });
             }
 
-            var existingRoles = await _repository.GetRolesAsync(user);
-
-            if (existingRoles != null)
-            {
-                foreach (var role in existingRoles)
-                {
-                    await _repository.RemoveFromUserRoleAsync(user, role);
-                }
-            }
+           
 
             var result = await _repository.AddToRoleAsync(user, AppRole.Admin);
 
@@ -65,14 +68,7 @@ namespace Service
             {
                 return IdentityResult.Failed(new IdentityError { Description = "User not found"});
             }
-            var existingRoles = await _repository.GetRolesAsync(user);
-            if(existingRoles != null)
-            {
-                foreach(var role in existingRoles)
-                {
-                    await _repository.RemoveFromUserRoleAsync(user,role);
-                }
-            }
+          
             var result = await _repository.AddToRoleAsync(user, AppRole.HR);
             return result;
 
@@ -89,15 +85,8 @@ namespace Service
             {
                 return IdentityResult.Failed(new IdentityError { Description = "User not found" });
             }
-            var existingRoles = await _repository.GetRolesAsync(user);
-            if(existingRoles != null)
-            {
-                foreach(var role in existingRoles)
-                {
-                    await _repository.RemoveFromUserRoleAsync(user,role);
-                }
-            }
-            var reuslt = await _repository.AddToRoleAsync(user, AppRole.HR);
+            
+            var reuslt = await _repository.AddToRoleAsync(user, AppRole.Manager);
             return reuslt;
         }
 
@@ -112,14 +101,7 @@ namespace Service
             {
                 return IdentityResult.Failed(new IdentityError { Description = "User not found" });
             }
-            var existingRoles = await _repository.GetRolesAsync(user);
-            if (existingRoles != null)
-            {
-                foreach (var role in existingRoles)
-                {
-                    await _repository.RemoveFromUserRoleAsync(user, role);
-                }
-            }
+            
             var reuslt = await _repository.AddToRoleAsync(user, AppRole.Warehouse);
             return reuslt;
         }
@@ -161,8 +143,8 @@ namespace Service
                 throw new Exception("Error occured while get all entities", ex);
             }
         }
-
         
+
         public async Task<Object> SignIn(SignInModel model)
         {
             if (model == null)
@@ -247,6 +229,68 @@ namespace Service
             {
                 // Log or handle the exception appropriately
                 throw new Exception("Error occurred while updating the entity.", ex);
+            }
+        }
+
+        public async Task<object> GetUserWithRoleById(string id)
+        {
+            if(id == null)
+            {
+                throw new ArgumentNullException("id can not be null");
+            }
+            try
+            {
+                var user = await _repository.FindUserByIdAsync(id);
+                if (user == null)
+                {
+                    throw new InvalidOperationException("findUser operation did not return a valid result");
+                }
+                var roles = await _repository.GetRolesAsync(user);
+                var result = new { userInfo = user, roles };
+                return result;
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("Error occurred while get user with roles");
+            }
+        }
+
+        public async Task<List<IdentityRole>> GetAllRole()
+        {
+            try
+            {
+                var result = await _repository.GetAllRole();
+                if (result == null)
+                {
+                    throw new InvalidOperationException("GetAllRole operation did not return a valid result");
+                }
+                return result;
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("Error occurred while get all role");
+            }
+        }
+
+        public async Task<IdentityResult> RemoveFromUserRoleAsync(string id, string role)
+        {
+            if(id == null || role == null)
+            {
+                throw new ArgumentNullException("id or role can not be null");
+            }
+            try
+            {
+                var user = await _repository.FindUserByIdAsync(id);
+                if(user == null)
+                {
+                    throw new InvalidOperationException("findUserById did not return valid result");
+                }
+                var result = await _repository.RemoveFromUserRoleAsync(user, role);
+                return result;
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("Error occured while remove role");
             }
         }
     }

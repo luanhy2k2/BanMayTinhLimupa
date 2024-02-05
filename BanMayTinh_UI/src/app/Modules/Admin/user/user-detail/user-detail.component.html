@@ -1,0 +1,169 @@
+<div class="order" id="content">
+    
+        <div style="display: grid; grid-template-columns: 60% 32%;" class="contents">
+            <div class="content">
+                <div  class="tabcontent">
+                    <div class="title">
+                        <i class="fas fas fa-boxes"></i> Thông tin nhân viên
+                        <hr />
+                    </div>
+                    <div class="row">
+                      <button style="margin-left: 10px;" (click)="OpenModal()" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal">
+                          Sửa thông tin
+                        </button>
+                        <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="editModalLabel">
+                                  Thông tin nhân viên
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                                <div class="form-container">
+                                  <div>      
+                                    <div class="form-field">
+                                      <label class="form-label" for="category">Họ tên:</label>
+                                      <input class="form-input" type="text" id="product-name" name="product-name"
+                                      [(ngModel)]="updateUser.hoTen" />
+                                    </div>
+                                    <div class="form-field">
+                                      <label class="form-label" for="category">Địa chỉ:</label>
+                                      <input  class="form-input" type="text" id="product-name" name="product-name"
+                                      [(ngModel)]="updateUser.address" />
+                                    </div>
+                                    <div class="form-field">
+                                      <label class="form-label" for="category">Email:</label>
+                                      <input  class="form-input" type="text" id="product-name" name="product-name"
+                                      [(ngModel)]="updateUser.email" />
+                                    </div>
+                                    <div class="form-field">
+                                      <label class="form-label" for="category">Tài khoản:</label>
+                                      <input  class="form-input" type="text" id="product-name" name="product-name"
+                                      [(ngModel)]="updateUser.userName" />
+                                    </div>
+                                    <div class="form-field">
+                                      <label class="form-label" for="category">Số điện thoại:</label>
+                                      <input  class="form-input" type="text" id="product-name" name="product-name"
+                                      [(ngModel)]="updateUser.phoneNumber" />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                  Close
+                                </button>
+                                <button (click)="UpdateUser()" type="button" class="btn btn-primary" >
+                                  Save
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                  </div>
+                    <div style="margin-left: -25px;" class="modal-body">
+                        <div class="col-12 col-s-12 padding-box">
+                            <label for="txtright">Mã nhân viên: </label>
+                            <span>&nbsp;{{user.userInfo.id}} </span>
+                        </div>
+                        <div class="col-12 col-s-12 padding-box">
+                            <label for="txtright">Tên nhân viên: </label>
+                            <span>&nbsp;{{user.userInfo.hoTen}} </span>
+                        </div>
+                        <div class="col-12 col-s-12 padding-box">
+                            <label for="txtright">Địa chỉ: </label>
+                            <span>&nbsp; {{user.userInfo.address}}</span>
+                        </div>
+                        <div class="col-12 col-s-12 padding-box">
+                            <label for="txtright">Số điện thoại: </label>
+                            <span>&nbsp; {{user.userInfo.phoneNumber}}</span>
+                        </div>
+                        <div class="col-12 col-s-12 padding-box">
+                            <label for="txtright">Email: </label>
+                            <span>&nbsp; {{user.userInfo.email}}</span>
+                        </div>
+                        <div class="col-12 col-s-12 padding-box">
+                            <label for="txtright">Tài khoản: </label>
+                            <span>&nbsp; {{user.userInfo.userName}}</span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div style="margin-left: 5%; " class="content">
+                <div class="tabcontent">
+                    <div style="margin-left: -12px;" class="title">
+                        <i class="fas fas fa-boxes"></i> Danh sách quyền nhân viên
+                        <hr />
+                    </div>
+                    <div class="row">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Thêm
+                          </button>
+                          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLabel">
+                                    Add new
+                                  </h5>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                  <div class="form-container">
+                                    <div>
+                                      
+                                      <div class="form-field">
+                                        <label class="form-label" for="category">Quyền hạn:</label>
+                                        <select class="form-select" id="category" name="category"  [(ngModel)]="selectedRole" >
+                                          <option *ngFor="let x of roles" [value]="x.name">
+                                            {{x.name}}
+                                          </option>
+                                        </select>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                    Close
+                                  </button>
+                                  <button (click)="save()" type="button" class="btn btn-primary" >
+                                    Save
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+                    <div style="margin-top: 10px;" class="row">
+                        <div style="width: 100%;" class="table-responsive">
+                            <table class="table" id="" width="100%" cellspacing="0">
+                              <thead class="thead-dark">
+                                    <tr>
+                                       
+                                        <th>Quyền hạn</th>
+                                        <th >Options</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                 
+                                    <tr *ngFor="let x of user.roles; let i = index;">
+                                      <td>{{x}}</td>
+                                      <td><i (click)="RemoveUserRole(user.userInfo.id, x)" class="fa-solid fa-trash-can"></i></td>
+                                    </tr>
+                                  
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+   
+    
+</div>
+

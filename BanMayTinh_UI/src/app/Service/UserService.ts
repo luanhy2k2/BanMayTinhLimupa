@@ -29,23 +29,32 @@ export class UserService {
     getAllAccount(pageIndex: number): Observable<any> {
         return this.httpClient.get<any>(`${host}/api/account/getAll/${pageIndex}/8`)
     }
+    getAllRole(): Observable<any> {
+        return this.httpClient.get<any>(`${host}/api/account/getAllRole`)
+    }
+    getUserById(id: any): Observable<any> {
+        return this.httpClient.get<any>(`${host}/api/account/getById/${id}`)
+    }
     deleteAccountById(id: number): Observable<any> {
         return this.httpClient.delete<any>(`${host}/api/account/delete/${id}`)
     }
+    RemoveUserRole(id: string, role:string): Observable<any> {
+        return this.httpClient.delete<any>(`${host}/api/account/removeUserRole/${id}/${role}`,{headers:this.addHeaderToken()})
+    }
     updateAccount(account: any): Observable<any> {
-        return this.httpClient.post<any>(`${host}/api/account/updateUser`, account)
+        return this.httpClient.post<any>(`${host}/api/account/updateUser`, account, {headers:this.addHeaderToken()})
     }
     addManagerRoler(id: number): Observable<any> {
-        return this.httpClient.post<any>(`${host}/api/account/addManagerRole/${id}`, {})
+        return this.httpClient.post<any>(`${host}/api/account/addManagerRole/${id}`, {}, {headers:this.addHeaderToken()})
     }
     addHrRoler(id: number): Observable<any> {
-        return this.httpClient.post<any>(`${host}/api/account/addHrRole/${id}`, {})
+        return this.httpClient.post<any>(`${host}/api/account/addHrRole/${id}`, {},{headers:this.addHeaderToken()})
     }
     addAccountantRoler(id: number): Observable<any> {
-        return this.httpClient.post<any>(`${host}/api/account/addAccountantRole/${id}`, {})
+        return this.httpClient.post<any>(`${host}/api/account/addAccountantRole/${id}`, {}, {headers:this.addHeaderToken()})
     }
     addWareHouseRoler(id: number): Observable<any> {
-        return this.httpClient.post<any>(`${host}/api/account/addWareHouseRole/${id}`, {})
+        return this.httpClient.post<any>(`${host}/api/account/addWareHouseRole/${id}`, {}, {headers:this.addHeaderToken()})
     }
     addHeaderToken() {
         const user = this.getUser();

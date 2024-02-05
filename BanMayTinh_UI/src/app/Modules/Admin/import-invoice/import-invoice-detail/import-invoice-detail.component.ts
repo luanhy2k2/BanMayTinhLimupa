@@ -12,8 +12,9 @@ export class ImportInvoiceDetailComponent {
   constructor(private invoiceService:InvoiceService, private http:HttpClient,private route :ActivatedRoute){}
   requestData = {
     soHoaDon: this.route.snapshot.paramMap.get('id'),
-    sanpId: 0,
-    soLuong: 0
+    sanpId: null,
+    nsxId:null,
+    soLuong: null
   };
   invoiceDetail!: any[];
 
@@ -33,6 +34,11 @@ export class ImportInvoiceDetailComponent {
     this.invoiceService.addImportInvoiceDetail(this.requestData).subscribe(res=>{
       alert("Thêm chi tiết thành công!");
       this.getOrderDetail();
+    },
+    err =>{
+      if(err.status == 401 || err.status == 403){
+        alert("Bạn không có quyền");
+      }
     })
   }
 }

@@ -122,16 +122,30 @@ public partial class QuanlybanhangContext : IdentityDbContext<ApplicationUser>
 
             entity.ToTable("ChiTietHoaDonNhap");
 
+            entity.HasIndex(e => e.SoHoaDon, "IX_ChiTietHoaDonNhap_SoHoaDon");
+
+            entity.HasIndex(e => e.SanpId, "IX_ChiTietHoaDonNhap_sanp_id");
+
+            entity.Property(e => e.NsxId).HasColumnName("nsx_id");
+
             entity.Property(e => e.SanpId).HasColumnName("sanp_id");
 
-            entity.HasOne(d => d.Sanp).WithMany(p => p.ChiTietHoaDonNhaps)
+            entity.HasOne(d => d.Nsx)
+                .WithMany(p => p.ChiTietHoaDonNhaps)
+                .HasForeignKey(d => d.NsxId)
+                .HasConstraintName("FK_ChiTietHoaDonNhap_Nhasx");
+
+            entity.HasOne(d => d.Sanp)
+                .WithMany(p => p.ChiTietHoaDonNhaps)
                 .HasForeignKey(d => d.SanpId)
                 .HasConstraintName("FK__ChiTietHo__sanp___73BA3083");
 
-            entity.HasOne(d => d.SoHoaDonNavigation).WithMany(p => p.ChiTietHoaDonNhaps)
+            entity.HasOne(d => d.SoHoaDonNavigation)
+                .WithMany(p => p.ChiTietHoaDonNhaps)
                 .HasForeignKey(d => d.SoHoaDon)
-                .HasConstraintName("FK__ChiTietHo__SoHoa__74AE54BC");
+                .HasConstraintName("FK_ChiTietHoaDonNhap_HoaDonNhap");
         });
+
 
         modelBuilder.Entity<ChiTietKho>(entity =>
         {
@@ -201,16 +215,14 @@ public partial class QuanlybanhangContext : IdentityDbContext<ApplicationUser>
 
             entity.ToTable("HoaDonNhap");
 
+            entity.HasIndex(e => e.MaNguoiDung, "IX_HoaDonNhap_MaNguoiDung");
+
             entity.Property(e => e.NgayNhap).HasColumnType("date");
-            entity.Property(e => e.NsxId).HasColumnName("nsx_id");
 
-            entity.HasOne(d => d.MaNguoiDungNavigation).WithMany(p => p.HoaDonNhaps)
+            entity.HasOne(d => d.MaNguoiDungNavigation)
+                .WithMany(p => p.HoaDonNhaps)
                 .HasForeignKey(d => d.MaNguoiDung)
-                .HasConstraintName("FK__HoaDonNha__MaNgu__7A672E12");
-
-            entity.HasOne(d => d.Nsx).WithMany(p => p.HoaDonNhaps)
-                .HasForeignKey(d => d.NsxId)
-                .HasConstraintName("FK__HoaDonNha__nsx_i__7B5B524B");
+                .HasConstraintName("FK_HoaDonNhap_AspNetUsers");
         });
 
         modelBuilder.Entity<KhachHang>(entity =>
@@ -267,38 +279,50 @@ public partial class QuanlybanhangContext : IdentityDbContext<ApplicationUser>
 
         modelBuilder.Entity<Nhasx>(entity =>
         {
-            entity.HasKey(e => e.NsxId).HasName("PK__Nhasx__298823BF3D295D5C");
+            entity.HasKey(e => e.NsxId)
+                .HasName("PK__Nhasx__298823BF3D295D5C");
 
             entity.ToTable("Nhasx");
 
             entity.Property(e => e.NsxId).HasColumnName("nsx_id");
+
             entity.Property(e => e.Diachi)
                 .HasMaxLength(50)
-                .HasDefaultValueSql("((0))")
-                .HasColumnName("diachi");
+                .HasColumnName("diachi")
+                .HasDefaultValueSql("((0))");
+
             entity.Property(e => e.NsxName)
                 .HasMaxLength(50)
                 .HasColumnName("nsx_name");
+
             entity.Property(e => e.Sdt)
-                .HasDefaultValueSql("((0))")
-                .HasColumnName("sdt");
+                .HasColumnName("sdt")
+                .HasDefaultValueSql("((0))");
         });
 
         modelBuilder.Entity<ProductComment>(entity =>
         {
             entity.ToTable("productComment");
 
+            entity.HasIndex(e => e.MaNguoiDung, "IX_productComment_MaNguoiDung");
+
+            entity.HasIndex(e => e.SanpId, "IX_productComment_sanp_id");
+
             entity.Property(e => e.Id).HasColumnName("id");
+
             entity.Property(e => e.NoiDung)
                 .HasMaxLength(500)
                 .HasColumnName("noiDung");
+
             entity.Property(e => e.SanpId).HasColumnName("sanp_id");
 
-            entity.HasOne(d => d.MaNguoiDungNavigation).WithMany(p => p.ProductComments)
+            entity.HasOne(d => d.MaNguoiDungNavigation)
+                .WithMany(p => p.ProductComments)
                 .HasForeignKey(d => d.MaNguoiDung)
-                .HasConstraintName("FK__productCo__MaNgu__7C4F7684");
+                .HasConstraintName("FK_productComment_AspNetUsers");
 
-            entity.HasOne(d => d.Sanp).WithMany(p => p.ProductComments)
+            entity.HasOne(d => d.Sanp)
+                .WithMany(p => p.ProductComments)
                 .HasForeignKey(d => d.SanpId)
                 .HasConstraintName("FK__productCo__sanp___7D439ABD");
         });

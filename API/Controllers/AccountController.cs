@@ -55,6 +55,7 @@ namespace API.Controllers
 
             return Ok("User registered successfully");
         }
+        [Authorize(Roles = AppRole.Admin)]
         [HttpPost("addAdminRole/{id}")]
         public async Task<ActionResult> AddAdminRole(string id)
         {
@@ -66,8 +67,9 @@ namespace API.Controllers
                 return StatusCode(500);
             }
 
-            return Ok("Add role success!");
+            return Ok(result);
         }
+        [Authorize(Roles = AppRole.Admin )]
         [HttpPost("addHrRole/{id}")]
         public async Task<ActionResult> AddHrRole(string id)
         {
@@ -79,8 +81,9 @@ namespace API.Controllers
                 return StatusCode(500);
             }
 
-            return Ok("Add role success!");
+            return Ok(result);
         }
+        [Authorize(Roles = AppRole.Admin)]
         [HttpPost("addManagerRole/{id}")]
         public async Task<ActionResult> AddManagerRole(string id)
         {
@@ -92,8 +95,9 @@ namespace API.Controllers
                 return StatusCode(500);
             }
 
-            return Ok("Add role success!");
+            return Ok(result);
         }
+        [Authorize(Roles = AppRole.Admin)]
         [HttpPost("addAccountantRole/{id}")]
         public async Task<ActionResult> AddAccountantRole(string id)
         {
@@ -105,8 +109,9 @@ namespace API.Controllers
                 return StatusCode(500);
             }
 
-            return Ok("Add role success!");
+            return Ok(result);
         }
+        [Authorize(Roles = AppRole.Admin)]
         [HttpPost("addWareHouseRole/{id}")]
         public async Task<ActionResult> AddWareHouseRole(string id)
         {
@@ -118,7 +123,21 @@ namespace API.Controllers
                 return StatusCode(500);
             }
 
-            return Ok("Add role success!");
+            return Ok(result);
+        }
+        [Authorize(Roles = AppRole.Admin)]
+        [HttpDelete("removeUserRole/{id}/{role}")]
+        public async Task<ActionResult> RemoveUserRole(string id, string role)
+        {
+            var result = await _service.RemoveFromUserRoleAsync(id, role);
+
+            if (!result.Succeeded)
+            {
+                // Handle failed signup
+                return StatusCode(500);
+            }
+
+            return Ok(result);
         }
         [HttpGet("getAll/{pageIndex}/{pageSize}")]
         public async Task<ActionResult> GetAllUser(int pageIndex, int pageSize)
@@ -135,6 +154,37 @@ namespace API.Controllers
 
             
         }
+        [HttpGet("getById/{id}")]
+        public async Task<ActionResult> GetById(string id)
+        {
+            try
+            {
+                var result = await _service.GetUserWithRoleById(id);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500);
+            }
+
+
+        }
+        [HttpGet("getAllRole")]
+        public async Task<ActionResult> GetAllRole()
+        {
+            try
+            {
+                var result = await _service.GetAllRole();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500);
+            }
+
+
+        }
+        [Authorize(Roles = AppRole.Admin + "," + AppRole.HR + "," + AppRole.Manager)]
         [HttpDelete("delete/{id}")]
         public async Task<ActionResult> DeleteUserbyId(string id)
         {
@@ -148,8 +198,9 @@ namespace API.Controllers
                 return StatusCode(500);
             }
         }
+        [Authorize(Roles = AppRole.Admin + "," + AppRole.HR + "," + AppRole.Manager)]
         [HttpPost("updateUser")]
-        public async Task<ActionResult> UpdateUser(ApplicationUser user)
+        public async Task<ActionResult> UpdateUser([FromBody] ApplicationUser user)
         {
             try
             {

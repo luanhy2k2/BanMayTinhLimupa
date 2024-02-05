@@ -63,8 +63,11 @@ export class UserComponent {
       this.getAllAccount();
     },
     (err) =>{
-      console.log(err);
-      alert("Lỗi khi tạo tài khoản");
+      if (err.status === 403) {
+        alert("Bạn không có quyền thực hiện hành động này");
+      } else {
+        alert("Lỗi khi tạo tài khoản");
+      }
     })
   }
 }

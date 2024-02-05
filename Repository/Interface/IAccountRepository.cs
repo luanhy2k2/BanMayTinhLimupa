@@ -11,7 +11,7 @@ namespace Repository.Interface
     public interface IAccountRepository
     {
         public Task<Object> GetAllUser(int pageIndex, int pageSize);
-    
+        public Task<List<IdentityRole>> GetAllRole();
         public Task<IdentityResult> UpdateUserAsync(ApplicationUser user);
         public Task<IdentityResult> DeleteUserById(string id);
         public Task<IdentityResult> SignUp(SignUpModel model);

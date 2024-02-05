@@ -168,6 +168,18 @@ namespace Repository
                 throw new Exception($"Error checking if role exists: {ex.Message}", ex);
             }
         }
+        public async Task<List<IdentityRole>> GetAllRole()
+        {
+            try
+            {
+                var result = await _roleManager.Roles.ToListAsync();
+                return result;
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("error while getting role in database");
+            }
+        }
         public async Task<Object> GetAllUser(int pageIndex, int pageSize)
         {
             try
@@ -181,12 +193,20 @@ namespace Repository
                 throw new Exception("Error in repository", ex);
             }
         }
-        public async Task<IdentityResult> UpdateUserAsync(ApplicationUser user)
+        public async Task<IdentityResult> UpdateUserAsync(ApplicationUser entity)
         {
             try
             {
+                var user = await FindUserByIdAsync(entity.Id);
+                if(user != null)
+                {
+                    user.Email = entity.Email;
+                    user.hoTen = entity.hoTen;
+                    user.address = entity.address;
+                    user.UserName = entity.UserName;
+                    user.PhoneNumber = entity.PhoneNumber;
+                }
                 var result = await _userManager.UpdateAsync(user);
-
                 return result;
             }
             catch(Exception ex)

@@ -94,16 +94,13 @@ namespace Repository.Admin
             try
             {
                 var query = from invoice in _dbContext.HoaDonNhap
-                            join user in _dbContext.NguoiDung
-                            on invoice.MaNguoiDung equals user.MaNguoiDung
-                            join company in _dbContext.Nhasx on invoice.NsxId equals company.NsxId
+                            
                             select new
                             {
                                 invoice.SoHoaDon,
                                 invoice.ToTal,
                                 invoice.NgayNhap,
-                                company.NsxName,
-                                user.HoTen
+                                invoice.MaNguoiDungNavigation.hoTen
                             };
                 var result = await query.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
                 var totalCount = await query.CountAsync();
@@ -120,16 +117,13 @@ namespace Repository.Admin
             try
             {
                 var query = from invoice in _dbContext.HoaDonNhap
-                            join user in _dbContext.NguoiDung
-                            on invoice.MaNguoiDung equals user.MaNguoiDung
-                            join company in _dbContext.Nhasx on invoice.NsxId equals company.NsxId
+                           
                             select new
                             {
                                 invoice.SoHoaDon,
                                 invoice.ToTal,
                                 invoice.NgayNhap,
-                                company.NsxName,
-                                user.HoTen
+                                invoice.MaNguoiDungNavigation.hoTen
                             };
                 var result = await query.FirstOrDefaultAsync(x =>x.SoHoaDon == id);
                 return result;
@@ -148,7 +142,7 @@ namespace Repository.Admin
                             on invoiceDetail.SanpId equals product.SanpId
                             select new
                             {
-                                invoiceDetail.DonGia,invoiceDetail.MaChiTietHoaDonNhap, invoiceDetail.SoHoaDon, invoiceDetail.SoLuong, product.SanpId,
+                                invoiceDetail.DonGia, invoiceDetail.Nsx.NsxName, invoiceDetail.MaChiTietHoaDonNhap, invoiceDetail.SoHoaDon, invoiceDetail.SoLuong, product.SanpId,
                                 product.SanpName, product.Image
                             };
                 var result = await query.Where(x => x.SoHoaDon == id).ToListAsync();
