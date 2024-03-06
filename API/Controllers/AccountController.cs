@@ -1,8 +1,12 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Application.Models;
+using Data.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Model.Models.entity;
-using odel.Models.entity;
 using Service.Interface;
+using Application.Helpers;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.WebUtilities;
+using System.Text;
 
 namespace API.Controllers
 {
@@ -10,11 +14,13 @@ namespace API.Controllers
     public class AccountController : Controller
     {
         private readonly IAccountService _service;
-        public AccountController(IAccountService service)
+       
+        public AccountController(IAccountService service, SendEmail sendEmail)
         {
             _service = service;
+           
         }
-
+        
         [HttpPost("signin")]
         public async Task<ActionResult> SignIn([FromBody] SignInModel model)
         {
@@ -26,6 +32,40 @@ namespace API.Controllers
             }
 
             return Ok(result);
+        }
+        [HttpPost("generateConfirmTokenEmail/{userId}")]
+        public async Task<ActionResult> GenerateConfirmTokenEmail(string userId)
+        {
+            var result = await _service.GenerateEmailConfirmationTokenAsync(userId);
+
+            if (result == null)
+            {
+                return BadRequest("");
+            }
+
+            return Ok(result);
+        }
+     
+        [HttpGet("confirmEmail")]
+        public async Task<ActionResult> ConfirmEmail(string userId, string code)
+        {
+            if (userId == null || code == null)
+            {
+                return BadRequest("userId and code are required.");
+            }
+
+            var decodedCodeBytes = WebEncoders.Base64UrlDecode(code);
+            var decodedCode = Encoding.UTF8.GetString(decodedCodeBytes);
+
+            var result = await _service.ConfirmEmailAsync(userId, decodedCode);
+            if (result == true)
+            {
+                return Ok("Email confirmed successfully.");
+            }
+            else
+            {
+                return BadRequest("Error confirming email.");
+            }
         }
 
         [HttpPost("signup")]
@@ -41,7 +81,7 @@ namespace API.Controllers
 
             return Ok("User registered successfully");
         }
-        [Authorize(Roles = AppRole.Admin + "," +AppRole.HR)]
+        [Authorize(Roles = AppRole.Admin + "," + AppRole.HR)]
         [HttpPost("createStaff")]
         public async Task<ActionResult> CreateStaff([FromBody] SignUpModel model)
         {
@@ -69,7 +109,7 @@ namespace API.Controllers
 
             return Ok(result);
         }
-        [Authorize(Roles = AppRole.Admin )]
+        [Authorize(Roles = AppRole.Admin)]
         [HttpPost("addHrRole/{id}")]
         public async Task<ActionResult> AddHrRole(string id)
         {
@@ -147,12 +187,12 @@ namespace API.Controllers
                 var result = await _service.GetAllUser(pageIndex, pageSize);
                 return Ok(result);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return StatusCode(500);
             }
 
-            
+
         }
         [HttpGet("getById/{id}")]
         public async Task<ActionResult> GetById(string id)
@@ -214,3 +254,5 @@ namespace API.Controllers
         }
     }
 }
+
+

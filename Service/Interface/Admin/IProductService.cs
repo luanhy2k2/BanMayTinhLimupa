@@ -1,5 +1,5 @@
-﻿using Model.Models;
-using Model.Models.entity;
+﻿using Application.Models;
+using Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +10,10 @@ namespace Service.Interface.Admin
 {
     public interface IProductService:IGenericService<Sanpham>
     {
-        Task<Object> getProduct(int pageIndex, int pageSize);
-        Task<Object> getProductbyId(int id);
-        Task<ProductDetail> CreateProduct(ProductDetail model);
-        Task<ProductDetail> UpdateProduct(ProductDetail model);
-        Task<Object> searchProduct(string name, int pageIndex, int pageSize);
+        Task<BaseQueryReponseModel<ProductModel>> getProduct(int pageIndex, int pageSize);
+        Task<ProductDetailModel> getProductbyId(int id);
+        Task<ProductDetailModel> CreateProduct(ProductDetailModel model);
+        Task<ProductDetailModel> UpdateProduct(ProductDetailModel model);
+        Task<BaseQueryReponseModel<ProductModel>> searchProduct(string name, int pageIndex, int pageSize);
     }
 }

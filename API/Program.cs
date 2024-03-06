@@ -1,13 +1,14 @@
+using Application.Helpers;
+using Application.Mappings;
 using core_api.Helpers;
-using core_api.tools;
-
+using Data;
+using Data.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using Model.Models;
-using Model.Models.entity;
 using Repository;
 using Repository.Admin;
 using Repository.Client;
@@ -28,14 +29,19 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddTransient<ITools, Tools>();
+builder.Services.AddAutoMapper(typeof(ProductProfile));
+builder.Services.AddAutoMapper(typeof(OrderProfile));
+builder.Services.AddAutoMapper(typeof(ImportInvoiceDetailProfile));
+builder.Services.AddAutoMapper(typeof(ImportInvoiceProfile));
+builder.Services.AddAutoMapper(typeof(ProductDetailProfile));
+builder.Services.AddAutoMapper(typeof(ProductStonkProfile));
+
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<QuanlybanhangContext>().AddDefaultTokenProviders();
 
 builder.Services.AddDbContext<QuanlybanhangContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-
+builder.Services.AddTransient<SendEmail>();
 
 builder.Services.AddScoped<IHomePageRepository, HomePageRepository>();
 builder.Services.AddScoped<IHomePageService, HomePageService>();
@@ -69,6 +75,7 @@ builder.Services.AddScoped<IExportInvoiceService, ExportInvoiceService>();
 
 builder.Services.AddScoped<IImportInvoiceRepository, ImportInvoiceRepository>();
 builder.Services.AddScoped<IImportInvoiceService, ImportInvoiceService>();
+
 builder.Services.AddControllers();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -80,6 +87,7 @@ builder.Services.AddCors(options =>
 });
 var appSettingsSection = builder.Configuration.GetSection("AppSettings");
 builder.Services.Configure<AppSettings>(appSettingsSection);
+
 // configure jwt authentication
 var appSettings = appSettingsSection.Get<AppSettings>();
 var key = Encoding.ASCII.GetBytes(appSettings.Secret);
@@ -126,9 +134,10 @@ app.UseCors(x => x
     .AllowAnyOrigin()
     .AllowAnyMethod()
     .AllowAnyHeader());
+app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
-
+app.UseStaticFiles();
 
 app.MapControllers();
 

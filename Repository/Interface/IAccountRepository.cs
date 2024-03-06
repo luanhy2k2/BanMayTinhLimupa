@@ -1,5 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Model.Models.entity;
+﻿using Application.Models;
+using Data.Entities;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,8 @@ namespace Repository.Interface
     {
         public Task<Object> GetAllUser(int pageIndex, int pageSize);
         public Task<List<IdentityRole>> GetAllRole();
+        public Task<string> GenerateEmailConfirmationTokenAsync(ApplicationUser user);
+        public Task<bool> ConfirmEmailAsync(string userId, string code);
         public Task<IdentityResult> UpdateUserAsync(ApplicationUser user);
         public Task<IdentityResult> DeleteUserById(string id);
         public Task<IdentityResult> SignUp(SignUpModel model);

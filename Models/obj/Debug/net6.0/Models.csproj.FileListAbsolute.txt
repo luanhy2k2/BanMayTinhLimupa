@@ -1,0 +1,15 @@
+D:\DELL E7450\QuanLyMayTinh\Models\bin\Debug\net6.0\Models.deps.json
+D:\DELL E7450\QuanLyMayTinh\Models\bin\Debug\net6.0\Models.runtimeconfig.json
+D:\DELL E7450\QuanLyMayTinh\Models\bin\Debug\net6.0\Models.dll
+D:\DELL E7450\QuanLyMayTinh\Models\bin\Debug\net6.0\Models.pdb
+D:\DELL E7450\QuanLyMayTinh\Models\obj\Debug\net6.0\Models.csproj.AssemblyReference.cache
+D:\DELL E7450\QuanLyMayTinh\Models\obj\Debug\net6.0\Models.GeneratedMSBuildEditorConfig.editorconfig
+D:\DELL E7450\QuanLyMayTinh\Models\obj\Debug\net6.0\Models.AssemblyInfoInputs.cache
+D:\DELL E7450\QuanLyMayTinh\Models\obj\Debug\net6.0\Models.AssemblyInfo.cs
+D:\DELL E7450\QuanLyMayTinh\Models\obj\Debug\net6.0\Models.csproj.CoreCompileInputs.cache
+D:\DELL E7450\QuanLyMayTinh\Models\obj\Debug\net6.0\Models.sourcelink.json
+D:\DELL E7450\QuanLyMayTinh\Models\obj\Debug\net6.0\Models.dll
+D:\DELL E7450\QuanLyMayTinh\Models\obj\Debug\net6.0\refint\Models.dll
+D:\DELL E7450\QuanLyMayTinh\Models\obj\Debug\net6.0\Models.pdb
+D:\DELL E7450\QuanLyMayTinh\Models\obj\Debug\net6.0\Models.genruntimeconfig.cache
+D:\DELL E7450\QuanLyMayTinh\Models\obj\Debug\net6.0\ref\Models.dll

@@ -1,9 +1,9 @@
-﻿using Model.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Service.Admin;
 using Service.Interface.Admin;
 using Microsoft.AspNetCore.Authorization;
-using odel.Models.entity;
+using Application.Models;
+
 
 namespace core_api.Controllers.client
 {
@@ -45,8 +45,8 @@ namespace core_api.Controllers.client
                 return BadRequest(ex.Message);
             }
         }
-        [Authorize(Roles = AppRole.Admin + "," + AppRole.Manager
-         + "," + AppRole.Accountant + "," + AppRole.Warehouse)]
+        //[Authorize(Roles = AppRole.Admin + "," + AppRole.Manager
+        // + "," + AppRole.Accountant + "," + AppRole.Warehouse)]
         [Route("updatePaymentStatus/{id}/{status}")]
         [HttpPost]
         public async Task<ActionResult> UpdatePaymentStatus(int id, string status)

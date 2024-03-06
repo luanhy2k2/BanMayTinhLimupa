@@ -1,6 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Model.Models;
-using Model.Models.entity;
+﻿using Application.Models;
+using Data;
+using Data.Entities;
+using Microsoft.EntityFrameworkCore;
 using Repository.Interface.Admin;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ namespace Repository.Admin
             _db = _dbContext;
         }
 
-        public async Task<ProductDetail> CreateProduct(ProductDetail model)
+        public async Task<ProductDetailModel> CreateProduct(ProductDetailModel model)
         {
             try
             {
@@ -41,7 +42,7 @@ namespace Repository.Admin
                 await _db.SaveChangesAsync();
                 var price = new GiaCa
                 {
-                    Gia = model.gia,
+                    Gia = model.Price,
                     SanpId = model.SanpId,
                     NgayBatDau = DateTime.Now
                 };
@@ -55,40 +56,25 @@ namespace Repository.Admin
             }
         }
 
-        public async Task<object> getProduct(int pageIndex, int pageSize)
+        public async Task<BaseQueryReponseModel<Sanpham>> getProduct(int pageIndex, int pageSize)
         {
             try
             {
-                var query = from sp in _db.Sanpham
-                            join gia in _db.GiaCa on sp.SanpId equals gia.SanpId
-                            join loai in _db.Loaisp on sp.LoaiId equals loai.LoaiId
-                            join nsx in _db.Nhasx on sp.NsxId equals nsx.NsxId
-                            select new
-                            {
-                                sp.SanpId,
-                                sp.SanpName,
-                                sp.Image,
-                                sp.Ram,
-                                sp.Rom,
-                                sp.Card,
-                                sp.Display,
-                                sp.Cpu,
-                                sp.Battery,
-                                sp.Namsx,
-                                nsx.NsxName,
-                                loai.LoaiName,
-                                gia.Gia,
-                                sp.LoaiId,
-                                sp.NsxId
-                            };
-
                 // Apply paging
+                var query = _db.Sanpham.Include(g => g.GiaCas).Include(l => l.Loai).Include(n => n.Nsx);
                 var paginatedResult = await query.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
 
                 // You might also want to return the total count for client-side pagination
                 var totalCount = await query.CountAsync();
+                var result = new BaseQueryReponseModel<Sanpham>
+                {
+                    Total = totalCount,
+                    Items = paginatedResult,
+                    PageIndex = pageIndex,
+                    PageSize = pageSize
+                };
 
-                return new { TotalCount = totalCount, results = paginatedResult };
+                return result;
             }
             catch (Exception ex)
             {
@@ -96,31 +82,11 @@ namespace Repository.Admin
                 throw new Exception("An error occurred while fetching products.", ex);
             }
         }
-        public async Task<Object> getProductbyId(int id)
+        public async Task<Sanpham> getProductbyId(int id)
         {
             try
             {
-                var query = from sp in _db.Sanpham
-                            join gia in _db.GiaCa on sp.SanpId equals gia.SanpId
-                            select new
-                            {
-                                sp.SanpId,
-                                sp.SanpName,
-                                sp.Image,
-                                sp.Ram,
-                                sp.Rom,
-                                sp.Card,
-                                sp.Display,
-                                sp.Cpu,
-                                sp.Battery,
-                                sp.Namsx,
-                                sp.NsxId,
-                                sp.LoaiId,
-                               sp.Tomtat,
-                                gia.Gia,
-                              
-                            };
-
+                var query = _db.Sanpham.Include(g => g.GiaCas).Include(l => l.Loai).Include(n => n.Nsx);
                 // Apply paging
                 var result = await query.FirstOrDefaultAsync(x => x.SanpId == id);
                 return result;
@@ -134,44 +100,30 @@ namespace Repository.Admin
 
         
 
-        public async Task<object> searchProduct(string name, int pageIndex, int pageSize)
+        public async Task<BaseQueryReponseModel<Sanpham>> searchProduct(string name, int pageIndex, int pageSize)
         {
             try
             {
-                var query = from sp in _db.Sanpham
-                            join gia in _db.GiaCa on sp.SanpId equals gia.SanpId
-                            join loai in _db.Loaisp on sp.LoaiId equals loai.LoaiId
-                            join nsx in _db.Nhasx on sp.NsxId equals nsx.NsxId
-                            select new
-                            {
-                                sp.SanpId,
-                                sp.SanpName,
-                                sp.Image,
-                                sp.Ram,
-                                sp.Rom,
-                                sp.Card,
-                                sp.Display,
-                                sp.Cpu,
-                                sp.Battery,
-                                sp.Namsx,
-                                nsx.NsxName,
-                                loai.LoaiName,
-                                gia.Gia,
-                                sp.LoaiId,
-                                sp.NsxId
-                            };
+                var query = _db.Sanpham.Include(g => g.GiaCas).Include(l => l.Loai).Include(n => n.Nsx);
                 var model = query.Where(x => x.SanpName.Contains(name)); 
                 var result = await model.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
                 var totalCount = await model.CountAsync();
-                return new { results = result, total = totalCount };
+                return new BaseQueryReponseModel<Sanpham>
+                {
+                    PageIndex = pageIndex,
+                    PageSize = pageSize,
+                    Items = result,
+                    Total = totalCount
+                };
             }
             catch(Exception ex)
             {
                 throw new Exception("err", ex);
             }
         }
+      
 
-        public async Task<ProductDetail> UpdateProduct(ProductDetail model)
+        public async Task<ProductDetailModel> UpdateProduct(ProductDetailModel model)
         {
             try
             {
@@ -190,7 +142,7 @@ namespace Repository.Admin
                 product.Tomtat = model.Tomtat;
                 await _db.SaveChangesAsync();
                 var price = await _db.GiaCa.FirstOrDefaultAsync(x => x.SanpId == model.SanpId);
-                price.Gia = model.gia;
+                price.Gia = model.Price;
                 await _db.SaveChangesAsync();
                 return model;
             }
@@ -199,5 +151,6 @@ namespace Repository.Admin
                 throw new Exception("error", ex);
             }
         }
+       
     }
 }

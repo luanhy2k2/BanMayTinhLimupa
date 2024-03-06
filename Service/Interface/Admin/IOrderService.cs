@@ -1,4 +1,5 @@
-﻿using Model.Models;
+﻿using Application.Models;
+using Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace Service.Interface.Admin
         Task<Object> GetOrderDetailById(int id);
         Task<Object> GetOrderById(int id);
         Task<DonHang> UpdateDelivery(int id, string delivery);
-        Task<Object> GetAllOrder(int pageIndex, int pageSize);
+        Task<BaseQueryReponseModel<OrderModel>> GetAllOrder(int pageIndex, int pageSize);
         Task<List<ChiTietDonHang>> GetOrderDetail(int id);
         Task<List<ChiTietDonHang>> UpdateProductQuantity(List<ChiTietDonHang> orderDetails);
         Task<object> ConfirmOrder(int id);

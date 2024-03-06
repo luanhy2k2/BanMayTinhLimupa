@@ -1,5 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Model.Models.entity;
+﻿using Application.Models;
+using Data.Entities;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,8 @@ namespace Service.Interface
         public Task<Object> GetAllUser(int pageIndex, int pageSize);
         public Task<Object> GetUserWithRoleById(string id);
         public Task<IdentityResult> UpdateUserAsync(ApplicationUser user);
+        public Task<string> GenerateEmailConfirmationTokenAsync(string userId);
+        public Task<bool> ConfirmEmailAsync(string userId, string code);
         public Task<IdentityResult> DeleteUserById(string id);
         public Task<Object> SignIn(SignInModel model);
         public Task<IdentityResult> AddAdminRole(string id);

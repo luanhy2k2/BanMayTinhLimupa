@@ -1,6 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Model.Models;
-using Model.Models.entity;
+﻿using Data;
+using Data.Entities;
+using Microsoft.EntityFrameworkCore;
+using Application.Models;
 using Repository.Interface.Client;
 using System;
 using System.Collections.Generic;

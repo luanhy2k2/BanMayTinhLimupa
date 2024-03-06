@@ -1,4 +1,4 @@
-﻿using Model.Models;
+﻿using Data.Entities;
 using Repository.Interface;
 using Repository.Interface.Admin;
 using Service.Interface.Admin;

@@ -1,5 +1,4 @@
-﻿using Model.Models;
-using Repository.Interface.Client;
+﻿using Repository.Interface.Client;
 using Service.Interface.Client;
 using System;
 using System.Collections.Generic;

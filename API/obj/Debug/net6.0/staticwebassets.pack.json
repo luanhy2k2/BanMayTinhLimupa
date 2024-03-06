@@ -1,0 +1,109 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\DELL E7450\\QuanLyMayTinh\\API\\wwwroot\\avatars\\avatar3.png",
+      "PackagePath": "staticwebassets\\avatars\\avatar3.png"
+    },
+    {
+      "Id": "D:\\DELL E7450\\QuanLyMayTinh\\API\\wwwroot\\avatars\\avatar4.png",
+      "PackagePath": "staticwebassets\\avatars\\avatar4.png"
+    },
+    {
+      "Id": "D:\\DELL E7450\\QuanLyMayTinh\\API\\wwwroot\\avatars\\default-avatar.png",
+      "PackagePath": "staticwebassets\\avatars\\default-avatar.png"
+    },
+    {
+      "Id": "D:\\DELL E7450\\QuanLyMayTinh\\API\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "D:\\DELL E7450\\QuanLyMayTinh\\API\\wwwroot\\uploads\\250_44960_laptop_msi_cyborg_15_a12vf_267vn_anphatpc_3.jpg",
+      "PackagePath": "staticwebassets\\uploads\\250_44960_laptop_msi_cyborg_15_a12vf_267vn_anphatpc_3.jpg"
+    },
+    {
+      "Id": "D:\\DELL E7450\\QuanLyMayTinh\\API\\wwwroot\\uploads\\250_45085_laptop_gigabyte_g5_kf_e3vn333sh_anphatpc6.jpg",
+      "PackagePath": "staticwebassets\\uploads\\250_45085_laptop_gigabyte_g5_kf_e3vn333sh_anphatpc6.jpg"
+    },
+    {
+      "Id": "D:\\DELL E7450\\QuanLyMayTinh\\API\\wwwroot\\uploads\\250_46515_laptop_acer_aspire_5_a515_58gm_59lj_nx_kq4sv__2_.jpg",
+      "PackagePath": "staticwebassets\\uploads\\250_46515_laptop_acer_aspire_5_a515_58gm_59lj_nx_kq4sv__2_.jpg"
+    },
+    {
+      "Id": "D:\\DELL E7450\\QuanLyMayTinh\\API\\wwwroot\\uploads\\250_46684_laptop_asus_tuf_gaming_a15_fa507nu_lp131w__2_.jpg",
+      "PackagePath": "staticwebassets\\uploads\\250_46684_laptop_asus_tuf_gaming_a15_fa507nu_lp131w__2_.jpg"
+    },
+    {
+      "Id": "D:\\DELL E7450\\QuanLyMayTinh\\API\\wwwroot\\uploads\\4671_dell_7490.jpg",
+      "PackagePath": "staticwebassets\\uploads\\4671_dell_7490.jpg"
+    },
+    {
+      "Id": "D:\\DELL E7450\\QuanLyMayTinh\\API\\wwwroot\\uploads\\avatar1.png",
+      "PackagePath": "staticwebassets\\uploads\\avatar1.png"
+    },
+    {
+      "Id": "D:\\DELL E7450\\QuanLyMayTinh\\API\\wwwroot\\uploads\\avatar2.png",
+      "PackagePath": "staticwebassets\\uploads\\avatar2.png"
+    },
+    {
+      "Id": "D:\\DELL E7450\\QuanLyMayTinh\\API\\wwwroot\\uploads\\avatar3.png",
+      "PackagePath": "staticwebassets\\uploads\\avatar3.png"
+    },
+    {
+      "Id": "D:\\DELL E7450\\QuanLyMayTinh\\API\\wwwroot\\uploads\\avatar4.png",
+      "PackagePath": "staticwebassets\\uploads\\avatar4.png"
+    },
+    {
+      "Id": "D:\\DELL E7450\\QuanLyMayTinh\\API\\wwwroot\\uploads\\laptop1.webp",
+      "PackagePath": "staticwebassets\\uploads\\laptop1.webp"
+    },
+    {
+      "Id": "D:\\DELL E7450\\QuanLyMayTinh\\API\\wwwroot\\uploads\\laptop2.jpg",
+      "PackagePath": "staticwebassets\\uploads\\laptop2.jpg"
+    },
+    {
+      "Id": "D:\\DELL E7450\\QuanLyMayTinh\\API\\wwwroot\\uploads\\unnamed (2).webp",
+      "PackagePath": "staticwebassets\\uploads\\unnamed (2).webp"
+    },
+    {
+      "Id": "D:\\DELL E7450\\QuanLyMayTinh\\API\\wwwroot\\uploads\\unnamed (4).webp",
+      "PackagePath": "staticwebassets\\uploads\\unnamed (4).webp"
+    },
+    {
+      "Id": "D:\\DELL E7450\\QuanLyMayTinh\\API\\wwwroot\\uploads\\unnamed (5) (1).webp",
+      "PackagePath": "staticwebassets\\uploads\\unnamed (5) (1).webp"
+    },
+    {
+      "Id": "D:\\DELL E7450\\QuanLyMayTinh\\API\\wwwroot\\uploads\\unnamed (5).webp",
+      "PackagePath": "staticwebassets\\uploads\\unnamed (5).webp"
+    },
+    {
+      "Id": "D:\\DELL E7450\\QuanLyMayTinh\\API\\wwwroot\\uploads\\unnamed (6).webp",
+      "PackagePath": "staticwebassets\\uploads\\unnamed (6).webp"
+    },
+    {
+      "Id": "D:\\DELL E7450\\QuanLyMayTinh\\API\\wwwroot\\uploads\\unnamed.webp",
+      "PackagePath": "staticwebassets\\uploads\\unnamed.webp"
+    },
+    {
+      "Id": "D:\\DELL E7450\\QuanLyMayTinh\\API\\wwwroot\\uploads\\vis.jpg",
+      "PackagePath": "staticwebassets\\uploads\\vis.jpg"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.API.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.build.API.props",
+      "PackagePath": "build\\API.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildMultiTargeting.API.props",
+      "PackagePath": "buildMultiTargeting\\API.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildTransitive.API.props",
+      "PackagePath": "buildTransitive\\API.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

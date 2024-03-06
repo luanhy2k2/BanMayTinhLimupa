@@ -18,7 +18,7 @@ export class MyOrderComponent {
   }
   loadData() {
     const us = this.us.getUser();
-    this.sdt = us.sdt;
+    this.sdt = us.phone;
     this.service.getOrder(this.sdt, this.pageIndex).subscribe(res => {
       this.order = res.results;
       console.log(res.results[0].chiTietDonHangs)

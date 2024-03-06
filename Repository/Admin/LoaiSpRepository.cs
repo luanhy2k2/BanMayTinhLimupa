@@ -1,4 +1,5 @@
-﻿using Model.Models;
+﻿using Data;
+using Data.Entities;
 using Repository.Interface.Admin;
 using System;
 using System.Collections.Generic;

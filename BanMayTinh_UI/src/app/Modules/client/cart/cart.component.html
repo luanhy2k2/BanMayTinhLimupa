@@ -29,8 +29,8 @@
                             </thead>
                             <tbody>
                                 <tr *ngFor="let x of products">
-                                    <td class="li-product-remove"><a ><i class="fa fa-times"></i></a></td>
-                                    <td style="width: 20%;" class="li-product-remove"><a ><img style="width: 70%;" src="https://luan2k2hy.blob.core.windows.net/fileupload/{{x.image}}" alt="Li's Product Image"></a></td>
+                                    <td class="li-product-remove"><a ><i (click)="removeProduct(x.sanpId)" class="fa fa-times"></i></a></td>
+                                    <td style="width: 20%;" class="li-product-remove"><a ><img style="width: 70%;" src="https://localhost:7261/uploads/{{x.image}}" alt="Li's Product Image"></a></td>
                                     <td class="li-product-name"><a >{{x.sanpName}}</a></td>
                                     <td class="li-product-price"><span class="amount">{{x.giaMua | currency:"VND"}}</span></td>
                                     <td class="quantity">

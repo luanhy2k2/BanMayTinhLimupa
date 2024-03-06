@@ -1,5 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore.Storage;
-using Model.Models;
+﻿using Application.Models;
+using AutoMapper;
+using Data;
+using Data.Entities;
+using Microsoft.EntityFrameworkCore.Storage;
 using Repository.Interface;
 using Repository.Interface.Admin;
 using Service.Interface.Admin;
@@ -16,10 +19,12 @@ namespace Service.Admin
     public class OrderService : GenericService<DonHang>, IOrderService
     {
         private IOrderRepository _repository;
+        private readonly IMapper _mapper;
         private QuanlybanhangContext _db;
-        public OrderService(IOrderRepository repository, QuanlybanhangContext db) : base(repository)
+        public OrderService(IOrderRepository repository, IMapper mapper, QuanlybanhangContext db) : base(repository)
         {
             _repository = repository;
+            _mapper = mapper;
             _db = db;
         }
 
@@ -43,7 +48,7 @@ namespace Service.Admin
             }
         }
 
-        public async Task<object> GetAllOrder(int pageIndex, int pageSize)
+        public async Task<BaseQueryReponseModel<OrderModel>> GetAllOrder(int pageIndex, int pageSize)
         {
             if (pageIndex <= 0 || pageSize <= 0)
             {
@@ -51,7 +56,16 @@ namespace Service.Admin
             }
             try
             {
-                var result = await _repository.GetAllOrder(pageIndex, pageSize);
+                var data = await _repository.GetAllOrder(pageIndex, pageSize);
+                var orderViewModel = _mapper.Map<List<DonHang>, List<OrderModel>>(data.Items);
+                var result = new BaseQueryReponseModel<OrderModel>
+                {
+                    Items = orderViewModel,
+                    PageIndex = data.PageIndex,
+                    Total = data.Total,
+                    PageSize = data.PageSize
+
+                };
                 if (result == null)
                 {
                     throw new InvalidOperationException("GetAll operation did not return a valid result");

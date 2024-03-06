@@ -41,8 +41,9 @@ export class ProductComponent {
   }
   loadData() {
     this.service.getproduct(this.pageInDex).subscribe(res => {
-      const productCount = Number(res.totalCount);
-      this.products = res.results;
+      console.log(res)
+      const productCount = Number(res.total);
+      this.products = res.items;
       this.total = Math.ceil(productCount / 15)
       this.totalPagesArray = Array.from({ length: this.total }, (_, index) => index + 1);
     })

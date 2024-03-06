@@ -17,10 +17,10 @@ export class WarehouseComponent {
   }
   loadData(){
     this.service.getWareHouse(this.pageIndex).subscribe(res => {
-      const productCount = Number(res.totalCount);
+      const productCount = Number(res.total);
       this.total = Math.ceil(productCount / 8)
       this.totalPageArray = Array.from({ length: this.total }, (_, index) => index + 1);
-      this.wareHouse = res.results;
+      this.wareHouse = res.items;
     })
   }
   nextPage(){

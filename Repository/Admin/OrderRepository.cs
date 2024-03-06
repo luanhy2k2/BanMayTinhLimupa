@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Model.Models;
+﻿using Application.Models;
+using Data;
+using Data.Entities;
+using Microsoft.EntityFrameworkCore;
 using Repository.Interface.Admin;
 using System;
 using System.Collections.Generic;
@@ -157,20 +159,22 @@ namespace Repository.Admin
                 throw new Exception($"{ex.Message}", ex);
             }
         }
-        public async Task<object> GetAllOrder(int pageIndex, int pageSize)
+        public async Task<BaseQueryReponseModel<DonHang>> GetAllOrder(int pageIndex, int pageSize)
         {
             try
             {
-                var query = from order in _dbContext.DonHang join customer in _dbContext.KhachHang
-                            on order.MaKhachHang equals customer.MaKhachHang
-                            select new
-                            {
-                                order.MaDonHang, order.NgayDat, order.TrangThaiGiaoHang, order.TrangThai, order.TrangThaiThanhToan,
-                                order.ToTal, customer.TenKhachHang
-                            };
+               
+                var query = _dbContext.DonHang.Include(kh => kh.MaKhachHangNavigation).Include(ct =>ct.ChiTietDonHangs);
                 var data = await query.OrderByDescending(x=>x.MaDonHang).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
                 var totalCount = await query.CountAsync();
-                return new { results = data, total = totalCount };
+                var result = new BaseQueryReponseModel<DonHang>
+                {
+                    Items = data,
+                    Total = totalCount,
+                    PageIndex = pageIndex,
+                    PageSize = pageSize
+                };
+                return result;
             }
             catch(Exception ex)
             {

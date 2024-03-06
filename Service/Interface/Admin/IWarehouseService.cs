@@ -1,4 +1,5 @@
-﻿using Model.Models;
+﻿using Application.Models;
+using Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace Service.Interface.Admin
 {
     public interface IWarehouseService:IGenericService<ChiTietKho>
     {
-        Task<Object> GetWarehouse(int pageIndex, int pageSize);
+        Task<BaseQueryReponseModel<ProductStonkModel>> GetWarehouse(int pageIndex, int pageSize);
     }
 }

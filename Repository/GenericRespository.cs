@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Model.Models;
+﻿using Data;
+using Microsoft.EntityFrameworkCore;
 using Repository.Interface;
 using System;
 using System.Collections.Generic;

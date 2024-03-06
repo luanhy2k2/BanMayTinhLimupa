@@ -2193,9 +2193,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\DELL E7450\\QuanLyMayTinh\\Model\\Model.csproj",
-      "projectName": "Model",
-      "projectPath": "D:\\DELL E7450\\QuanLyMayTinh\\Model\\Model.csproj",
+      "projectUniqueName": "D:\\DELL E7450\\QuanLyMayTinh\\Model\\Data.csproj",
+      "projectName": "Data",
+      "projectPath": "D:\\DELL E7450\\QuanLyMayTinh\\Model\\Data.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
       "outputPath": "D:\\DELL E7450\\QuanLyMayTinh\\Model\\obj\\",
       "projectStyle": "PackageReference",

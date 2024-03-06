@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Model.Models;
-using Model.Models.entity;
+
 using Service.Interface.Client;
 
 namespace core_api.Controllers.client
@@ -14,6 +13,7 @@ namespace core_api.Controllers.client
         {
             _homePageService = homePageService;
         }
+        
         [HttpGet]
         [Route("banChay/{index}/{quantity}")]
         public async Task<ActionResult> SellingProduct(int index,int quantity)

@@ -28,8 +28,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\DELL E7450\\QuanLyMayTinh\\Model\\Model.csproj": {
-                "projectPath": "D:\\DELL E7450\\QuanLyMayTinh\\Model\\Model.csproj"
+              "D:\\DELL E7450\\QuanLyMayTinh\\Application\\Application.csproj": {
+                "projectPath": "D:\\DELL E7450\\QuanLyMayTinh\\Application\\Application.csproj"
+              },
+              "D:\\DELL E7450\\QuanLyMayTinh\\Model\\Data.csproj": {
+                "projectPath": "D:\\DELL E7450\\QuanLyMayTinh\\Model\\Data.csproj"
               },
               "D:\\DELL E7450\\QuanLyMayTinh\\Repository\\Repository.csproj": {
                 "projectPath": "D:\\DELL E7450\\QuanLyMayTinh\\Repository\\Repository.csproj"
@@ -50,6 +53,14 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[10.1.1, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[8.1.1, )"
+            },
             "Azure.Storage.Blobs": {
               "target": "Package",
               "version": "[12.10.0, )"
@@ -76,6 +87,10 @@
               "target": "Package",
               "version": "[6.0.10, )"
             },
+            "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.5.0, )"
@@ -83,6 +98,10 @@
             "Swashbuckle.AspNetCore.Filters": {
               "target": "Package",
               "version": "[8.0.0, )"
+            },
+            "System.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[2.0.2.45, )"
             },
             "WindowsAzure.Storage": {
               "target": "Package",
@@ -112,12 +131,77 @@
         }
       }
     },
-    "D:\\DELL E7450\\QuanLyMayTinh\\Model\\Model.csproj": {
+    "D:\\DELL E7450\\QuanLyMayTinh\\Application\\Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\DELL E7450\\QuanLyMayTinh\\Model\\Model.csproj",
-        "projectName": "Model",
-        "projectPath": "D:\\DELL E7450\\QuanLyMayTinh\\Model\\Model.csproj",
+        "projectUniqueName": "D:\\DELL E7450\\QuanLyMayTinh\\Application\\Application.csproj",
+        "projectName": "Application",
+        "projectPath": "D:\\DELL E7450\\QuanLyMayTinh\\Application\\Application.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "D:\\DELL E7450\\QuanLyMayTinh\\Application\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\DELL E7450\\QuanLyMayTinh\\Model\\Data.csproj": {
+                "projectPath": "D:\\DELL E7450\\QuanLyMayTinh\\Model\\Data.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[10.1.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\DELL E7450\\QuanLyMayTinh\\Model\\Data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\DELL E7450\\QuanLyMayTinh\\Model\\Data.csproj",
+        "projectName": "Data",
+        "projectPath": "D:\\DELL E7450\\QuanLyMayTinh\\Model\\Data.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
         "outputPath": "D:\\DELL E7450\\QuanLyMayTinh\\Model\\obj\\",
         "projectStyle": "PackageReference",
@@ -217,8 +301,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\DELL E7450\\QuanLyMayTinh\\Model\\Model.csproj": {
-                "projectPath": "D:\\DELL E7450\\QuanLyMayTinh\\Model\\Model.csproj"
+              "D:\\DELL E7450\\QuanLyMayTinh\\Application\\Application.csproj": {
+                "projectPath": "D:\\DELL E7450\\QuanLyMayTinh\\Application\\Application.csproj"
+              },
+              "D:\\DELL E7450\\QuanLyMayTinh\\Model\\Data.csproj": {
+                "projectPath": "D:\\DELL E7450\\QuanLyMayTinh\\Model\\Data.csproj"
               }
             }
           }
@@ -233,9 +320,17 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "MailKit": {
+              "target": "Package",
+              "version": "[4.3.0, )"
+            },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[6.0.10, )"
+            },
+            "MimeKit": {
+              "target": "Package",
+              "version": "[4.3.0, )"
             }
           },
           "imports": [
@@ -282,8 +377,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\DELL E7450\\QuanLyMayTinh\\Model\\Model.csproj": {
-                "projectPath": "D:\\DELL E7450\\QuanLyMayTinh\\Model\\Model.csproj"
+              "D:\\DELL E7450\\QuanLyMayTinh\\Application\\Application.csproj": {
+                "projectPath": "D:\\DELL E7450\\QuanLyMayTinh\\Application\\Application.csproj"
+              },
+              "D:\\DELL E7450\\QuanLyMayTinh\\Model\\Data.csproj": {
+                "projectPath": "D:\\DELL E7450\\QuanLyMayTinh\\Model\\Data.csproj"
               },
               "D:\\DELL E7450\\QuanLyMayTinh\\Repository\\Repository.csproj": {
                 "projectPath": "D:\\DELL E7450\\QuanLyMayTinh\\Repository\\Repository.csproj"
@@ -301,9 +399,21 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[10.1.1, )"
+            },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[6.0.10, )"
+            },
+            "Microsoft.AspNetCore.WebUtilities": {
+              "target": "Package",
+              "version": "[2.1.1, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[9.0.1, )"
             }
           },
           "imports": [

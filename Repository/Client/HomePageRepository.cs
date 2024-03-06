@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Model.Models;
+﻿using Data;
+using Microsoft.EntityFrameworkCore;
 using Repository.Interface.Client;
 using System;
 using System.Collections.Generic;
@@ -111,7 +111,19 @@ namespace Repository.Client
             try
             {
                 var query = _dbContext.Sanpham.Where(x => x.LoaiId == categoryId);
-                var data = await query.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
+                var data = await query.Select(x =>
+                    new
+                    {
+                        x.SanpName,
+                        x.SanpId,
+                        giaMua = x.GiaCas.Select(s => s.Gia).FirstOrDefault(),
+                        x.Namsx,
+                        x.LoaiId,
+                        x.NsxId,
+                        x.Image
+                    }
+                ).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
+                
                 var totalCount = await query.CountAsync();
                 return new { results = data, total = totalCount };
             }

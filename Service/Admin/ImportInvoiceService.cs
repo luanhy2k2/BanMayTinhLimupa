@@ -1,4 +1,6 @@
-﻿using Model.Models;
+﻿using Application.Models;
+using AutoMapper;
+using Data.Entities;
 using Repository.Interface.Admin;
 using Service.Interface.Admin;
 using System;
@@ -11,10 +13,12 @@ namespace Service.Admin
 {
     public class ImportInvoiceService : IImportInvoiceService
     {
-        private IImportInvoiceRepository _repository;
-        public ImportInvoiceService(IImportInvoiceRepository repository)
+        private readonly IImportInvoiceRepository _repository;
+        private readonly IMapper _mapper;
+        public ImportInvoiceService(IImportInvoiceRepository repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
         public async Task<HoaDonNhap> createInvoice(HoaDonNhap entity)
@@ -50,7 +54,7 @@ namespace Service.Admin
             }
         }
 
-        public async Task<object> getAllInvoice(int pageIndex, int pageSize)
+        public async Task<BaseQueryReponseModel<ImportInvoiceModel>> getAllInvoice(int pageIndex, int pageSize)
         {
             if (pageIndex <= 0 || pageSize <= 0)
             {
@@ -58,7 +62,15 @@ namespace Service.Admin
             }
             try
             {
-                var result = await _repository.getAllInvoice(pageIndex, pageSize);
+                var data = await _repository.getAllInvoice(pageIndex, pageSize);
+                var invoiceModel = _mapper.Map<List<HoaDonNhap>, List<ImportInvoiceModel>>(data.Items);
+                var result = new BaseQueryReponseModel<ImportInvoiceModel>
+                {
+                    Items = invoiceModel,
+                    PageIndex = data.PageIndex,
+                    PageSize = data.PageSize,
+                    Total = data.Total
+                };
                 if (result == null)
                 {
                     throw new InvalidOperationException("GetAll operation did not return a valid result");
@@ -71,7 +83,7 @@ namespace Service.Admin
             }
         }
 
-        public async Task<object> getInvoiceById(int id)
+        public async Task<ImportInvoiceModel> getInvoiceById(int id)
         {
             if (id <= 0 )
             {
@@ -79,7 +91,8 @@ namespace Service.Admin
             }
             try
             {
-                var result = await _repository.getInvoiceById(id);
+                var data = await _repository.getInvoiceById(id);
+                var result = _mapper.Map<HoaDonNhap, ImportInvoiceModel>(data);
                 if (result == null)
                 {
                     throw new InvalidOperationException("GetAll operation did not return a valid result");
@@ -92,7 +105,7 @@ namespace Service.Admin
             }
         }
 
-        public async Task<object> getInvoiceDetailById(int id)
+        public async Task<List<ImportInvoiceDetailModel>> getInvoiceDetailById(int id)
         {
             if (id <= 0)
             {
@@ -100,7 +113,8 @@ namespace Service.Admin
             }
             try
             {
-                var result = await _repository.getInvoiceDetailById(id);
+                var data = await _repository.getInvoiceDetailById(id);
+                var result = _mapper.Map<List<ChiTietHoaDonNhap>, List<ImportInvoiceDetailModel>>(data);
                 if (result == null)
                 {
                     throw new InvalidOperationException("GetAll operation did not return a valid result");

@@ -1,5 +1,7 @@
-﻿using Model.Models;
-using Model.Models.entity;
+﻿using Application.Models;
+using AutoMapper;
+using Data.Entities;
+using Microsoft.EntityFrameworkCore;
 using Repository.Interface;
 using Repository.Interface.Admin;
 using Service.Interface;
@@ -15,12 +17,14 @@ namespace Service.Admin
     public class ProductService : GenericService<Sanpham>, IProductService
     {
         private IProductRepository _repository;
-        public ProductService(IProductRepository repository) : base(repository)
+        private readonly IMapper _mapper;
+        public ProductService(IProductRepository repository, IMapper mapper) : base(repository)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
-        public async Task<ProductDetail> CreateProduct(ProductDetail model)
+        public async Task<ProductDetailModel> CreateProduct(ProductDetailModel model)
         {
             if (model == null)
             {
@@ -41,8 +45,8 @@ namespace Service.Admin
                 throw new Exception("Error occurred while creating the entity.", ex);
             }
         }
-
-        public  async Task<object> getProduct(int pageIndex, int pageSize)
+       
+        public  async Task<BaseQueryReponseModel<ProductModel>> getProduct(int pageIndex, int pageSize)
         {
             if (pageIndex <= 0 || pageSize <= 0)
             {
@@ -50,7 +54,16 @@ namespace Service.Admin
             }
             try
             {
-                var result = await _repository.getProduct(pageIndex, pageSize);
+                var products = await _repository.getProduct(pageIndex, pageSize);
+                var productsViewModel = _mapper.Map<List<Sanpham>, List<ProductModel>>(products.Items);
+             
+                var result = new BaseQueryReponseModel<ProductModel>
+                {
+                    PageIndex = products.PageIndex,
+                    PageSize = products.PageSize,
+                    Items = productsViewModel,
+                    Total = products.Total
+                };
                 if (result == null)
                 {
                     throw new InvalidOperationException("GetAll operation did not return a valid result");
@@ -63,7 +76,7 @@ namespace Service.Admin
             }
         }
 
-        public async Task<object> getProductbyId(int id)
+        public async Task<ProductDetailModel> getProductbyId(int id)
         {
             if (id <= 0)
             {
@@ -71,7 +84,8 @@ namespace Service.Admin
             }
             try
             {
-                var result = await _repository.getProductbyId(id);
+                var product = await _repository.getProductbyId(id);
+                var result = _mapper.Map<Sanpham, ProductDetailModel>(product);
                 if (result == null)
                 {
                     throw new InvalidOperationException("GetAll operation did not return a valid result");
@@ -84,7 +98,7 @@ namespace Service.Admin
             }
         }
 
-        public async Task<object> searchProduct(string name, int pageIndex, int pageSize)
+        public async Task<BaseQueryReponseModel<ProductModel>> searchProduct(string name, int pageIndex, int pageSize)
         {
             if (pageIndex <= 0 || pageSize <= 0 || name == null)
             {
@@ -92,7 +106,15 @@ namespace Service.Admin
             }
             try
             {
-                var result = await _repository.searchProduct(name, pageIndex, pageSize);
+                var products = await _repository.searchProduct(name, pageIndex, pageSize);
+                var productViewModel = _mapper.Map<List<Sanpham>, List<ProductModel>>(products.Items);
+                var result = new BaseQueryReponseModel<ProductModel>
+                {
+                    PageIndex = products.PageIndex,
+                    PageSize = products.PageSize,
+                    Items = productViewModel,
+                    Total = products.Total
+                };
                 if (result == null)
                 {
                     throw new InvalidOperationException("GetAll operation did not return a valid result");
@@ -105,7 +127,7 @@ namespace Service.Admin
             }
         }
 
-        public async Task<ProductDetail> UpdateProduct(ProductDetail model)
+        public async Task<ProductDetailModel> UpdateProduct(ProductDetailModel model)
         {
             if (model == null)
             {

@@ -9,6 +9,7 @@ import { ProductCategoryComponent } from "./product-category/product-category.co
 import { ProductDetailComponent } from "./product-detail/product-detail.component";
 import { LoginComponent } from "./login/login.component";
 import { MyOrderComponent } from "./my-order/my-order.component";
+import { SignUpComponent } from "./sign-up/sign-up.component";
 
 const routes: Routes = [
     {
@@ -27,6 +28,10 @@ const routes: Routes = [
     {
         path: 'login',
         component:LoginComponent
+    },
+    {
+        path: 'signUp',
+        component:SignUpComponent
     },
     {
         path:'Cart',

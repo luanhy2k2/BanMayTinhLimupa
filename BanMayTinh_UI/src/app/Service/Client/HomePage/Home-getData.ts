@@ -25,10 +25,10 @@ export class HomeGetDataService {
     return this.httpClient.get<any>(`${host}/api/product/search/${name}/${pageIndex}/15`)
   }
   getProductByLoaiId(id: any, pageIndex:number): Observable<any> {
-    return this.httpClient.get<any>(`${host}/api/Home/getProductByCategory/${id}/${pageIndex}/15`)
+    return this.httpClient.get<any>(`${host}/api/Home/getProductByCategory/${id}/${pageIndex}/5`)
   }
   getproduct(pageIndex: any):Observable<any>{
-    return this.httpClient.get<any>(`${host}/api/product/getAll/${pageIndex}/15`);
+    return this.httpClient.get<any>(`${host}/api/product/getAll/${pageIndex}/10`);
 }
   getProductData(criteria: string, quantity: number): Observable<any[]> {
     const url = `${host}/api/Home/${criteria}/${quantity}/5`;

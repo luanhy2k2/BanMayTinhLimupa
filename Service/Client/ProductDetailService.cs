@@ -1,4 +1,6 @@
-﻿using Model.Models;
+﻿using Application.Models;
+using AutoMapper;
+using Data.Entities;
 using Repository.Interface.Client;
 using Service.Interface.Client;
 using System;
@@ -12,9 +14,11 @@ namespace Service.Client
     public class ProductDetailService : IProductDetailService
     {
         private IProductDetailRepository _res;
-        public ProductDetailService(IProductDetailRepository res)
+        private readonly IMapper _mapper;
+        public ProductDetailService(IProductDetailRepository res, IMapper mapper)
         {
             _res = res;
+            _mapper = mapper;
         }
 
         public async Task<ProductComment> AddComment(ProductComment comment)
@@ -60,7 +64,7 @@ namespace Service.Client
             }
         }
 
-        public async Task<object> GetProductById(int id)
+        public async Task<ProductModel> GetProductById(int id)
         {
             if (id <= 0)
             {
@@ -68,12 +72,13 @@ namespace Service.Client
             }
             try
             {
-                var result = await _res.GetProductById(id);
-                if (result == null)
+                var product = await _res.GetProductById(id);
+                var productVewModel = _mapper.Map<Sanpham, ProductModel>(product);
+                if (productVewModel == null)
                 {
                     throw new InvalidOperationException("operation did not return a valid result");
                 }
-                return result;
+                return productVewModel;
             }
             catch (Exception ex)
             {

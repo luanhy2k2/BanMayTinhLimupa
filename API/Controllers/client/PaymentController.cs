@@ -1,11 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Model.Models;
-using Model.Models.entity;
-using Service.Client;
 using Service.Interface.Client;
 using System.Text.Json.Serialization;
 using System.Text.Json;
 using Microsoft.AspNetCore.Authorization;
+using Application.Models;
 
 namespace core_api.Controllers.client
 {

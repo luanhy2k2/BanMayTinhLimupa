@@ -32,9 +32,7 @@ export class ProductComponent {
       battery:'',
       display:'',
       image: '',
-      gia: ''
-    
-    
+      price: ''
   };
   selectedFile!: File;
   ngOnInit() {
@@ -46,10 +44,10 @@ export class ProductComponent {
   }
   getproduct() {
     this.productService.getproduct(this.pageIndex).subscribe(res => {
-      var total = Number(res.totalCount);
+      var total = Number(res.total);
       var toatlPage = Math.ceil(total / 5);
       this.totalPageArray = Array.from({ length: toatlPage }, (_, index) => index + 1);
-      this.product = res.results;
+      this.product = res.items;
       console.log(this.product);
     })
   }
@@ -73,7 +71,6 @@ export class ProductComponent {
     this.getproduct();
   }
   openModel(id:number) {
-   
     this.productService.getProductById(id).subscribe(res=>{
       this.requestData = res;
       console.log(this.requestData);
@@ -96,7 +93,7 @@ export class ProductComponent {
     this.user.uploadFile(this.selectedFile).subscribe(
       response => {
         console.log(response);
-        this.requestData.image = response.filename.originalname;
+        this.requestData.image = response;
         if(!this.users){
           alert("Bạn cần phải đăng nhập!")
         }
@@ -120,7 +117,7 @@ export class ProductComponent {
       this.user.uploadFile(this.selectedFile).subscribe(
         response => {
           console.log(response);
-          this.requestData.image = response.fileName;
+          this.requestData.image = response;
           this.productService.editproduct(this.requestData).subscribe(response=>{
             alert("Sửa sản phẩm thành công");
             this.getproduct();

@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Model.Models;
+﻿using Application.Models;
+using Data;
+using Data.Entities;
+using Microsoft.EntityFrameworkCore;
 using Repository.Interface.Admin;
 using System;
 using System.Collections.Generic;
@@ -79,9 +81,7 @@ namespace Repository.Admin
             }
             catch (Exception ex)
             {
-                // Log the exception for further analysis
-                // You may also want to consider logging details such as the input data
-                // and the specific type of exception that occurred
+                
                 Console.WriteLine($"Error while manipulating the database: {ex.Message}");
                 throw;
             }
@@ -89,22 +89,14 @@ namespace Repository.Admin
 
         
 
-        public async Task<object> getAllInvoice(int pageIndex, int pageSize)
+        public async Task<BaseQueryReponseModel<HoaDonNhap>> getAllInvoice(int pageIndex, int pageSize)
         {
             try
             {
-                var query = from invoice in _dbContext.HoaDonNhap
-                            
-                            select new
-                            {
-                                invoice.SoHoaDon,
-                                invoice.ToTal,
-                                invoice.NgayNhap,
-                                invoice.MaNguoiDungNavigation.hoTen
-                            };
+                var query = _dbContext.HoaDonNhap.Include(x => x.MaNguoiDungNavigation);
                 var result = await query.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
                 var totalCount = await query.CountAsync();
-                return new { results = result, total = totalCount };
+                return new BaseQueryReponseModel<HoaDonNhap>{ Items = result, PageIndex = pageIndex, PageSize = pageSize, Total = totalCount };
             }
             catch (Exception ex)
             {
@@ -112,19 +104,20 @@ namespace Repository.Admin
             }
         }
 
-        public async Task<object> getInvoiceById(int id)
+        public async Task<HoaDonNhap> getInvoiceById(int id)
         {
             try
             {
-                var query = from invoice in _dbContext.HoaDonNhap
-                           
-                            select new
-                            {
-                                invoice.SoHoaDon,
-                                invoice.ToTal,
-                                invoice.NgayNhap,
-                                invoice.MaNguoiDungNavigation.hoTen
-                            };
+                //var query = from invoice in _dbContext.HoaDonNhap
+
+                //            select new
+                //            {
+                //                invoice.SoHoaDon,
+                //                invoice.ToTal,
+                //                invoice.NgayNhap,
+                //                invoice.MaNguoiDungNavigation.hoTen
+                //            };
+                var query = _dbContext.HoaDonNhap.Include(x => x.MaNguoiDungNavigation);
                 var result = await query.FirstOrDefaultAsync(x =>x.SoHoaDon == id);
                 return result;
             }
@@ -134,17 +127,18 @@ namespace Repository.Admin
             }
         }
 
-        public async Task<object> getInvoiceDetailById(int id)
+        public async Task<List<ChiTietHoaDonNhap>> getInvoiceDetailById(int id)
         {
             try
             {
-                var query = from invoiceDetail in _dbContext.ChiTietHoaDonNhap join product in _dbContext.Sanpham
-                            on invoiceDetail.SanpId equals product.SanpId
-                            select new
-                            {
-                                invoiceDetail.DonGia, invoiceDetail.Nsx.NsxName, invoiceDetail.MaChiTietHoaDonNhap, invoiceDetail.SoHoaDon, invoiceDetail.SoLuong, product.SanpId,
-                                product.SanpName, product.Image
-                            };
+                //var query = from invoiceDetail in _dbContext.ChiTietHoaDonNhap join product in _dbContext.Sanpham
+                //            on invoiceDetail.SanpId equals product.SanpId
+                //            select new
+                //            {
+                //                invoiceDetail.DonGia, invoiceDetail.Nsx.NsxName, invoiceDetail.MaChiTietHoaDonNhap, invoiceDetail.SoHoaDon, invoiceDetail.SoLuong, product.SanpId,
+                //                product.SanpName, product.Image
+                //            };
+                var query = _dbContext.ChiTietHoaDonNhap.Include(x => x.Sanp).Include(nsx =>nsx.Nsx);
                 var result = await query.Where(x => x.SoHoaDon == id).ToListAsync();
                 return result;
             }

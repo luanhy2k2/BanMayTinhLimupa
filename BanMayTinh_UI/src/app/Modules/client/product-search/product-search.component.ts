@@ -41,7 +41,7 @@ export class ProductSearchComponent {
             const productCount = Number(res.total);
             this.total = Math.ceil(productCount / 15)
             this.totalPagesArray = Array.from({ length: this.total }, (_, index) => index + 1);
-            this.products = res.results;
+            this.products = res.items;
             console.log(res)
           })
       });

@@ -1,5 +1,5 @@
-﻿using Model.Models;
-using Model.Models.entity;
+﻿using Data.Entities;
+using Application.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

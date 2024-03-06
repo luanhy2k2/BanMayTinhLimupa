@@ -1,12 +1,13 @@
 ﻿
+using Application.Models;
+using Data.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using Model.Models.entity;
-using odel.Models.entity;
+
 using Repository.Interface;
 using System;
 using System.Collections.Generic;
@@ -66,6 +67,40 @@ namespace Repository
                 id = user.Id, phone = user.PhoneNumber, address = user.address, email = user.Email  };
 
 
+        }
+        public async Task<string> GenerateEmailConfirmationTokenAsync(ApplicationUser user)
+        {
+            
+            if (user == null)
+            {
+                // User không tồn tại
+                return null;
+            }
+
+            var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            return code;
+        }
+
+        public async Task<bool> ConfirmEmailAsync(string userId, string code)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                // User không tồn tại
+                return false;
+            }
+
+            var result = await _userManager.ConfirmEmailAsync(user, code);
+            if (result.Succeeded)
+            {
+                // Xác nhận email thành công
+                return true;
+            }
+            else
+            {
+                // Xác nhận email thất bại
+                return false;
+            }
         }
         public async Task<IdentityResult> CreateStaff(SignUpModel model)
         {

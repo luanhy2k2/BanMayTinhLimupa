@@ -29,7 +29,7 @@
                 </div>
                 <div class="form-field">
                   <label class="form-label" for="price">Giá tiền:</label>
-                  <input class="form-input" type="text" id="price" name="price" [(ngModel)]="requestData.gia" />
+                  <input class="form-input" type="text" id="price" name="price" [(ngModel)]="requestData.price" />
                 </div>
 
                 <div class="form-field">
@@ -142,9 +142,9 @@
                 <td>{{x.cpu}}</td>
                 <td>{{x.card}}</td>
                 <td>{{x.namsx}}</td>
-                <td>{{x.gia}}<sup>₫</sup></td>
+                <td>{{x.price}}<sup>₫</sup></td>
                 <td>
-                  <img style="width: 100px" src="https://luan2k2hy.blob.core.windows.net/fileupload/{{x.image}}" alt="Li's Product Image"> 
+                  <img style="width: 100px" src="https://localhost:7261/uploads/{{x.image}}" alt="Li's Product Image"> 
                 </td>
                 <td>
                   
@@ -189,7 +189,7 @@
                               </div>
                               <div class="form-field">
                                 <label class="form-label" for="price">Giá tiền:</label>
-                                <input class="form-input" type="text" id="price" name="price" [(ngModel)]="requestData.gia" />
+                                <input class="form-input" type="text" id="price" name="price" [(ngModel)]="requestData.price" />
                               </div>
               
                               <div class="form-field">

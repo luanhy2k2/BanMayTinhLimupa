@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Application.Models;
+using Data.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Model.Models;
-using odel.Models.entity;
+
 using Service.Interface.Admin;
 
 namespace core_api.Controllers.admin
@@ -17,7 +18,7 @@ namespace core_api.Controllers.admin
             _exportInvoiceService = exportInvoiceService;
 
         }
-        [Authorize(Roles = AppRole.Admin + "," + AppRole.Accountant)]
+        //[Authorize(Roles = AppRole.Admin + "," + AppRole.Accountant)]
         [Route("createInvoice")]
         [HttpPost]
         public async Task<ActionResult> CreateInvoice([FromBody] HoaDonBan model)
@@ -32,7 +33,7 @@ namespace core_api.Controllers.admin
                 return BadRequest();
             }
         }
-        [Authorize(Roles = AppRole.Admin + "," + AppRole.Accountant)]
+        //[Authorize(Roles = AppRole.Admin + "," + AppRole.Accountant)]
         [Route("createInvoiceDetail")]
         [HttpPost]
         public async Task<ActionResult> CreateInvoiceDetail([FromBody] ChiTietHoaDonBan model)

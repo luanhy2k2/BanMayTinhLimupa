@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Model.Models;
+﻿using Application.Models;
+using Data;
+using Data.Entities;
+using Microsoft.EntityFrameworkCore;
 using Repository.Interface.Client;
 using System;
 using System.Collections.Generic;
@@ -46,19 +48,16 @@ namespace Repository.Client
             }
         }
 
-        public async Task<object> GetProductById(int id)
+        public async Task<Sanpham> GetProductById(int id)
         {
             try
             {
-                var query = from sp in _dbContext.Sanpham join gia in _dbContext.GiaCa on sp.SanpId equals gia.SanpId
-                            join loaisp in _dbContext.Loaisp on sp.LoaiId equals loaisp.LoaiId
-                            join nsx in _dbContext.Nhasx on sp.NsxId equals nsx.NsxId
-                            select new
-                            {
-                                sp.SanpId, sp.SanpName, sp.Cpu, sp.Battery, sp.Card, sp.Ram, sp.Rom, sp.Display,
-                                nsx.NsxName,  giaMua = gia.Gia, loaisp.LoaiName, sp.Image, sp.Tomtat, sp.Namsx
-                            };
-                var result = await query.FirstOrDefaultAsync(x => x.SanpId == id);
+                var query =  _dbContext.Sanpham.
+                    Include(g => g.GiaCas).
+                    Include(l => l.Loai).
+                    Include(n =>n.Nsx).
+                    FirstOrDefaultAsync(x => x.SanpId == id);
+                var result = await query;
                 return result;
             }
             catch(Exception ex)

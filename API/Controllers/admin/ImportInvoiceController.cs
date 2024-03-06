@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Application.Models;
+using Data.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Model.Models;
-using odel.Models.entity;
+
 using Service.Interface.Admin;
 
 namespace core_api.Controllers.admin

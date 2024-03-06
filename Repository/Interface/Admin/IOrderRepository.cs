@@ -1,4 +1,5 @@
-﻿using Model.Models;
+﻿using Application.Models;
+using Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace Repository.Interface.Admin
 {
     public interface IOrderRepository:IGenericRespository<DonHang>
     {
-        Task<Object> GetAllOrder(int pageIndex, int pageSize);
+        Task<BaseQueryReponseModel<DonHang>> GetAllOrder(int pageIndex, int pageSize);
         Task<Object> GetOrderById(int id);
         Task<Object> GetOrderDetailById(int id);
         Task<Object> GetOrder(string phone, int pageIndex, int pageSize );

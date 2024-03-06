@@ -1,4 +1,6 @@
-﻿using Model.Models;
+﻿using Application.Models;
+using AutoMapper;
+using Data.Entities;
 using Repository.Interface.Admin;
 using Service.Interface.Admin;
 using System;
@@ -11,13 +13,15 @@ namespace Service.Admin
 {
     public class WarehouseService:GenericService<ChiTietKho>, IWarehouseService
     {
-        private IWareHouseRepository _repository;
-        public WarehouseService(IWareHouseRepository repository):base(repository) 
+        private readonly IWareHouseRepository _repository;
+        private readonly IMapper _mapper;
+        public WarehouseService(IWareHouseRepository repository, IMapper mapper):base(repository) 
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
-        public async Task<object> GetWarehouse(int pageIndex, int pageSize)
+        public async Task<BaseQueryReponseModel<ProductStonkModel>> GetWarehouse(int pageIndex, int pageSize)
         {
             if (pageIndex <= 0 || pageSize <= 0)
             {
@@ -25,7 +29,15 @@ namespace Service.Admin
             }
             try
             {
-                var result = await _repository.GetWarehouse(pageIndex, pageSize);
+                var data = await _repository.GetWarehouse(pageIndex, pageSize);
+                var productStonkModel = _mapper.Map<List<ChiTietKho>, List<ProductStonkModel>>(data.Items);
+                var result = new BaseQueryReponseModel<ProductStonkModel>
+                {
+                    Items = productStonkModel,
+                    PageIndex = data.PageIndex,
+                    Total = data.Total,
+                    PageSize = data.PageSize
+                };
                 if (result == null)
                 {
                     throw new InvalidOperationException("GetAll operation did not return a valid result");

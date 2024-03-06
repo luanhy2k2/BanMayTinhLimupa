@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Model.Models.entity;
-using odel.Models.entity;
+﻿using Application.Helpers;
+using Application.Models;
+using Data.Entities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.WebUtilities;
 using Repository.Interface;
 using Service.Interface;
 using System;
@@ -8,15 +10,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Org.BouncyCastle.Crypto.Engines.SM2Engine;
 
 namespace Service
 {
     public class AccountService : IAccountService
     {
         private readonly IAccountRepository _repository;
-        public AccountService(IAccountRepository repository)
+        private readonly SendEmail _sendEmail;
+        public AccountService(IAccountRepository repository, SendEmail sendEmail)
         {
             _repository = repository;
+            _sendEmail = sendEmail;
         }
 
         public async Task<IdentityResult> AddAccountantRole(string id)
@@ -291,6 +296,45 @@ namespace Service
             catch(Exception ex)
             {
                 throw new Exception("Error occured while remove role");
+            }
+        }
+
+        public async Task<string> GenerateEmailConfirmationTokenAsync(string userId)
+        {
+            try
+            {
+                if(userId == null)
+                {
+                    throw new ArgumentNullException();
+                }
+                var user = await _repository.FindUserByIdAsync(userId);
+                var result = await _repository.GenerateEmailConfirmationTokenAsync(user);
+                var token = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(result));
+                var callbackUrl = $"https://localhost:7261/api/account/confirmEmail?userId={userId}&code={token}";
+
+                await _sendEmail.SendEmailAsync(user.Email, "Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi, vui lòng click vào đoạn link sau để xác thực tài khoản cuản bạn: "+ callbackUrl );
+                return result;
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("Error while generate token", ex);
+            }
+        }
+
+        public async Task<bool> ConfirmEmailAsync(string userId, string code)
+        {
+            try
+            {
+                if(userId== null && code == null)
+                {
+                    throw new ArgumentNullException();
+                }
+                var result = await _repository.ConfirmEmailAsync(userId, code);
+                return result;
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("Error while confirm email", ex);
             }
         }
     }

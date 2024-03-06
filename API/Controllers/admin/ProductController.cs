@@ -1,12 +1,13 @@
-﻿using core_api.Helpers;
+﻿using Application.Models;
+using core_api.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Model.Models;
-using Model.Models.entity;
-using odel.Models.entity;
+using Microsoft.AspNetCore.SignalR;
+using Microsoft.EntityFrameworkCore;
 using Repository.Interface.Admin;
 using Service.Interface.Admin;
 using System.Data;
+using System.Text.RegularExpressions;
 
 namespace core_api.Controllers.admin
 {
@@ -15,19 +16,21 @@ namespace core_api.Controllers.admin
     {
        
         private IProductService _productService;
-        public ProductController(IProductService productService)
+        private readonly IWebHostEnvironment _environment;
+        public ProductController(IProductService productService, IWebHostEnvironment environment)
         {
             _productService = productService;
+            _environment = environment;
         }
         [Authorize(Roles = AppRole.Admin + "," + AppRole.Manager)]
         [Route("update")]
         [HttpPost]
-        public async Task<ActionResult> update([FromBody] ProductDetail sanpham)
+        public async Task<ActionResult> update([FromBody] ProductDetailModel sanpham)
         {
             try
             {
                 var data = await _productService.UpdateProduct(sanpham);
-                return Ok(data);
+                return Ok();
             }
             catch(Exception ex)
             {
@@ -37,7 +40,7 @@ namespace core_api.Controllers.admin
         [Authorize(Roles = AppRole.Admin + "," + AppRole.Manager)]
         [Route("create")]
         [HttpPost]
-        public async Task<ActionResult> create([FromBody] ProductDetail sanpham)
+        public async Task<ActionResult> create([FromBody] ProductDetailModel sanpham)
         {
             try
             {
@@ -108,6 +111,21 @@ namespace core_api.Controllers.admin
             {
                 return BadRequest(ex.Message);
             }
+        }
+        [HttpPost("uploadFile")]
+        [Authorize(Roles = AppRole.Admin + "," + AppRole.Manager)]
+        public async Task<string> UploadMessage([FromForm] IFormFile file)
+        {
+            var folderPath = Path.Combine(_environment.WebRootPath, "uploads");
+            var filePath = Path.Combine(folderPath, file.FileName);
+            if (!Directory.Exists(folderPath))
+                Directory.CreateDirectory(folderPath);
+
+            using (var fileStream = new FileStream(filePath, FileMode.Create))
+            {
+                await file.CopyToAsync(fileStream);
+            }
+            return file.FileName.ToString();
         }
     }
 }

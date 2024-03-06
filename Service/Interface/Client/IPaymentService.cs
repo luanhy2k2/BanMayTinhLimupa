@@ -1,4 +1,4 @@
-﻿using Model.Models;
+﻿using Data.Entities;
 using Repository.Interface.Client;
 using Service.Client;
 using System;

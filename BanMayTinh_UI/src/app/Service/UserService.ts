@@ -17,10 +17,10 @@ export class UserService {
     login(email: string, password: string): Observable<any> {
         return this.httpClient.post<any>(`${host}/api/account/signin`, { email, password })
     }
-    uploadFile(file: File): Observable<any> {
+    uploadFile(file: File): Observable<string> {
         const formData: FormData = new FormData();
         formData.append('file', file);
-        return this.httpClient.post<any>("https://localhost:7261/api/User/uploadfile", formData);
+        return this.httpClient.post("https://localhost:7261/api/product/uploadFile", formData,{headers:this.addHeaderToken(), responseType: 'text' });
     }
     getUser() {
         var userString = localStorage.getItem('user');
@@ -59,7 +59,7 @@ export class UserService {
     addHeaderToken() {
         const user = this.getUser();
         const headers = new HttpHeaders({
-            'Content-Type': 'application/json',
+            
             'Authorization': `Bearer ${user.token}`
         });
         return headers;

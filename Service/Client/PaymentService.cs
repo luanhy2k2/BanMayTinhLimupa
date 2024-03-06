@@ -1,4 +1,5 @@
-﻿using Model.Models;
+﻿using Application.Helpers;
+using Data.Entities;
 using Repository.Interface.Client;
 using Service.Interface.Client;
 using System;
@@ -11,10 +12,12 @@ namespace Service.Client
 {
     public class PaymentService:IPaymentService
     {
-        private IPaymentRepository _repository;
-        public PaymentService(IPaymentRepository repository)
+        private readonly IPaymentRepository _repository;
+        private readonly SendEmail _sendEmail;
+        public PaymentService(IPaymentRepository repository, SendEmail sendEmail)
         {
             _repository = repository;
+            _sendEmail = sendEmail;
         }
 
         public async Task<ChiTietDonHang> CreateOrderDetail(ChiTietDonHang model)
@@ -110,6 +113,8 @@ namespace Service.Client
                     item.MaDonHang = order.MaDonHang;
                     await CreateOrderDetail(item);
                 }
+
+                await _sendEmail.SendEmailAsync(customer.Email, "Cảm ơn bạn đã thanh toán dịch vụ của chúng tôi, mã đơn hàng của bạn là: "+ order.MaDonHang);
                 return (createOrder, createCustomer, orderDetail);
 
             }

@@ -1,4 +1,5 @@
-﻿using Model.Models;
+﻿using Application.Models;
+using Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,8 @@ namespace Service.Interface.Admin
     {
         Task<HoaDonNhap> createInvoice(HoaDonNhap entity);
         Task<ChiTietHoaDonNhap> createInvoiceDetail(ChiTietHoaDonNhap detail);
-        Task<Object> getAllInvoice(int pageIndex, int pageSize);
-        Task<Object> getInvoiceDetailById(int id);
-        Task<Object> getInvoiceById(int id);
+        Task<BaseQueryReponseModel<ImportInvoiceModel>> getAllInvoice(int pageIndex, int pageSize);
+        Task<List<ImportInvoiceDetailModel>> getInvoiceDetailById(int id);
+        Task<ImportInvoiceModel> getInvoiceById(int id);
     }
 }
