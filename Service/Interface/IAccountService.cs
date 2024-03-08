@@ -15,9 +15,11 @@ namespace Service.Interface
         public Task<IdentityResult> CreateStaff(SignUpModel model);
         public Task<List<IdentityRole>> GetAllRole();
         public Task<Object> GetAllUser(int pageIndex, int pageSize);
+        public Task<IdentityResult> ResetPassword(string email, string code, string newPassword);
         public Task<Object> GetUserWithRoleById(string id);
         public Task<IdentityResult> UpdateUserAsync(ApplicationUser user);
         public Task<string> GenerateEmailConfirmationTokenAsync(string userId);
+        public Task<string> GenerateResetPasswordTokenAsync(string email);
         public Task<bool> ConfirmEmailAsync(string userId, string code);
         public Task<IdentityResult> DeleteUserById(string id);
         public Task<Object> SignIn(SignInModel model);

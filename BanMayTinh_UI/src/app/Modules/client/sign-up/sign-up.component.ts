@@ -19,7 +19,11 @@ export class SignUpComponent {
   SignUp() {
     this.userService.signUp(this.User).subscribe(res => {
       console.log(res.role);
-      alert("Đăng kí thành công!");
+      alert("Vui lòng vào gmail để xác thực tài khoản!");
+      this.userService.GenerateTokenConfirmEmail(this.User.email).subscribe(res =>{
+        console.log(res)
+      });
+      
     });
   }
 }

@@ -13,6 +13,7 @@ import { ProductSearchComponent } from './product-search/product-search.componen
 import { LoginComponent } from './login/login.component';
 import { MyOrderComponent } from './my-order/my-order.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { ResetPasswordComponent } from './login/reset-password/reset-password.component';
 
 @NgModule({
     declarations:[
@@ -25,7 +26,8 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     ProductSearchComponent,
     LoginComponent,
     MyOrderComponent,
-    SignUpComponent
+    SignUpComponent,
+    ResetPasswordComponent
   ],
     imports:[
       ClientRoutingModule,

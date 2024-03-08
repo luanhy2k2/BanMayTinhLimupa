@@ -15,7 +15,7 @@ namespace API.Controllers
     {
         private readonly IAccountService _service;
        
-        public AccountController(IAccountService service, SendEmail sendEmail)
+        public AccountController(IAccountService service)
         {
             _service = service;
            
@@ -45,19 +45,23 @@ namespace API.Controllers
 
             return Ok(result);
         }
-     
+        [HttpPost("generateTokenResetpassword/{email}")]
+        public async Task<ActionResult> GenerateTokenResetPassword(string email)
+        {
+            var result = await _service.GenerateResetPasswordTokenAsync(email);
+
+            if (result == null)
+            {
+                return BadRequest("");
+            }
+
+            return Ok(result);
+        }
+
         [HttpGet("confirmEmail")]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
         {
-            if (userId == null || code == null)
-            {
-                return BadRequest("userId and code are required.");
-            }
-
-            var decodedCodeBytes = WebEncoders.Base64UrlDecode(code);
-            var decodedCode = Encoding.UTF8.GetString(decodedCodeBytes);
-
-            var result = await _service.ConfirmEmailAsync(userId, decodedCode);
+            var result = await _service.ConfirmEmailAsync(userId, code);
             if (result == true)
             {
                 return Ok("Email confirmed successfully.");
@@ -65,6 +69,19 @@ namespace API.Controllers
             else
             {
                 return BadRequest("Error confirming email.");
+            }
+        }
+        [HttpPost("resetPassword")]
+        public async Task<ActionResult> ResetPassword([FromBody] ResetPs model)
+        {
+            var result = await _service.ResetPassword(model.email, model.code,model.newPassword);
+            if (result.Succeeded)
+            {
+                return Ok("Reset password successfully.");
+            }
+            else
+            {
+                return BadRequest("Error.");
             }
         }
 

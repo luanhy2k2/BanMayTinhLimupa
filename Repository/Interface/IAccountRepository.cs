@@ -13,6 +13,9 @@ namespace Repository.Interface
     {
         public Task<Object> GetAllUser(int pageIndex, int pageSize);
         public Task<List<IdentityRole>> GetAllRole();
+        public Task<string> GenerateResetPasswordTokenAsync(ApplicationUser user);
+        public Task<IdentityResult> ResetPassword(ApplicationUser user, string code, string newPassword);
+        public Task<ApplicationUser> FindUserByEmailAsync(string id);
         public Task<string> GenerateEmailConfirmationTokenAsync(ApplicationUser user);
         public Task<bool> ConfirmEmailAsync(string userId, string code);
         public Task<IdentityResult> UpdateUserAsync(ApplicationUser user);

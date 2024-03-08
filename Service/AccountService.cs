@@ -307,13 +307,13 @@ namespace Service
                 {
                     throw new ArgumentNullException();
                 }
-                var user = await _repository.FindUserByIdAsync(userId);
+                var user = await _repository.FindUserByEmailAsync(userId);
                 var result = await _repository.GenerateEmailConfirmationTokenAsync(user);
                 var token = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(result));
                 var callbackUrl = $"https://localhost:7261/api/account/confirmEmail?userId={userId}&code={token}";
 
                 await _sendEmail.SendEmailAsync(user.Email, "Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi, vui lòng click vào đoạn link sau để xác thực tài khoản cuản bạn: "+ callbackUrl );
-                return result;
+                return token;
             }
             catch(Exception ex)
             {
@@ -329,12 +329,64 @@ namespace Service
                 {
                     throw new ArgumentNullException();
                 }
-                var result = await _repository.ConfirmEmailAsync(userId, code);
+                var decodedCodeBytes = WebEncoders.Base64UrlDecode(code);
+                var decodedCode = Encoding.UTF8.GetString(decodedCodeBytes);
+                var result = await _repository.ConfirmEmailAsync(userId, decodedCode);
                 return result;
             }
             catch(Exception ex)
             {
                 throw new Exception("Error while confirm email", ex);
+            }
+        }
+
+        public async Task<IdentityResult> ResetPassword(string email, string code, string newPassword)
+        {
+            try
+            {
+                if(email == null || code == null || newPassword == null)
+                {
+                    throw new ArgumentNullException();
+                }
+                var user = await _repository.FindUserByEmailAsync(email);
+                if (user == null)
+                {
+                    return null;
+                }
+                var decodedCodeBytes = WebEncoders.Base64UrlDecode(code);
+                var decodedCode = Encoding.UTF8.GetString(decodedCodeBytes);
+                var result = await _repository.ResetPassword(user, decodedCode,newPassword);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error while reset password", ex);
+            }
+        }
+
+        public async Task<string> GenerateResetPasswordTokenAsync(string email)
+        {
+            try
+            {
+                if (email == null)
+                {
+                    throw new ArgumentNullException();
+                }
+                var user = await _repository.FindUserByEmailAsync(email);
+                if (user == null)
+                {
+                    return null;
+                }
+                var result = await _repository.GenerateResetPasswordTokenAsync(user);
+                var token = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(result));
+                var callbackUrl = $"http://localhost:4200/client/resetPassword/{email}/{token}";
+
+                await _sendEmail.SendEmailAsync(user.Email, "Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi, vui lòng click vào đoạn link sau để đổi mật khẩu bạn: " + callbackUrl);
+                return token;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error while generate token", ex);
             }
         }
     }

@@ -39,6 +39,10 @@ namespace Repository
             {
                 return "Tài khoản không tồn tại";
             }
+            if (user.EmailConfirmed == false)
+            {
+                return false;
+            }
             var passwordValid = await _userManager.CheckPasswordAsync(user, model.Password);
             if (passwordValid == false)
             {
@@ -68,27 +72,32 @@ namespace Repository
 
 
         }
+        public async Task<IdentityResult> ResetPassword(ApplicationUser user, string code, string newPassword)
+        {
+            var resetPassword = await _userManager.ResetPasswordAsync(user, code, newPassword);
+            return resetPassword;
+        }
         public async Task<string> GenerateEmailConfirmationTokenAsync(ApplicationUser user)
         {
-            
-            if (user == null)
-            {
-                // User không tồn tại
-                return null;
-            }
-
             var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            return code;
+
+        }
+        public async Task<string> GenerateResetPasswordTokenAsync(ApplicationUser user)
+        {
+            var code = await _userManager.GeneratePasswordResetTokenAsync(user);
             return code;
         }
 
         public async Task<bool> ConfirmEmailAsync(string userId, string code)
         {
-            var user = await _userManager.FindByIdAsync(userId);
+            var user = await _userManager.FindByEmailAsync(userId);
             if (user == null)
             {
                 // User không tồn tại
                 return false;
             }
+            
 
             var result = await _userManager.ConfirmEmailAsync(user, code);
             if (result.Succeeded)
@@ -150,6 +159,17 @@ namespace Repository
             try
             {
                 return await _userManager.FindByIdAsync(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error finding user by id: {ex.Message}", ex);
+            }
+        }
+        public async Task<ApplicationUser> FindUserByEmailAsync(string id)
+        {
+            try
+            {
+                return await _userManager.FindByEmailAsync(id);
             }
             catch (Exception ex)
             {

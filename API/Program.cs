@@ -1,4 +1,4 @@
-using Application.Helpers;
+﻿using Application.Helpers;
 using Application.Mappings;
 using core_api.Helpers;
 using Data;
@@ -42,6 +42,7 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
 builder.Services.AddDbContext<QuanlybanhangContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddTransient<SendEmail>();
+
 
 builder.Services.AddScoped<IHomePageRepository, HomePageRepository>();
 builder.Services.AddScoped<IHomePageService, HomePageService>();

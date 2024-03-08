@@ -12,7 +12,21 @@ const host = "https://localhost:7261"
 export class UserService {
     constructor(private httpClient: HttpClient) { }
     signUp(user: any): Observable<any> {
-        return this.httpClient.post<any>(`${host}/api/account/signup`, user)
+        return this.httpClient.post(`${host}/api/account/signup`, user,{responseType: 'text' })
+    }
+    ResetPassword(email:string, code:string,password: string): Observable<any> {
+        const request = {
+            email: email,
+            code: code,
+            newPassword: password
+        }
+        return this.httpClient.post(`${host}/api/account/resetPassword`, request,{responseType: 'text' });
+    }
+    GenerateTokenConfirmEmail(email:string){
+        return this.httpClient.post(`${host}/api/account/generateConfirmTokenEmail/${email}`, {},{responseType: 'text' });
+    }
+     GenerateTokenResetPassword(email:string){
+        return  this.httpClient.post(`${host}/api/account/generateTokenResetpassword/${email}`, {},{responseType: 'text' });
     }
     login(email: string, password: string): Observable<any> {
         return this.httpClient.post<any>(`${host}/api/account/signin`, { email, password })

@@ -11,4 +11,10 @@ namespace Application.Models
         public string userId { get; set; }
         public string code { get; set; }
     }
+    public class ResetPs
+    {
+        public string email { get; set; }
+        public string code { get; set; }
+        public string newPassword { get; set; }
+    } 
 }
