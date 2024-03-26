@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { orderService } from 'src/app/Service/admin/orderService';
+import { orderService } from 'src/app/Service/admin/order.service';
 
 @Component({
   selector: 'app-order-detail',

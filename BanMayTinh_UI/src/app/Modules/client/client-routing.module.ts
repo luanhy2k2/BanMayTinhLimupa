@@ -11,6 +11,7 @@ import { LoginComponent } from "./login/login.component";
 import { MyOrderComponent } from "./my-order/my-order.component";
 import { SignUpComponent } from "./sign-up/sign-up.component";
 import { ResetPasswordComponent } from "./login/reset-password/reset-password.component";
+import { AccountComponent } from "./account/account.component";
 
 const routes: Routes = [
     {
@@ -29,6 +30,10 @@ const routes: Routes = [
     {
         path: 'login',
         component:LoginComponent
+    },
+    {
+        path: 'account',
+        component:AccountComponent
     },
     {
         path: 'resetPassword/:email/:code',

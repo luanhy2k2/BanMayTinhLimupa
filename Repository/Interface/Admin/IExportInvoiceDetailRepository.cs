@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 namespace Repository.Interface.Admin
 {
     public interface IExportInvoiceDetailRepository:IGenericRespository<ChiTietHoaDonBan>
-    {
+    { 
+        public Task<List<ChiTietHoaDonBan>> GetInvoiceDetailById(int id);
     }
 }

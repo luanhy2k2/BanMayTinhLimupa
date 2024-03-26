@@ -3,9 +3,9 @@
         id="accordionSidebar"
       >
         <!-- Sidebar - Brand -->
-        <a
+        <a 
           class="sidebar-brand d-flex align-items-center justify-content-center"
-          href="index.html"
+          [routerLink]="['/client/Home']"
         >
           <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-thin fa-ghost"></i>
@@ -18,9 +18,9 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/client/Home']" >
-            <i class="fas fa-fw fa-house"></i>
-            <span>Home</span>
+          <a class="nav-link" [routerLink]="['/admin/dashboard']" >
+            <i style="color: white;" class="fas fa-fw fa-house"></i>
+            <span style="color: white; font-weight: bolder;">Dashboard</span>
           </a>
         </li>
 
@@ -35,8 +35,8 @@
             aria-expanded="true"
             aria-controls="collapseProduct"
           >
-            <i class="fas fa-fw fa-duotone fa-images"></i>
-            <span>Danh mục</span>
+            <i style="color: white;" class="fas fa-fw fa-duotone fa-images"></i>
+            <span style="color: white; font-weight: bolder;">Danh mục</span>
           </a>
           <div
             id="collapseProduct"
@@ -62,8 +62,8 @@
             aria-expanded="true"
             aria-controls="collapseOrder"
           >
-            <i class="fas fa-fw fa-file-invoice-dollar"></i>
-            <span>Đơn hàng</span>
+            <i style="color: white;" class="fas fa-fw fa-file-invoice-dollar"></i>
+            <span style="color: white; font-weight: bolder;">Đơn hàng</span>
           </a>
           <div
             id="collapseOrder"
@@ -75,6 +75,7 @@
              
               <a class="collapse-item" [routerLink]="['/admin/order']">Đơn hàng</a>
               <a class="collapse-item" [routerLink]="['/admin/importInvoice']">Hoá đơn nhập</a>
+              <a class="collapse-item" [routerLink]="['/admin/exportInvoice']">Hoá đơn bán</a>
               <a class="collapse-item" [routerLink]="['/admin/wareHouse']">Kho</a>
             </div>
           </div>
@@ -82,8 +83,8 @@
 
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/admin/account']" >
-            <i class="fas fa-fw fa-user"></i>
-            <span>Nhân viên</span>
+            <i style="color: white;" class="fas fa-fw fa-user"></i>
+            <span style="color: white; font-weight: bolder;">Nhân viên</span>
           </a>
         </li>
 
@@ -97,8 +98,8 @@
             aria-expanded="true"
             aria-controls="collapseUtilities"
           >
-            <i class="fas fa-fw fa-folder"></i>
-            <span>General</span>
+            <i style="color: white;" class="fas fa-fw fa-folder"></i>
+            <span style="color: white; font-weight: bolder;">General</span>
           </a>
           <div
             id="collapseUtilities"

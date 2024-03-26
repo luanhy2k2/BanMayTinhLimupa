@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { loaisp } from 'src/app/Models/loaisp.entity';
 import { product } from 'src/app/Models/product.entity';
-import { HomeGetDataService } from 'src/app/Service/Client/HomePage/Home-getData';
+import { HomeGetDataService } from 'src/app/Service/Client/HomePage/Home-getData.service.';
 
 @Component({
   selector: 'app-product-category',

@@ -202,82 +202,23 @@
             aria-labelledby="messagesDropdown"
           >
             <h6 class="dropdown-header">Message Center</h6>
-            <a class="dropdown-item d-flex align-items-center" href="#">
+            <a *ngFor="let x of chatRooms"  class="dropdown-item d-flex align-items-center" (click)="joinRoom(x)">
               <div class="dropdown-list-image mr-3">
                 <img
                   class="rounded-circle"
-                  src="img/undraw_profile_1.svg"
+                  src="./assets/img/undraw_profile_1.svg"
                   alt="..."
                 />
                 <div class="status-indicator bg-success"></div>
               </div>
               <div class="font-weight-bold">
-                <div class="text-truncate">
-                  Hi there! I am wondering if you can help me with a
-                  problem I've been having.
+                <div  class="text-truncate">
+                  {{x.message}}
                 </div>
-                <div class="small text-gray-500">Emily Fowler · 58m</div>
+                <div class="small text-gray-500">{{x.name}}</div>
               </div>
             </a>
-            <a class="dropdown-item d-flex align-items-center" href="#">
-              <div class="dropdown-list-image mr-3">
-                <img
-                  class="rounded-circle"
-                  src="img/undraw_profile_2.svg"
-                  alt="..."
-                />
-                <div class="status-indicator"></div>
-              </div>
-              <div>
-                <div class="text-truncate">
-                  I have the photos that you ordered last month, how would
-                  you like them sent to you?
-                </div>
-                <div class="small text-gray-500">Jae Chun · 1d</div>
-              </div>
-            </a>
-            <a class="dropdown-item d-flex align-items-center" href="#">
-              <div class="dropdown-list-image mr-3">
-                <img
-                  class="rounded-circle"
-                  src="img/undraw_profile_3.svg"
-                  alt="..."
-                />
-                <div class="status-indicator bg-warning"></div>
-              </div>
-              <div>
-                <div class="text-truncate">
-                  Last month's report looks great, I am very happy with
-                  the progress so far, keep up the good work!
-                </div>
-                <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-              </div>
-            </a>
-            <a class="dropdown-item d-flex align-items-center" href="#">
-              <div class="dropdown-list-image mr-3">
-                <img
-                  class="rounded-circle"
-                  src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
-                  alt="..."
-                />
-                <div class="status-indicator bg-success"></div>
-              </div>
-              <div>
-                <div class="text-truncate">
-                  Am I a good boy? The reason I ask is because someone
-                  told me that people say this to all dogs, even if they
-                  aren't good...
-                </div>
-                <div class="small text-gray-500">
-                  Chicken the Dog · 2w
-                </div>
-              </div>
-            </a>
-            <a
-              class="dropdown-item text-center small text-gray-500"
-              href="#"
-              >Read More Messages</a
-            >
+           
           </div>
         </li>
 
@@ -336,6 +277,66 @@
       </ul>
     </nav>
         <router-outlet></router-outlet>
+        <div [ngClass]="{'hidden': isHidden}"  id="chat" class="fixed-corner chat">
+          <div class="header">
+              <div class="img">
+                  <img style="width: 70%; border-radius: 50%;"
+                      src="https://s160-ava-talk.zadn.vn/5/c/9/7/22/160/7433bce2f1ac6e26cdac43a73037f10d.jpg" alt="">
+              </div>
+      
+              <div  class="title">
+                  Laptop Phong Vũ
+              </div>
+              <div (click)="toggleDiv()" class="icon">
+                  <i  style="width: 100%; color: white; margin-left: auto;
+                  justify-content: center;
+                  display: flex;" class="fa-solid fa-chevron-down"></i>
+              </div>
+          </div>
+          <div class="main main-content">
+              <div class="chat-body">
+                  <ul class="list-unstyled">
+      
+                      <li (click)="toggleDiv()" *ngFor="let message of chatMessages" >  
+                          <div class="chat-message d-flex" [ngClass]="{'ismine': message.isMine, 'isother': !message.isMine}">
+                              
+                              <div  class="message-content d-flex flex-column">
+                                  <div class="d-flex justify-content-between">
+                                      <span class="author">{{ message.user }}</span>
+                                      <span class="timestamp">
+                                          <i class="far fa-clock"></i>
+                                          <span>{{ message.timestamp }}</span>
+                                      </span>
+                                  </div>
+                                  <span class="content" [innerHTML]="message.content"></span>
+                              </div>
+                          </div>
+                      </li>
+                      
+                  </ul>
+              </div>
+      
+              <div class="chat-input">
+                  <input id="chat-message" [(ngModel)] = "message" type="text" value="" placeholder="What's on your mind?" />
+                  <div class="actions d-flex align-items-center">
+                      <div>
+                          <label for="UploadedFile" class="custom-file-upload">
+                              <i class="far fa-image"></i>
+                          </label>
+      
+                          <input  type="file" id="UploadedFile" name="file" />
+      
+                      </div>
+      
+                      <a id="emojibtn">
+                          <i class="far fa-smile"></i>
+                      </a>
+                      <i (click)="sendNewMessage()" class="fa fa-paper-plane" id="btn-send-message"></i>
+                  </div>
+                 
+              </div>
+          </div>
+      </div>
       </div>
       <!-- Main Content -->
       

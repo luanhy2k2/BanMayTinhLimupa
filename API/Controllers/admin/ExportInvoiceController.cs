@@ -48,5 +48,47 @@ namespace core_api.Controllers.admin
                 return BadRequest();
             }
         }
+        [Route("getAll/{pageIndex}/{pageSize}")]
+        [HttpGet]
+        public async Task<ActionResult> GetInvoice(int pageIndex, int pageSize)
+        {
+            try
+            {
+                var result = await _exportInvoiceService.Get(pageIndex,pageSize);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
+        [Route("getById/{id}")]
+        [HttpGet]
+        public async Task<ActionResult> GetInvoiceById(int id)
+        {
+            try
+            {
+                var result = await _exportInvoiceService.GetById(id);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
+        [Route("getInvoiceDetailById/{id}")]
+        [HttpGet]
+        public async Task<ActionResult> GetInvoiceDetailById(int id)
+        {
+            try
+            {
+                var result = await _exportInvoiceDetailService.GetInvoiceDetailById(id);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
     }
 }

@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { PaymentService } from 'src/app/Service/Client/form/PaymentService';
-import { UserService } from 'src/app/Service/UserService';
-import { orderService } from 'src/app/Service/admin/orderService';
+import { PaymentService } from 'src/app/Service/Client/form/Payment.service';
+import { UserService } from 'src/app/Service/User.service';
+import { orderService } from 'src/app/Service/admin/order.service';
+import { AuthService } from 'src/app/Service/auth.service';
 
 @Component({
   selector: 'app-my-order',
@@ -9,17 +10,16 @@ import { orderService } from 'src/app/Service/admin/orderService';
   styleUrls: ['./my-order.component.scss']
 })
 export class MyOrderComponent {
-  constructor(private service: PaymentService, private us:UserService, private orderService:orderService) { }
-  order: any
-  sdt: string = "";
+  constructor(private service: PaymentService, private userService:UserService,
+     private auth:AuthService, private orderService:orderService) { }
+  order: any;
   pageIndex:number = 1;
   ngOnInit() {
     this.loadData();
   }
   loadData() {
-    const us = this.us.getUser();
-    this.sdt = us.phone;
-    this.service.getOrder(this.sdt, this.pageIndex).subscribe(res => {
+    var sdt = this.auth.getPhoneFromToken(this.userService.getUser().token);
+    this.service.getOrder(sdt, this.pageIndex).subscribe(res => {
       this.order = res.results;
       console.log(res.results[0].chiTietDonHangs)
     })

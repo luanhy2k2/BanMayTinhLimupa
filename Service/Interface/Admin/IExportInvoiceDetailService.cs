@@ -1,4 +1,5 @@
-﻿using Data.Entities;
+﻿using Application.Models;
+using Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,5 +10,6 @@ namespace Service.Interface.Admin
 {
     public interface IExportInvoiceDetailService:IGenericService<ChiTietHoaDonBan>
     {
+        public Task<List<ExportInvoiceDetailModel>> GetInvoiceDetailById(int id);
     }
 }

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { UserService } from 'src/app/Service/UserService';
-import { InvoiceService } from 'src/app/Service/admin/invoiceService';
+import { UserService } from 'src/app/Service/User.service';
+import { InvoiceService } from 'src/app/Service/admin/invoice.service';
 
 @Component({
   selector: 'app-import-invoice',

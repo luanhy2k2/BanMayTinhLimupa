@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { branch } from 'src/app/Models/branch.entity';
-import { branchService } from 'src/app/Service/admin/brandService';
+import { branchService } from 'src/app/Service/admin/brand.service';
 
 @Component({
   selector: 'app-branch',

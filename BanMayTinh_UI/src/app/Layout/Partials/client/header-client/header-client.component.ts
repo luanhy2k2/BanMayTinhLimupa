@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { HomeGetDataService } from 'src/app/Service/Client/HomePage/Home-getData';
-import { UserService } from 'src/app/Service/UserService';
+import { HomeGetDataService } from 'src/app/Service/Client/HomePage/Home-getData.service.';
+import { UserService } from 'src/app/Service/User.service';
+import { AuthService } from 'src/app/Service/auth.service';
 
 @Component({
   selector: 'app-header-client',
@@ -9,7 +10,8 @@ import { UserService } from 'src/app/Service/UserService';
   styleUrls: ['./header-client.component.scss']
 })
 export class HeaderClientComponent {
-  constructor(private homeService: HomeGetDataService, private userService:UserService, private router:Router) {
+  constructor(private homeService: HomeGetDataService, private authService:AuthService,
+     private userService:UserService, private router:Router) {
   }
   name: string = "";
   user:any;
@@ -19,7 +21,11 @@ export class HeaderClientComponent {
   branch: any[] = [];
   ngOnInit() {
     this.loadBranch();
-    this.user = this.userService.getUser(); 
+    const user = this.userService.getUser(); 
+    const email = this.authService.getEmailFromToken(user.token)
+    this.userService.getUserById(email).subscribe(res =>{
+      this.user = res.userInfo;
+    })
   }
   loadBranch() {
     this.homeService.getCategories().subscribe(res => {

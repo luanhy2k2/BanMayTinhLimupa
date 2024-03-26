@@ -25,8 +25,8 @@
                 <!-- <div *ngIf="isLoading">Đang đăng nhập...</div> -->
             </div>
             <div class="req_pass">
-                <a data-bs-toggle="modal" data-bs-target="#exampleModal">Quên mật khẩu?</a>
-                hoặc <a href="/account/register" title="Đăng ký">Đăng ký</a>
+                <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal">Quên mật khẩu?</a>
+                hoặc <a [routerLink]="['/client/signUp']" title="Đăng ký">Đăng ký</a>
             </div>
             <input id="b67806b848ae44668d5d1e66fd860c2a" name="g-recaptcha-response" type="hidden"
                 value="your-recaptcha-response" />

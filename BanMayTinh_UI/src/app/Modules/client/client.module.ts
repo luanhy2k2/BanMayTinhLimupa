@@ -14,6 +14,8 @@ import { LoginComponent } from './login/login.component';
 import { MyOrderComponent } from './my-order/my-order.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { ResetPasswordComponent } from './login/reset-password/reset-password.component';
+import { AccountComponent } from './account/account.component';
+import { JwtHelperService } from "@auth0/angular-jwt";
 
 @NgModule({
     declarations:[
@@ -27,12 +29,18 @@ import { ResetPasswordComponent } from './login/reset-password/reset-password.co
     LoginComponent,
     MyOrderComponent,
     SignUpComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    AccountComponent
   ],
     imports:[
       ClientRoutingModule,
       CommonModule,
-      FormsModule
+      FormsModule,
+      
+    ],
+    providers: [
+      JwtHelperService
     ]
+    
 })
 export class ClientModule{}

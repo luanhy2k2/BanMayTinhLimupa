@@ -1,4 +1,5 @@
 ﻿using Application.Helpers;
+using Application.Hubs;
 using Application.Mappings;
 using core_api.Helpers;
 using Data;
@@ -30,6 +31,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddAutoMapper(typeof(ProductProfile));
+builder.Services.AddAutoMapper(typeof(ExportInvoiceProfile));
+builder.Services.AddAutoMapper(typeof(ExportInvoiceDetailProfile));
+builder.Services.AddAutoMapper(typeof(MessageProfile));
+builder.Services.AddAutoMapper(typeof(RoomProfile));
 builder.Services.AddAutoMapper(typeof(OrderProfile));
 builder.Services.AddAutoMapper(typeof(ImportInvoiceDetailProfile));
 builder.Services.AddAutoMapper(typeof(ImportInvoiceProfile));
@@ -38,14 +43,23 @@ builder.Services.AddAutoMapper(typeof(ProductStonkProfile));
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<QuanlybanhangContext>().AddDefaultTokenProviders();
-
+builder.Services.AddSignalR();
 builder.Services.AddDbContext<QuanlybanhangContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddTransient<SendEmail>();
 
+builder.Services.AddScoped<IDashboardRepository, DashboardRepository>();
+builder.Services.AddScoped<IDashboardService, DashboardService>();
 
 builder.Services.AddScoped<IHomePageRepository, HomePageRepository>();
 builder.Services.AddScoped<IHomePageService, HomePageService>();
+
+builder.Services.AddScoped<IRoomRepository, RoomRepository>();
+builder.Services.AddScoped<IRoomService, RoomService>();
+
+builder.Services.AddScoped<IMessageRepository, MessageRepository>();
+builder.Services.AddScoped<IMessageService, MessageService>();
+
 
 builder.Services.AddScoped<ILoaispRepository, LoaiSpRepository>();
 
@@ -61,6 +75,8 @@ builder.Services.AddScoped<IProductDetailService, ProductDetailService>();
 builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
 builder.Services.AddScoped<IPaymentService, PaymentService>();
 
+builder.Services.AddScoped<IStaffRepository, StaffRepository>();
+builder.Services.AddScoped<IStaffService, StaffService>();
 
 builder.Services.AddScoped<IWareHouseRepository, WarehouseRepository>();
 builder.Services.AddScoped<IWarehouseService, WarehouseService>();
@@ -84,7 +100,13 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAll", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+    options.AddDefaultPolicy(builder =>
+    {
+        builder.WithOrigins("http://localhost:4200")
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials();
+    });
 });
 var appSettingsSection = builder.Configuration.GetSection("AppSettings");
 builder.Services.Configure<AppSettings>(appSettingsSection);
@@ -131,15 +153,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 app.UseRouting();
-app.UseCors(x => x
-    .AllowAnyOrigin()
-    .AllowAnyMethod()
-    .AllowAnyHeader());
+app.UseCors();
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseStaticFiles();
-
+app.MapHub<ChatHub>("chatHub");
 app.MapControllers();
 
 app.Run();

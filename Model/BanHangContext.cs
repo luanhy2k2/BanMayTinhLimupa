@@ -52,7 +52,8 @@ public partial class QuanlybanhangContext : IdentityDbContext<ApplicationUser>
     public virtual DbSet<ProductComment> ProductComment { get; set; }
 
     public virtual DbSet<Sanpham> Sanpham { get; set; }
-
+    public virtual DbSet<Message> Message { get; set; }
+    public virtual DbSet<Room> Room { get; set; }
     public virtual DbSet<Slide> Slide { get; set; }
 
 

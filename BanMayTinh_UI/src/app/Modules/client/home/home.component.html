@@ -33,17 +33,17 @@
             <div class="col-lg-12">
                 <div class="li-product-tab">
                     <ul class="nav li-product-menu">
-                       <li><a class="active" data-toggle="tab" ><span>Sản phẩm mới</span></a></li>
-                         
-                    </ul>               
+                        <li><a class="active" data-toggle="tab"><span>Sản phẩm mới</span></a></li>
+
+                    </ul>
                 </div>
                 <!-- Begin Li's Tab Menu Content Area -->
             </div>
         </div>
         <div class="tab-content">
-            <div id="li-new-product" class="tab-pane active " >
-                <div  class="row">
-                    <div  class="product-active">
+            <div id="li-new-product" class="tab-pane active ">
+                <div class="row">
+                    <div class="product-active">
                         <div *ngFor="let x of newProduct" class="col-lg-12">
                             <!-- single-product-wrap start -->
                             <div class="single-product-wrap">
@@ -54,11 +54,12 @@
                                     <span class="sticker">New</span>
                                 </div>
                                 <div class="product_desc">
-                                    <div  class="product_desc_info">
+                                    <div class="product_desc_info">
                                         <div class="product-review">
-                                           
+
                                         </div>
-                                        <h4><a style="display: flex; justify-content: center;" class="product_name" [routerLink]="['/client/detail', 3]">{{x.sanpName}}</a></h4>
+                                        <h4><a style="display: flex; justify-content: center;" class="product_name"
+                                                [routerLink]="['/client/detail', 3]">{{x.sanpName}}</a></h4>
                                         <div style="display: flex; justify-content: center;" class="price-box">
                                             <span class="new-price">{{x.gia | currency:"VND"}} </span>
                                         </div>
@@ -66,23 +67,26 @@
                                     <div class="add-actions">
                                         <ul class="add-actions-link">
                                             <li class="add-cart active"><a href="#">Add to cart</a></li>
-                                            <li><a class="links-details" href="wishlist.html"><i class="fa fa-heart-o"></i></a></li>
-                                            <li><a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></a></li>
+                                            <li><a class="links-details" href="wishlist.html"><i
+                                                        class="fa fa-heart-o"></i></a></li>
+                                            <li><a href="#" title="quick view" class="quick-view-btn"
+                                                    data-toggle="modal" data-target="#exampleModalCenter"><i
+                                                        class="fa fa-eye"></i></a></li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                             <!-- single-product-wrap end -->
                         </div>
-                      
+
                     </div>
                 </div>
             </div>
-           
+
         </div>
     </div>
 
-    
+
 </div>
 <section class="product-area li-laptop-product li-tv-audio-product pb-45">
     <div class="container">
@@ -93,7 +97,7 @@
                     <h2>
                         <span>Sản phẩm bán chạy</span>
                     </h2>
-                   
+
                 </div>
                 <div class="row">
                     <div class="product-active owl-carousel">
@@ -102,16 +106,18 @@
                             <div class="single-product-wrap">
                                 <div class="product-image">
                                     <a>
-                                        <img [routerLink]="['/client/detail', x.sanpId]" src="https://localhost:7261/uploads/{{x.image}}" alt="Li's Product Image"> 
+                                        <img [routerLink]="['/client/detail', x.sanpId]"
+                                            src="https://localhost:7261/uploads/{{x.image}}" alt="Li's Product Image">
                                     </a>
                                     <span class="sticker">New</span>
                                 </div>
                                 <div class="product_desc">
-                                    <div  class="product_desc_info">
+                                    <div class="product_desc_info">
                                         <div class="product-review">
-                                           
+
                                         </div>
-                                        <h4 style="justify-content: center; display: flex;"><a class="product_name" [routerLink]="['/client/detail', 3]" >{{x.sanpName}}</a></h4>
+                                        <h4 style="justify-content: center; display: flex;"><a class="product_name"
+                                                [routerLink]="['/client/detail', 3]">{{x.sanpName}}</a></h4>
                                         <div style="justify-content: center; display: flex;" class="price-box">
                                             <span class="new-price">{{x.gia | currency:"VND"}}</span>
                                         </div>
@@ -119,23 +125,26 @@
                                     <div class="add-actions">
                                         <ul class="add-actions-link">
                                             <li class="add-cart active"><a href="#">Add to cart</a></li>
-                                            <li><a class="links-details" href="wishlist.html"><i class="fa fa-heart-o"></i></a></li>
-                                            <li><a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></a></li>
+                                            <li><a class="links-details" href="wishlist.html"><i
+                                                        class="fa fa-heart-o"></i></a></li>
+                                            <li><a href="#" title="quick view" class="quick-view-btn"
+                                                    data-toggle="modal" data-target="#exampleModalCenter"><i
+                                                        class="fa fa-eye"></i></a></li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                             <!-- single-product-wrap end -->
                         </div>
-                      
+
                     </div>
                 </div>
             </div>
             <!-- Li's Section Area End Here -->
         </div>
     </div>
-    
+
 </section>
-
-
-
+<!-- <button type="button">
+    New
+  </button> -->

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { InvoiceService } from 'src/app/Service/admin/invoiceService';
+import { InvoiceService } from 'src/app/Service/admin/invoice.service';
 
 @Component({
   selector: 'app-import-invoice-detail',

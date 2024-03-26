@@ -9,6 +9,7 @@ import { ClientModule } from "src/app/Modules/client/client.module";
 import { AdminTemplateComponent } from './admin-template/admin-template.component';
 import { AdminModule } from "src/app/Modules/Admin/admin.module";
 import { AdminRoutingModule } from "src/app/Modules/Admin/admin-routing.module";
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
     declarations:[
@@ -22,6 +23,7 @@ import { AdminRoutingModule } from "src/app/Modules/Admin/admin-routing.module";
       RouterModule,
       ClientRoutingModule,
       ClientModule,
+      FormsModule,
       AdminModule,
       AdminRoutingModule
     ],

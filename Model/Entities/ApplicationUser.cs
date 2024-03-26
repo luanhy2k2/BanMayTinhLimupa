@@ -13,5 +13,7 @@ namespace Data.Entities
         public string address { get; set; } = null!;
         public virtual ICollection<HoaDonNhap> HoaDonNhaps { get; set; }
         public virtual ICollection<ProductComment> ProductComments { get; set; }
+        public ICollection<Room> Rooms { get; set; }
+        public ICollection<Message> Messages { get; set; }
     }
 }

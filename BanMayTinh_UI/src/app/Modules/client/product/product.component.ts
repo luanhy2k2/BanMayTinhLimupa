@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { loaisp } from 'src/app/Models/loaisp.entity';
 import { product } from 'src/app/Models/product.entity';
-import { HomeGetDataService } from 'src/app/Service/Client/HomePage/Home-getData';
-import { productService } from 'src/app/Service/admin/productService';
+import { HomeGetDataService } from 'src/app/Service/Client/HomePage/Home-getData.service.';
+import { productService } from 'src/app/Service/admin/product.service';
 
 @Component({
   selector: 'app-product',

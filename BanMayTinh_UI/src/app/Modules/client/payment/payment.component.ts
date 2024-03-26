@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { CartService } from 'src/app/Service/Client/form/CartService';
-import { PaymentService } from 'src/app/Service/Client/form/PaymentService';
-import { UserService } from 'src/app/Service/UserService';
+import { CartService } from 'src/app/Service/Client/form/Cart.service';
+import { PaymentService } from 'src/app/Service/Client/form/Payment.service';
+import { UserService } from 'src/app/Service/User.service';
+import { AuthService } from 'src/app/Service/auth.service';
 
 @Component({
   selector: 'app-payment',
@@ -9,15 +10,17 @@ import { UserService } from 'src/app/Service/UserService';
   styleUrls: ['./payment.component.scss']
 })
 export class PaymentComponent {
-  constructor(private cartService: CartService,private userService:UserService, private PayService: PaymentService) { }
+  constructor(private cartService: CartService, private authService:AuthService,
+    private userService:UserService, private PayService: PaymentService) { }
   total: number = 0;
+  email: string = "";
   user:any = this.userService.getUser();
   payForm = {
     customer: {
-      tenKhachHang: this.user.hoTen,
-      diaChi: this.user.address,
-      email: this.user.email,
-      sdt: this.user.phone
+      tenKhachHang: "",
+      diaChi: "",
+      email: "",
+      sdt: ""
     },
     orderDetails: [
       {
@@ -30,14 +33,21 @@ export class PaymentComponent {
   }
   products!: any[]
   ngOnInit() {
-    this.loadCart();
+    this.loadData();
     this.total = this.cartService.getTotalPrice();
   }
-  loadCart() {
+  loadData() {
     const cartData = this.cartService.getCart()
     if (cartData !== null) {
       this.products = JSON.parse(cartData);
     }
+    this.email = this.authService.getEmailFromToken(this.user.token);
+    this.userService.getUserById(this.email).subscribe(res =>{
+      this.payForm.customer.tenKhachHang = res.userInfo.hoTen;
+      this.payForm.customer.diaChi = res.userInfo.address;
+      this.payForm.customer.email = res.userInfo.email;
+      this.payForm.customer.sdt = res.userInfo.phoneNumber;
+    })
   }
   createDonHang() {
     const cartData = this.cartService.getCart()
@@ -49,7 +59,7 @@ export class PaymentComponent {
       else {
         this.payForm.orderDetails = cart;
         var totalPrice: number = cart.reduce((acc: number, product: any) => {
-          return acc + product.giaMua * product.soLuong;
+          return acc + product.price * product.soLuong;
         }, 0);
         this.payForm.total = totalPrice;
         this.PayService.payMent(this.payForm).subscribe(
@@ -65,10 +75,7 @@ export class PaymentComponent {
             }
           }
         );
-        
       }
-
     }
-
   }
 }

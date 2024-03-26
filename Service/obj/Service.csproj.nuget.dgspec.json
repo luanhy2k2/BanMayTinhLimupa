@@ -47,6 +47,10 @@
             "AutoMapper": {
               "target": "Package",
               "version": "[10.1.1, )"
+            },
+            "Microsoft.AspNetCore.SignalR": {
+              "target": "Package",
+              "version": "[1.1.0, )"
             }
           },
           "imports": [
@@ -279,14 +283,6 @@
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[6.0.10, )"
-            },
-            "Microsoft.AspNetCore.WebUtilities": {
-              "target": "Package",
-              "version": "[2.1.1, )"
-            },
-            "Newtonsoft.Json": {
-              "target": "Package",
-              "version": "[9.0.1, )"
             }
           },
           "imports": [

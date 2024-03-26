@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { WareHouseService } from 'src/app/Service/admin/warehouseService';
+import { WareHouseService } from 'src/app/Service/admin/warehouse.service';
 
 @Component({
   selector: 'app-warehouse',

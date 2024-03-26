@@ -1,0 +1,131 @@
+<main class="main-wrapper">
+  <section class="section">
+    <div style="height: 500px; overflow: auto; " class="container-fluid">
+      <div class="row">
+        <div class="col-xl-4 col-lg-4 col-sm-6">
+          <div class="icon-card mb-30">
+            <div class="icon purple">
+              <i class="lni lni-cart-full"></i>
+            </div>
+            <div class="content">
+              <h6 class="mb-10">Đơn hàng trong ngày</h6>
+              <h3 class="text-bold mb-10">{{orderDuringDay}}</h3>
+              
+            </div>
+          </div>
+          <!-- End Icon Cart -->
+        </div>
+        <!-- End Col -->
+        <div class="col-xl-4 col-lg-4 col-sm-6">
+          <div class="icon-card mb-30">
+            <div class="icon success">
+              <i class="lni lni-dollar"></i>
+            </div>
+            <div class="content">
+              <h6 class="mb-10">Doanh thu trong ngày</h6>
+              <h3 class="text-bold mb-10">{{revenueDuringDay | currency:'VND'}}</h3>
+             
+            </div>
+          </div>
+          <!-- End Icon Cart -->
+        </div>
+        <!-- End Col -->
+        <div class="col-xl-4 col-lg-4 col-sm-6">
+          <div class="icon-card mb-30">
+            <div class="icon primary">
+              <i class="lni lni-credit-cards"></i>
+            </div>
+            <div class="content">
+              <h6 class="mb-10">Tổng sản phẩm</h6>
+              <h3 class="text-bold mb-10">{{totalProduct}}</h3>
+             
+            </div>
+          </div>
+          <!-- End Icon Cart -->
+        </div>
+        <!-- End Col -->
+        <div class="col-xl-4 col-lg-4 col-sm-6">
+          <div class="icon-card mb-30">
+            <div class="icon orange">
+              <i class="lni lni-cart-full"></i>
+            </div>
+            <div class="content">
+              <h6 class="mb-10">Đơn hàng trong tháng</h6>
+              <h3 class="text-bold mb-10">{{orderDuringMonth}}</h3>
+              
+            </div>
+          </div>
+          <!-- End Icon Cart -->
+        </div>
+        <div class="col-xl-4 col-lg-4 col-sm-6">
+          <div class="icon-card mb-30">
+            <div class="icon primary">
+              <i class="lni lni-dollar"></i>
+            </div>
+            <div class="content">
+              <h6 class="mb-10">Doanh thu trong tháng</h6>
+              <h3 class="text-bold mb-10">{{revenueDuringMonth | currency:"VND"}}</h3>
+              
+            </div>
+          </div>
+          <!-- End Icon Cart -->
+        </div>
+        <div class="col-xl-4 col-lg-4 col-sm-6">
+          <div class="icon-card mb-30">
+            <div class="icon primary">
+              <i class="lni lni-user"></i>
+            </div>
+            <div class="content">
+              <h6 class="mb-10">Số lượng người đăng kí</h6>
+              <h3 class="text-bold mb-10">{{totalUser}}</h3>
+             
+            </div>
+          </div>
+          <!-- End Icon Cart -->
+        </div>
+        <!-- End Col -->
+      </div>
+      <div style="padding-left: 2%;" class="row">
+        <div style="font-size: 30px;" class="title">
+            <br>
+            <h6 class="mb-10"><i style="font-size: 15px;" class="fa fa-box"></i> &nbsp; Các sản phẩm bán chạy nhất</h6>
+            <hr style="width: 250px;">
+        </div>
+        <div class="col-12 col-s-12 padding-box">
+            <table style="border: none;" class="table tb">
+                <tbody>
+                    <tr *ngFor="let x of productSelling">
+                        <td style="text-align: left; border-top: none; border-left: none; border-right: none;">
+                            <div style="font-size: 20px; border-left: none; font-weight: 450; margin-top: 20px;">
+                              {{x.sanpId}}
+                            </div>
+                        </td>
+                        <td
+                            style="text-align: left; width: 200px; border-top: none; border-left: none; border-right: none;">
+                            <img style="width: 50%;" src="https://localhost:7261/uploads/{{x.image}}">
+                        </td>
+                        <td
+                            style="text-align: left; border-top: none; border-left: none; border-right: none;">
+                            <div style="font-size: 20px; border-left: none; font-weight: 450; margin-top: 20px;">
+                              {{x.sanpName}}
+                            </div>
+                        </td>
+                        <td
+                            style="text-align: left; border-top: none; border-left: none; border-right: none;">
+                            <div
+                                style="font-size: 15px; border-left: none; font-weight: 400; margin-top: 20px; color: rgb(172, 42, 42);">
+                                | Đã bán: {{x.gia}}</div>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+      <!-- End Row -->
+
+
+    </div>
+    <!-- end container -->
+  </section>
+</main>

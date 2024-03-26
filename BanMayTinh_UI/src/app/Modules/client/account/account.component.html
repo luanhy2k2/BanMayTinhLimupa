@@ -1,0 +1,33 @@
+<div class="userbox">
+    <h2 style="border-bottom: 1.5px solid red; font-weight: bolder; width: 50%;">Thông tin tài khoản</h2>
+    <div style="margin-top: 30px;">
+        <label>Tài khoản:</label>
+        <input readonly [(ngModel)] = "UserRequest.userName" />
+        <div style="display: grid; grid-template-columns: 50% 50%;  ">
+            <div>
+                <label style="display: block;">Họ và tên:</label>
+                <input [(ngModel)] = "UserRequest.hoTen" />
+            </div>
+            <div style="margin-left: 20px;">
+                <label>Email:</label>
+                <input readonly [(ngModel)] = "UserRequest.email" />
+            </div>
+        </div>
+        <label>Địa chỉ:</label>
+        <input [(ngModel)] = "UserRequest.address" />
+        <div style="display: grid; grid-template-columns: 50% 50%; ">
+            <div>
+                <label style="display: block;">Số điện thoại:</label>
+                <input [(ngModel)] = "UserRequest.phoneNumber" />
+            </div>
+            <div style="margin-left: 20px;">
+                <label style="display: block;">Giới tính:</label>
+                <input value="Nam" />
+                
+            </div>
+            
+        </div>
+        
+        <button class="btn" (click)="Update()" type="submit">Cập nhật</button>
+    </div>
+</div>

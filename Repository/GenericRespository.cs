@@ -30,7 +30,7 @@ namespace Repository
             }
         }
 
-        public async Task<object> getAll(int pageIndex, int pageSize)
+        public virtual async Task<object> getAll(int pageIndex, int pageSize)
         {
             try
             {
@@ -63,7 +63,7 @@ namespace Repository
             }
         }
 
-        public async Task<T> getById(int id)
+        public virtual async Task<T> getById(int id)
         {
             try
             {

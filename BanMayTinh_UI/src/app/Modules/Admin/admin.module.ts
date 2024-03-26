@@ -12,6 +12,9 @@ import { ImportInvoiceComponent } from './import-invoice/import-invoice.componen
 import { ImportInvoiceDetailComponent } from './import-invoice/import-invoice-detail/import-invoice-detail.component';
 import { UserComponent } from './user/user.component';
 import { UserDetailComponent } from './user/user-detail/user-detail.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ExportInvoiceComponent } from './export-invoice/export-invoice.component';
+import { InvoiceComponent } from './export-invoice/invoice/invoice.component';
 
 
 
@@ -27,6 +30,9 @@ import { UserDetailComponent } from './user/user-detail/user-detail.component';
     ImportInvoiceDetailComponent,
     UserComponent,
     UserDetailComponent,
+    DashboardComponent,
+    ExportInvoiceComponent,
+    InvoiceComponent,
    
    
   ],

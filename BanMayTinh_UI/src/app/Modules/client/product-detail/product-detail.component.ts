@@ -3,10 +3,10 @@ import { ActivatedRoute } from '@angular/router';
 import { commentProduct } from 'src/app/Models/commentProduct.entity';
 import { product } from 'src/app/Models/product.entity';
 import { productDetail } from 'src/app/Models/productDetail.entity';
-import { HomeGetDataService } from 'src/app/Service/Client/HomePage/Home-getData';
-import { CartService } from 'src/app/Service/Client/form/CartService';
-import { ProductDetailService } from 'src/app/Service/Client/form/ProductDetail-getData';
-import { UserService } from 'src/app/Service/UserService';
+import { HomeGetDataService } from 'src/app/Service/Client/HomePage/Home-getData.service.';
+import { CartService } from 'src/app/Service/Client/form/Cart.service';
+import { ProductDetailService } from 'src/app/Service/Client/form/ProductDetail-getData.service';
+import { UserService } from 'src/app/Service/User.service';
 
 @Component({
   selector: 'app-product-detail',

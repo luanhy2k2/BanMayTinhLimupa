@@ -107,3 +107,4 @@ D:\DELL E7450\QuanLyMayTinh\API\bin\Debug\net6.0\Microsoft.Extensions.Configurat
 D:\DELL E7450\QuanLyMayTinh\API\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
 D:\DELL E7450\QuanLyMayTinh\API\bin\Debug\net6.0\System.Configuration.Abstractions.NetStandard.dll
 D:\DELL E7450\QuanLyMayTinh\API\bin\Debug\net6.0\API.staticwebassets.runtime.json
+D:\DELL E7450\QuanLyMayTinh\API\bin\Debug\net6.0\System.Net.WebSockets.WebSocketProtocol.dll

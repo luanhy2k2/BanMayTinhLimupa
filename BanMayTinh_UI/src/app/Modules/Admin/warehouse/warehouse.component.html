@@ -2,7 +2,7 @@
     <!-- End of Topbar -->
 
     <!-- Begin Page Content -->
-    <div class="container-fluid">
+    <div style="height: 450px; overflow: auto;" class="container-fluid">
       <!-- Page Heading -->
     
       
@@ -33,22 +33,23 @@
               </tbody>
             </table>
           </div>
-          <div class="padding-box">
+          <div style="margin-left: auto; justify-content: center; display: flex;" class="padding-box">
             <div class="box-sum">
-                <div style="padding-left: 5px;" class="box-right">
-                    <button style="color: white; background-color: darkgreenblue;" (click)="previousPage()">
-                        <i class="fa fa-chevron-left" style="margin-top: -8px;"></i>
-                    </button>
-                    <button style="color: white;background-color: darkgreen;" *ngFor="let page of totalPageArray" (click)="setPage(page)">
-                        {{ page }}
-                    </button>
-                    <button style="color: white;background-color: darkgreen;" (click)="nextPage()">
-                        <i class="fa fa-chevron-right" style="margin-top: -8px;"></i>
-                    </button>
-                </div>
-
+              <div style="padding-left: 5px;" class="box-right">
+                <button style="color: white; border: none; border-radius: 3px; background-color: orange;" (click)="previousPage()">
+                  <i class="fa fa-chevron-left" style="margin-top: -8px;"></i>
+                </button>
+                <button style="color: white; border-radius: 3px;background-color: orange;border: none; margin-left: 2px;" *ngFor="let page of totalPageArray"
+                  (click)="setPage(page)">
+                  {{ page }}
+                </button>
+                <button style="color: white; border-radius: 3px;background-color: orange;border: none;margin-left: 2px;" (click)="nextPage()">
+                  <i class="fa fa-chevron-right" style="margin-top: -8px;"></i>
+                </button>
+              </div>
+  
             </div>
-        </div>  
+          </div>
         </div>
       </div>
     </div>
